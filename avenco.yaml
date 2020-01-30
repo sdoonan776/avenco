@@ -1,0 +1,51 @@
+models:
+  User:
+    full_name: string
+    email: string:unique
+    username: string:unique
+    password: string
+    SoftDeletes
+
+  Cart:
+    name: string:225
+
+  Product:
+    category_id: id
+    name: string
+    quantity: integer
+    description: longtext
+    order_placed: datetime
+    order_dispached: datetime
+
+  Category:   
+    name: string
+
+  Order:
+    user_id: id
+    product_id: id
+
+controllers:
+  Auth:
+    index:
+      render: auth.login
+    login:
+      validate: email, password
+      flash: login.success
+      redirect: pages.home
+  
+  Home:
+    index:
+      render: pages.home
+  
+  Settings:
+    index:
+      render: settings.index  
+
+  Products:
+    index:
+      query: all
+      render: product.index with:products
+
+    show:
+      find: product.id
+
