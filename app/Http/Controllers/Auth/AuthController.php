@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthLoginRequest;
-use Illuminate\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'logout']]);
+        $this->middleware('auth:api', ['except' => ['index','login', 'logout']]);
     }
 
     /**
@@ -24,9 +25,9 @@ class AuthController extends Controller
 
     /**
      * @param \App\Http\Requests\AuthLoginRequest $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function login(AuthLoginRequest $request): Response
+    public function login(AuthLoginRequest $request): RedirectResponse
     {
         $credentials = $request->only('email', 'password');
 
@@ -37,9 +38,9 @@ class AuthController extends Controller
         if ($token = $this->guard()->attempt($credentials)) {
             $request->session()->flash('login.success', $login->success);
 
-            $tokenResponse = $this->respondWithToken($token);
+            return $tokenResponse = $this->respondWithToken($token);
 
-            return $tokenResponse . redirect()->route('pages.home');
+            // return $tokenResponse . redirect()->route('pages.home');
         }
 
         return response()->json(['error' => 'Unauthorized'], 401);

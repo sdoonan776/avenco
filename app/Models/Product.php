@@ -14,12 +14,10 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'category_id',
         'name',
-        'quantity',
         'description',
-        'order_placed',
-        'order_dispached',
+        'quantity',
+        'price',
     ];
 
     /**
@@ -29,7 +27,6 @@ class Product extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'category_id' => 'integer',
     ];
 
     /**
@@ -38,13 +35,13 @@ class Product extends Model
      * @var array
      */
     protected $dates = [
-        'order_placed',
-        'order_dispached',
+       'created_at' => 'datetime',
+       'updated_at' => 'datetime',
     ];
 
 
-    public function category(): BelongsTo
+    public function category(): BelongsToMany
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsToMany(Category::class, 'category_id');
     }
 }

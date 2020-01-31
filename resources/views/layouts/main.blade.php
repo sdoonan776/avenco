@@ -6,13 +6,16 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	    <meta name="description" content="Demo project">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
-		<style type="text/css"></style>
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 	</head>
 	<body>
 		<header>
 		  @include('partials.header')			
 		</header>
+
+		<nav>
+		    @include('partials.sidebar')
+		</nav>
 
 		<main>
 		  @yield('main')
@@ -22,6 +25,6 @@
 	      @include('partials.footer')
 		</footer>
 		
-		<script type="text/javascript"></script>
+		<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
 	</body>
 </html>

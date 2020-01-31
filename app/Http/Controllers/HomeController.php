@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -13,6 +16,12 @@ class HomeController extends Controller
      */
     public function index(): View
     {
-        return view('pages.home');
+    	try {
+		  $products = DB::table('products')->paginate(15);
+    	} catch (\Exception $e) {
+		  $e->getMessage();
+    	}
+
+        return view('pages.home', compact('products'));
     }
 }

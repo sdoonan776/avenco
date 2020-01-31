@@ -1,12 +1,9 @@
 <?php
 
 Route::get('/', 'HomeController@index')->name('pages.home');
+Route::get('/product/{$id}', 'ProductController@show')->name('show.product');
 
-Route::resource('auth', 'AuthController')->only('index');
-Route::get('auth/login', 'AuthController@login');
-
-Route::resource('home', 'HomeController')->only('index');
-
-Route::resource('settings', 'SettingsController')->only('index');
-
-Route::resource('products', 'ProductsController')->only('index', 'show');
+Route::group(['namespace' => 'Auth'], function () {
+	Route::get('login', 'AuthController@index')->name('auth.login');
+	Route::get('register', 'RegisterController@index')->name('auth.register');
+});

@@ -1,10 +1,10 @@
 <?php
 
 Route::group(['namespace' => 'Auth'], function () {
-	Route::get('login', 'AuthController@login');
-	Route::get('register', 'RegisterController@register');
+	Route::post('auth/login', 'AuthController@login');
+	Route::post('auth/register', 'RegisterController@register');
 
-	Route::get('refresh', 'AuthController@refresh');
-	Route::get('user', 'AuthController@user');
-	Route::get('logout', 'AuthController@logout');
+	Route::post('auth/refresh', 'AuthController@refresh');
+	Route::get('auth/user', 'AuthController@user');
+	Route::post('auth/logout', 'AuthController@logout');
 });

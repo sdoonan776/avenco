@@ -1,1 +1,6 @@
-@import './tailwind';
+@import './core/variables';
+@import './core/mixins';
+
+@import './vendor/tailwind';
+@import './content/home';
+@import './content/header';
