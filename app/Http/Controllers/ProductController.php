@@ -13,11 +13,10 @@ class ProductController extends Controller
     /**
      * @param $id
      * @return View
-     */
+ 	*/
     public function show($id): View
     {
-        $product = DB::table('products')->find($id)->first();
-
+        $product = DB::table('products')->where('id', $id)->first();
         return view('product.show-product', compact('product'));
     }
 }

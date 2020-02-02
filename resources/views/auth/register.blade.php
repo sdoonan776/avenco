@@ -5,12 +5,10 @@
 @section('form')
 <div class="w-full h-full max-w-xs mx-auto my-20">
 
-    <div></div>
-
     <form
           class="bg-white px-8 pt-6 pb-8 mb-4"
           method="POST"
-          action="{{ route('auth.login') }}">
+          action="">
       <h2 class="font-bold py-5 text-center">
         Create an Account
       </h2>

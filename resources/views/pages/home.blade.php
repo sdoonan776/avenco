@@ -10,9 +10,7 @@
            @foreach($products as $product)
             <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
                 <a href="{{ route('show.product', $product->id) }}">
-                    <div role="product-image" class="">
-                        
-                    </div>
+                    <div role="product-image" class="w-full h-full" style="background-image: url('http://lorempixel.com/400/400/fashion')"></div>
                     
                     <div class="pt-3 flex items-center justify-between">
                         <p>{{ $product->name }}</p>

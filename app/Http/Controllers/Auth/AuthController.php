@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthLoginRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Tymon\JWTAuth\JWTGuard;
 
 class AuthController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['index','login', 'logout']]);
+        $this->middleware('auth:api', ['except' => ['index', 'login', 'logout']]);
     }
 
     /**
@@ -25,26 +27,24 @@ class AuthController extends Controller
 
     /**
      * @param \App\Http\Requests\AuthLoginRequest $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function login(AuthLoginRequest $request): RedirectResponse
+     * @return JsonResponse
+ */
+    public function login(AuthLoginRequest $request): JsonResponse
     {
         $credentials = $request->only('email', 'password');
 
         if ($request->rememberMe) {
             $this->guard()->factory()->setTTL(30 * 24 * 60);
         }
-
-        if ($token = $this->guard()->attempt($credentials)) {
-            $request->session()->flash('login.success', $login->success);
-
-            return $tokenResponse = $this->respondWithToken($token);
-
-            // return $tokenResponse . redirect()->route('pages.home');
+        try {
+            if (!$token = $this->guard()->attempt($credentials)) {
+                return response()->json(['error' => 'invalid_credentials'], 400);
+            }
+        } catch(JWTException $e){
+            return response()->json(['error' => 'could_not_create_token'], 500);
         }
-
-        return response()->json(['error' => 'Unauthorized'], 401);
-
+        
+        return $this->respondWithToken($token);
     }
 
     /**
@@ -98,9 +98,9 @@ class AuthController extends Controller
     /**
      * Get the guard to be used during authentication.
      *
-     * @return \Illuminate\Contracts\Auth\Guard
+     * @return JWTGuard
      */
-    public function guard(): Guard
+    public function guard(): JWTGuard
     {
         return Auth::guard('api');
     }

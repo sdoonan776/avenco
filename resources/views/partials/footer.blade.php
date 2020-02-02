@@ -1,11 +1,11 @@
-<footer class="bg-green-500 text-white py-5 px-2 pin-b sticky">
+<footer class="main-footer bg-green-500 py-5 px-2 pin-b sticky">
 <section class="text-center sm:text-left sm:flex justify-around">
   <div class="py-5">
     <h3 class="font-bold">Stay Connected</h3>
     <div role="input-group" class="my-5">
-      <input class="p-2 mr-1 text-black focus:outline-none focus:shadow-outline" type="email"
-             placeholder="Email">
-      <input class="p-2 uppercase bg-green-900 cursor-pointer hover:bg-green-700" type="submit" value="Sign up">
+      <input class="p-2 mr-1 border-black text-black focus:outline-none focus:shadow-outline" type="newsletter-email"
+       placeholder="Email">
+      <input class="form-btn hover:bg-green-500" type="submit" value="Sign up">
     </div>
     <div role="social icons" class="my-5">
       <i class="fab fa-facebook fa-lg mr-2 cursor-pointer"></i>

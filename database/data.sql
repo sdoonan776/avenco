@@ -1,17 +1,16 @@
-
 USE avenco;
 
-INSERT INTO `categories` (`name`)
+INSERT INTO `categories` (`id`, `name`)
 VALUES
-  ('Housekeeping'),
-  ('Office Supplies'),
-  ('Furnishings'),
-  ('Maintenance'),
-  ('Public Areas');
+  (1, 'Housekeeping'),
+  (2, 'Office Supplies'),
+  (3, 'Furnishings'),
+  (4, 'Maintenance'),
+  (5, 'Public Services');
 
 -- PRODUCTS
 
-INSERT INTO products 
+INSERT INTO `products` 
 (`id`,`name`,`description`,`price`,`quantity`,`created_at`,`updated_at`) VALUES 
 (1,'Active classic boxers ','"There`s a reason why our boxers are a cult favorite # they keep their cool, especially in sticky situations. The quick-drying, lightweight underwear takes up minimal space in a travel pack. An exposed, brushed waistband offers next-to-skin softness, five-panel construction with a traditional boxer back for a classic fit, and a functional fly. Made of 3.7-oz 100% recycled polyester with moisture-wicking performance. Inseam (size M) is 4 1/2"". Recyclable through the Common Threads Recycling Program.<br><br><b>Details:</b><ul> <li>""Silky Capilene 1 fabric is ultralight, breathable and quick-to-dry""</li> <li>""Exposed, brushed elastic waistband for comfort""</li> <li>5-panel construction with traditional boxer back</li> <li>""Inseam (size M) is 4 1/2""""""</li></ul><br><br><b>Fabric: </b>3.7-oz 100% all-recycled polyester with Gladiodor natural odor control for the garment. Recyclable through the Common Threads Recycling Program<br><br><b>Weight: </b>99 g (3.5 oz)<br><br>Made in Mexico."','38.94','6','2016-10-28 14:03:53','2016-11-06 15:03:53'),
 (2,'Active sport boxer briefs ','"Skinning up Glory requires enough movement without your boxers deciding to poach their own route. The form-fitting Active Sport Boxer Briefs are made from breathable 93% polyester (71% recycled) fabric that`s fast-wicking, dries quickly and has 7% spandex for stretch the seamless waistband and soft leg edges won`t roll or bind. The gusseted, flat-sewn 6"" inseam (size M) is offset to prevent inner-thigh chafe. Fly-free with a smooth front panel. Recyclable through the Common Threads Recycling Program.<br><br><b>Details:</b><ul> <li>""Stretch mesh provides support, open-weave mesh for airflow, wicks efficiently, dries fast""</li> <li>Seamless construction</li> <li>""Flat-sewn, gusseted inseam is set forward to prevent inner-thigh chafe""</li> <li>Fly-free support</li> <li>""Inseam (size M) is 6""""""</li></ul><br><br><b>Fabric: </b>""4.6-oz 93% polyester (71% recycled)/7% spandex, with moisture-wicking performance. Recyclable through the Common Threads Recycling Program""<br><br><b>Weight: </b>(60 g 2.1 oz)<br><br>Made in Israel."','208.16','49','2016-01-06 03:42:55','2016-01-25 05:42:55'),
@@ -509,7 +508,7 @@ INSERT INTO products
 -- }
 -- echo $sql . implode(','.PHP_EOL, $parts) . ';' . PHP_EOL;
 
-INSERT INTO product_category (product_id, category_id) VALUES (1, 1),
+INSERT INTO `product_category` (product_id, category_id) VALUES (1, 1),
 (1, 5),
 (1, 2),
 (2, 2),
