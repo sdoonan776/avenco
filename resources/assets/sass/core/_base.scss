@@ -1,5 +1,19 @@
 .form-btn {
-	@apply p-2 uppercase cursor-pointer;
-	background-color: $primary-color;
+	@apply p-2 uppercase cursor-pointer rounded-sm;
+	background-color: #fff;
 	border: 1px solid #fff;
+}
+
+.product-btn {
+	@apply p-2 rounded-sm;
+	border: solid 1px $primary-color;
+	min-width: 110px;
+	text-align: center;
+	&:hover {
+		background-color: $primary-color;
+	}
+}
+
+.product-container {
+	background-color: solid 1px #000;
 }
