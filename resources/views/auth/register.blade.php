@@ -3,12 +3,9 @@
 @section('title', 'Register')
 
 @section('form')
-<div class="w-full h-full max-w-xs mx-auto my-20">
+<div class="w-full h-full max-w-xs mx-auto my-20 md:max-w-md">
 
-    <form
-          class="bg-white px-8 pt-6 pb-8 mb-4"
-          method="POST"
-          action="">
+    <form class="bg-white px-8 pt-6 pb-8 mb-4" action="{{ route('auth.register') }}">
       <h2 class="font-bold py-5 text-center">
         Create an Account
       </h2>

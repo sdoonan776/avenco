@@ -4,12 +4,18 @@
 
 @section('form')
 	
-	<div class="w-full max-w-xs mx-auto my-20 border-transparent lg:flex">
+	<div class="w-full max-w-xs mx-auto my-20 border-transparent md:max-w-md">
 
-    <form 
-          class="bg-white rounded px-8 pt-6 pb-8 mb-4" 
-          method="POST" 
-          action="">
+    @if(\Session::has('message'))
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+          <strong class="font-bold">
+              {{ \Session::get('message') }}
+          </strong>
+      </div>
+    @endif
+
+    <form class="bg-white rounded px-8 pt-6 pb-8 mb-4" action="{{ route('auth.login') }}">
+      {{ csrf_field() }}
       <h2 class="font-bold py-5 text-center">Login to Continue</h2>
       <div class="mb-4">
         <input class="shadow appearance-none border rounded w-full py-5 px-3 text-gray-700

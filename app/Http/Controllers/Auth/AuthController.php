@@ -5,12 +5,17 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthLoginRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use Tymon\JWTAuth\JWTGuard;
+use Laravel\Passport\PersonalAccessTokenResult;
+use Laravel\Passport\Token;
 
 class AuthController extends Controller
 {
+
+    protected $redirectTo = '/';
 
     public function __construct()
     {
@@ -27,34 +32,37 @@ class AuthController extends Controller
 
     /**
      * @param \App\Http\Requests\AuthLoginRequest $request
-     * @return JsonResponse
- */
-    public function login(AuthLoginRequest $request): JsonResponse
+     * @return Response
+     */
+    public function login(AuthLoginRequest $request): Response
     {
-        $credentials = $request->only('email', 'password');
+        $params = $request->only('email', 'password');
 
-        if ($request->rememberMe) {
-            $this->guard()->factory()->setTTL(30 * 24 * 60);
+        $username = $params['email'];
+        $password = $params['password'];
+
+        if (\Auth::attempt(['email' => $username, 'password' => $password])) {
+            $user = \Auth::user();
+            $token = $user->createToken('Laravel Password Grant Client')->accessToken;
+            $response = ['token' => $token];
+            return response($response, 200);
+        } else {
+            $response = "Password missmatch";
+            return response($response, 442);
         }
-        try {
-            if (!$token = $this->guard()->attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 400);
-            }
-        } catch(JWTException $e){
-            return response()->json(['error' => 'could_not_create_token'], 500);
-        }
-        
-        return $this->respondWithToken($token);
+
+        return response()->json(['error' => 'Invalid username or Password']);
     }
 
     /**
      * Get the authenticated User
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @param  Request $request
+     * @return  Token
      */
-    public function user(): JsonResponse
+    public function user(Request $request)
     {
-        return response()->json($this->guard()->user());
+        return $request->user()->token();
     }
 
     /**
@@ -64,7 +72,7 @@ class AuthController extends Controller
      */
     public function refresh(): JsonResponse
     {
-        return $this->respondWithToken($this->guard()->refresh());
+       
     }
 
      /**
@@ -74,36 +82,11 @@ class AuthController extends Controller
      */
     public function logout(): JsonResponse
     {
-         $this->guard()->logout();
-        return response()->json(['message' => 'Successfully logged out']);   
-    }
+        $token = $request->user()->token();
+        $token->revoke();
 
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function respondWithToken($token): JsonResponse
-    {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => $this->guard()->factory()->getTTL() * 60
-        ])
-        ->header('Authorization', $token);
+        $response = 'You have been succesfully logged out!';
+        return response($response, 200);
     }
-
-    /**
-     * Get the guard to be used during authentication.
-     *
-     * @return JWTGuard
-     */
-    public function guard(): JWTGuard
-    {
-        return Auth::guard('api');
-    }
-
     
 }

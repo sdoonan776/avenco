@@ -18,10 +18,10 @@
 
         <nav class="text-serif tracking-wide hidden md:inline-block order-2 items-center" role="main-nav-content">
            <ul class="flex">
-                <li class="mr-3">
+                <li class="mr-6">
                     <a href="{{ route('auth.login') }}">Login</a>
                 </li>
-                <li class="mr-3">
+                <li class="mr-6">
                     <a href="{{ route('auth.register') }}">Register</a>
                 </li>
                 <li></li>

@@ -20,6 +20,7 @@
 
 		<main>
 		  @yield('main')
+		  <div id="app"></div>
 		</main>
 
 		<footer>

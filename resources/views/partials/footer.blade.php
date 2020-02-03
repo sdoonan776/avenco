@@ -1,4 +1,4 @@
-<footer class="main-footer bg-green-500 py-5 px-2 pin-b sticky">
+<footer class="main-footer bg-green-400 py-5 px-2 pin-b sticky">
 <section class="text-center sm:text-left sm:flex justify-around">
   <div class="py-5">
     <h3 class="font-bold">Stay Connected</h3>

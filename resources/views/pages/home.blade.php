@@ -3,14 +3,14 @@
 @section('title', 'Home')
 
 @section('main')
-      <section class="bg-white py-8 w-9/12 mx-auto">
+    <section class="bg-white py-8 w-9/12 mx-auto">
 
         <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
 
            @foreach($products as $product)
             <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-                <a href="{{ route('show.product', $product->id) }}">
-                    <div role="product-image" class="w-full h-full" style="background-image: url('http://lorempixel.com/400/400/fashion')"></div>
+                <a href="{{ route('product.show', $product->id) }}">
+                    <div role="product-image" class="w-full h-full"></div>
                     
                     <div class="pt-3 flex items-center justify-between">
                         <p>{{ $product->name }}</p>
