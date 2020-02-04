@@ -11,7 +11,8 @@
 	</head>
 	<body>
 		<header>
-		  @include('partials.header')			
+		  @include('partials.header')
+		  @include('partials.header-info')			
 		</header>
 		
 		<nav>

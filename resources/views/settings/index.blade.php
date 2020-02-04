@@ -1,5 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
-@section('content')
-    settings.index template
+@section('title', 'Settings')
+
+@section('main')
+    
 @endsection

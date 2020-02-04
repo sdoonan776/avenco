@@ -24,4 +24,9 @@ class HomeController extends Controller
 
         return view('pages.home', compact('products'));
     }
+
+    public function categoryFilter()
+    {
+        
+    }
 }

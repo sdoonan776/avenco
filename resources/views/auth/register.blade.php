@@ -3,43 +3,55 @@
 @section('title', 'Register')
 
 @section('form')
-<div class="w-full h-full max-w-xs mx-auto my-20 md:max-w-md">
+  <div class="limiter">
+    <div class="container-register100">
+      <div class="wrap-register100 p-t-50 p-b-90">
+        <form class="register100-form validate-form flex-sb flex-w" method="post" action="{{ route('api.register') }}">
+          <span class="register100-form-title p-b-51">
+            Register
+          </span>
 
-    <form class="bg-white px-8 pt-6 pb-8 mb-4" action="{{ route('auth.register') }}">
-      <h2 class="font-bold py-5 text-center">
-        Create an Account
-      </h2>
-      <div class="mb-4">
-        <input class="shadow appearance-none border rounded w-full py-5 px-3
-               text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-               id="name" type="text" placeholder="Full Name">
+           @if(\Session::has('message'))
+              <div class="alert alert-danger" role="alert">
+                  <strong class="font-bold">
+                      {{ \Session::get('message') }}
+                  </strong>
+              </div>
+          @endif 
+
+          <div class="wrap-input100 validate-input m-b-16">
+            <input class="input100" type="text" name="full_name" placeholder="Full Name">
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-16">
+            <input class="input100" type="email" name="email" placeholder="Email">
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-16">
+            <input class="input100" type="text" name="username" placeholder="Username">
+            <span class="focus-input100"></span>
+          </div>
+          
+          <div class="wrap-input100 validate-input m-b-16">
+            <input class="input100" type="password" name="password" placeholder="Password">
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-16">
+            <input class="input100" type="password" name="password" placeholder="Confirm Password">
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="container-register100-form-btn m-t-17">
+            <button class="register100-form-btn">
+              Register
+            </button>
+          </div>
+
+        </form>
       </div>
-      <div class="mb-4">
-        <input class="shadow appearance-none border rounded w-full py-5 px-3
-               text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-               id="email" type="email" placeholder="Email">
-      </div>
-      <div class="mb-4">
-        <input class="shadow appearance-none border rounded w-full py-5 px-3
-               text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-               id="username" type="text" placeholder="Username">
-      </div>
-      <div class="mb-4">
-        <input class="shadow appearance-none border rounded w-full py-5 px-3
-               text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-               id="password" type="password" placeholder="Password" required>
-      </div>
-      <div class="mb-6">
-        <input class="shadow appearance-none border rounded w-full py-5 px-3 text-gray-700
-               leading-tight focus:outline-none focus:shadow-outline"
-               id="confirm-password" type="password" placeholder="Confirm Password" required>
-      </div>
-      <div class="flex items-center justify-between">
-        <input class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded
-               focus:outline-none focus:shadow-outline w-full cursor-pointer"
-               type="submit" value="Register">
-      </div>
-    </form>
+    </div>
   </div>
-
 @endsection

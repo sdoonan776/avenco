@@ -20,7 +20,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = 'auth.login';
+    protected $redirectTo = 'login';
 
     /**
      * Return main register view
@@ -51,9 +51,9 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Models\User
      */
-    protected function register(array $data)
+    protected function register(array $data): User
     {
         return User::create([
             'full_name' => $data['full_name'],

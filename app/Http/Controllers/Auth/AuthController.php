@@ -47,7 +47,7 @@ class AuthController extends Controller
             $response = ['token' => $token];
             return response($response, 200);
         } else {
-            $response = "Password missmatch";
+            $response = "Invalid username or password";
             return response($response, 442);
         }
 
@@ -63,7 +63,6 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         return $request->user();
-        dd($request->user());
     }
 
     /**

@@ -1,22 +1,8 @@
-// fonts
-
-@import url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
-
-@font-face {
-  font-family: 'Varela';
-  font-style: normal;
-  font-weight: 400;
-  src: url('https://fonts.googleapis.com/css?family=Varela+Round&display=swap');
-}
-
 // imports
 @import '../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-@import './core/variables';
-@import './core/mixins';
-@import './core/base';
-
-@import './vendor/tailwind';
-@import './content/home';
-@import './content/header';
-@import './content/footer';
+@import './vendor/style';
+@import './form/main';
+@import './form/util';
+@import './form/register';

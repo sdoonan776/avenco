@@ -1,11 +1,23 @@
 const mix = require('laravel-mix');
 
-const tailwindcss = require('tailwindcss');
+require('laravel-mix-imagemin');
 
 mix.disableNotifications();
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
-   .options({
-      processCssUrls: false,
-      postCss: [ tailwindcss('tailwind.js') ]});
+   .imagemin(
+        'resources/assets/img/**.*',
+        {
+            optipng: {
+                optimizationLevel: 5
+            },
+            jpegtran: null,
+            plugins: [
+                require('imagemin-mozjpeg')({
+                    quality: 100,
+                    progressive: true,
+                }),
+            ],
+        }
+    )

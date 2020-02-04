@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         factory(User::class, 100)->create();
 
         $path = 'database/data.sql';
-        DB::unprepared(file_get_contents($path));         
+        DB::unprepared(file_get_contents($path));
     }        
 }

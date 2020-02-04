@@ -1,38 +1,86 @@
-<footer class="main-footer bg-green-400 py-5 px-2 pin-b sticky">
-<section class="text-center sm:text-left sm:flex justify-around">
-  <div class="py-5">
-    <h3 class="font-bold">Stay Connected</h3>
-    <div role="input-group" class="my-5">
-      <input class="p-2 mr-1 border-black text-black focus:outline-none focus:shadow-outline" type="newsletter-email"
-       placeholder="Email">
-      <input class="form-btn hover:bg-green-500" type="submit" value="Sign up">
+<footer class="footer-section spad">
+        <div class="container">
+            <div class="newslatter-form">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form action="#">
+                            <input type="text" placeholder="Your email address">
+                            <button type="submit">Subscribe to our newsletter</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-widget">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h4>About us</h4>
+                            <ul>
+                                <li>About Us</li>
+                                <li>Community</li>
+                                <li>Jobs</li>
+                                <li>Shipping</li>
+                                <li>Contact Us</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h4>Customer Care</h4>
+                            <ul>
+                                <li>Search</li>
+                                <li>Privacy Policy</li>
+                                <li>2019 Lookbook</li>
+                                <li>Shipping & Delivery</li>
+                                <li>Gallery</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h4>Our Services</h4>
+                            <ul>
+                                <li>Free Shipping</li>
+                                <li>Free Returnes</li>
+                                <li>Our Franchising</li>
+                                <li>Terms and conditions</li>
+                                <li>Privacy Policy</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h4>Information</h4>
+                            <ul>
+                                <li>Payment methods</li>
+                                <li>Times and shipping costs</li>
+                                <li>Product Returns</li>
+                                <li>Shipping methods</li>
+                                <li>Conformity of the products</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="social-links-warp">
+      <div class="container">
+        <div class="social-links">
+          <a href="" class="instagram"><i class="fab fa-instagram fa-lg"></i><span>instagram</span></a>
+          <a href="" class="pinterest"><i class="fab fa-pinterest fa-lg"></i><span>pinterest</span></a>
+          <a href="" class="facebook"><i class="fab fa-facebook-f fa-lg"></i><span>facebook</span></a>
+          <a href="" class="twitter"><i class="fab fa-twitter fa-lg"></i><span>twitter</span></a>
+          <a href="" class="youtube"><i class="fab fa-youtube fa-lg"></i><span>youtube</span></a>
+          <a href="" class="tumblr"><i class="fab fa-tumblr-square fa-lg"></i><span>tumblr</span></a>
+        </div>
+      </div>
+
+    <div class="container text-center pt-5">
+      Copyright &copy;
+      <script>
+        document.write(new Date().getFullYear());
+      </script> 
+      All rights reserved
     </div>
-    <div role="social icons" class="my-5">
-      <i class="fab fa-facebook fa-lg mr-2 cursor-pointer"></i>
-      <i class="fab fa-twitter fa-lg mr-2 cursor-pointer"></i>
-      <i class="fab fa-instagram fa-lg mr-2 cursor-pointer"></i>
-    </div>
   </div>
-  <div class="py-5">
-    <h3 class="font-bold">More Information</h3>
-    <p>Lorem ipsum dolor innit</p>
-    <p>sit amet, consectetur</p>
-    <p>Aliquam beatae deleniti</p>
-  </div>
-
-  <div class="py-5">
-    <h3 class="font-bold">Quick links</h3>
-    <ul class="text-xs">
-      <li><a href="#">About</a></li>
-      <li><a href="#">News & Press</a></li>
-      <li><a href="#">Contact Us</a></li>
-      <li><a href="#">Blog</a></li>
-    </ul>
-  </div>
-
-</section>
-
-<section id="copyright" class="py-2 text-center">
-  <small>&copy; 2020 | Avenco | All rights reserved</small>
-</section>
 </footer>

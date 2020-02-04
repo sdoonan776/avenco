@@ -3,50 +3,65 @@
 @section('title', 'Login')
 
 @section('form')
-	
-	<div class="w-full max-w-xs mx-auto my-20 border-transparent md:max-w-md">
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100 p-t-50 p-b-90">
+        <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('api.login') }}">
+          <span class="login100-form-title p-b-51">
+            Login to Continue
+          </span>
 
-    @if(\Session::has('message'))
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-          <strong class="font-bold">
-              {{ \Session::get('message') }}
-          </strong>
-      </div>
-    @endif
+           @if(\Session::has('message'))
+              <div class="alert alert-danger" role="alert">
+                  <strong class="font-bold">
+                      {{ \Session::get('message') }}
+                  </strong>
+              </div>
+          @endif 
 
-    <form class="bg-white rounded px-8 pt-6 pb-8 mb-4" action="{{ route('auth.login') }}">
-      {{ csrf_field() }}
-      <h2 class="font-bold py-5 text-center">Login to Continue</h2>
-      <div class="mb-4">
-        <input class="shadow appearance-none border rounded w-full py-5 px-3 text-gray-700
-               leading-tight focus:outline-none focus:shadow-outline"
-               id="email" type="email" placeholder="Email" required>
+          <div class="wrap-input100 validate-input m-b-16">
+            <input class="input100" type="text" name="email" placeholder="Email">
+            <span class="focus-input100"></span>
+          </div>
+          
+          
+          <div class="wrap-input100 validate-input m-b-16">
+            <input class="input100" type="password" name="password" placeholder="Password">
+            <span class="focus-input100"></span>
+          </div>
+          
+          <div class="flex-sb-m w-full p-t-3 p-b-24">
+            <div class="contact100-form-checkbox">
+              <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+              <label class="label-checkbox100" for="ckb1">
+                Remember me
+              </label>
+            </div>
+
+            <div>
+              <a href="#" class="txt1">
+                Forgot Password?
+              </a>
+            </div>
+          </div>
+
+          <div class="container-login100-form-btn m-t-17">
+            <button class="login100-form-btn">
+              Login
+            </button>
+          </div>
+
+          <div class="container-login100-form-btn m-t-17">
+            <p class="">
+              Don't have an account? 
+              <a href="{{ route('register') }}">
+                SIGN UP
+              </a>
+            </p>
+          </div>
+
+        </form>
       </div>
-      <div class="mb-6">
-        <input class="shadow appearance-none border rounded w-full py-5 px-3 text-gray-700
-               mb-3 leading-tight focus:outline-none focus:shadow-outline"
-               id="password" type="password" placeholder="Password" required>
-      </div>
-      <div class="flex items-center justify-between mb-6">
-        <div class="remember-me flex items-center">
-          <input class="mr-1 text-blue-500" type="checkbox" id="remember-me"/>
-          <label class="text-xs" for="remember-me"> Remember me </label>
-        </div>
-        <a href="{{ route('auth.login') }}" class="inline-block align-baseline font-bold
-          text-sm text-green-500 hover:text-green-800">
-          Forgot Password?
-        </a>
-      </div>
-      <div class="flex items-center justify-between mb-6">
-        <input class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded w-full
-               focus:outline-none focus:shadow-outline cursor-pointer"
-               type="submit" value="Login">
-      </div>
-      <div class="sign-up items-center justify-between mb-6">
-         <a class="text-right text-green-500 hover:text-green-800" href="{{ route('auth.register') }}">
-            SIGN UP
-         </a>
-      </div>
-    </form>
+    </div>
   </div>
 @endsection

@@ -3,19 +3,33 @@
 namespace App\Http\Controllers\Resources;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
     /**
-     * Handle the incoming request.
+     * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param int $id
+     * @return View
      */
-    public function __invoke($id)
+    public function index(): View
     {
-        return view('product.show-product', ['product' => Product::findOrFail($id)]);
+        $products = DB::table('products')->paginate(9);
+
+        return view('product.index', compact('products'));   
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return View
+     */
+    public function show($id): View
+    {
+        $product = DB::table('products')->where('id', $id)->first();
+        return view('product.show-product', compact('product'));   
     }
 }

@@ -1,38 +1,44 @@
-<header class="main-header w-full z-30 top-0 border">
-    <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
-
-        <div class="">
-            <a class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl" href="{{ route('pages.home') }}">
-                AVENCO
-            </a>
+ <header class="header-section">
+        <div class="container-fluid">
+            <div class="inner-header">
+                <div class="logo">
+                    <a href="{{ route('pages.home') }}">
+                        <h3>AVENCO</h3>
+                    </a>
+                </div>
+                <div class="header-right">
+                    <i class="search-trigger fas fa-search fa-lg"></i>
+                    <i class="far fa-user fa-lg"></i>
+                    <a href="#">
+                        <i class="fas fa-shopping-cart fa-lg"></i>
+                        {{-- <span>2</span> --}}
+                    </a>
+                </div>
+                @guest()
+                    <div class="user-access">
+                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('login') }}" class="in">Login</a>
+                    </div>
+                @endguest
+                @auth()
+                    <div class="user-access">
+                        <a href="{{ route('api.logout') }}" class="in">Logout</a>
+                    </div>
+                @endauth()
+                <nav class="main-menu mobile-menu">
+                    <ul>
+                        <li><a class="active" href="{{ route('pages.home') }}">Home</a></li>
+                        <li><a href="{{ route('product.index') }}">Shop</a>
+                            <ul class="sub-menu">
+                                <li><a href="{{ route('pages.checkout') }}">Dresses</a></li>
+                                <li><a href="{{ route('pages.cart') }}">Shopping Cart</a></li>
+                                <li><a href="{{ route('pages.checkout') }}">Check out</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ route('pages.about') }}">About</a></li>
+                        <li><a href="{{ route('pages.contact') }}">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-
-        <nav class="text-Varela tracking-wide hidden md:inline-block order-2 items-center" role="main-nav-content">
-           <ul class="flex">
-                {{-- <li class="mr-6">
-                    <a href="{{ route('auth.login') }}">LOGIN</a>
-                </li>
-                <li class="mr-6">
-                    <a href="{{ route('auth.register') }}">REGISTER</a>
-                </li> --}}
-                <li></li>
-                <li></li>
-            </ul> 
-        </nav>
-
-        <nav class="order-2 flex items-center" role="mobile-nav-content">
-
-            <a class="inline-block no-underline hover:text-black mr-6" href="#">
-                <i class="fas fa-bars fa-xl"></i>
-            </a>
-
-            <a class="inline-block no-underline hover:text-black mr-6" href="#">
-                <i class="fab fa-user fa-xl"></i>
-            </a>
-
-            <a class="inline-block no-underline hover:text-black mr-6" href="#">
-               <i class="fab fa-shopping-cart fa-xl"></i>
-            </a>
-        </nav>
-    </div>
-</header>
+    </header>
