@@ -1,5 +1,7 @@
 <?php
 
+Auth::routes(['register' => false]);
+
 Route::get('/', 'HomeController@index')->name('pages.home');
 Route::get('about', 'PagesController@about')->name('pages.about');
 Route::get('contact', 'PagesController@contact')->name('pages.contact');
@@ -7,8 +9,9 @@ Route::get('contact', 'PagesController@contact')->name('pages.contact');
 
 Route::group(['namespace' => 'Resources'], function () {
 	Route::get('products', 'ProductController@index')->name('product.index');
-	Route::get('product/{$category}/{$id}', 'ProductController@show')->name('product.show');
 	Route::get('products/{$category}', 'CategoryController@index')->name('product.category');
+	Route::get('product/{$category}/{$id}', 'ProductController@show')->name('product.category.show');
+	Route::get('product/{$id}', 'ProductController@show')->name('product.show');
 }); 
 
 Route::group(['namespace' => 'Auth'], function () {

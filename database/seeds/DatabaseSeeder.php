@@ -2,7 +2,6 @@
 
 use App\Models\Product;
 use App\Models\User;
-use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,8 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(User::class, 100)->create();
-
-        $path = 'database/data.sql';
-        DB::unprepared(file_get_contents($path));
+        factory(Product::class, 500)->create();
+        DB::unprepared(file_get_contents('database/data.sql'));
     }        
 }

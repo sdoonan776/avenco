@@ -42,12 +42,13 @@
                 <div class="col-lg-3 col-sm-6 mix all dresses bags">
                     <div class="single-product-item">
                         <figure>
-                            <a href="#"><img src="img/products/img-1.jpg" alt=""></a>
-                            <div class="p-status">new</div>
+                            <a href="{{ route('product.show', $product->id) }}">
+                                <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
+                            </a>
                         </figure>
                         <div class="product-text">
-                            <h6>Green Dress with details</h6>
-                            <p>$22.90</p>
+                            <h6>{{ $product->name }}</h6>
+                            <p>${{ $product->price }}.00</p>
                         </div>
                     </div>
                 </div>

@@ -7,36 +7,50 @@
     <div class="container-register100">
       <div class="wrap-register100 p-t-50 p-b-90">
         <form class="register100-form validate-form flex-sb flex-w" method="post" action="{{ route('api.register') }}">
+          {{ csrf_field() }}
+          
           <span class="register100-form-title p-b-51">
             Register
           </span>
 
-           @if(\Session::has('message'))
-              <div class="alert alert-danger" role="alert">
-                  <strong class="font-bold">
-                      {{ \Session::get('message') }}
-                  </strong>
-              </div>
-          @endif 
-
           <div class="wrap-input100 validate-input m-b-16">
             <input class="input100" type="text" name="full_name" placeholder="Full Name">
             <span class="focus-input100"></span>
+            @error('full_name')
+              <div class="alert alert-danger" role="alert">
+                {{ $message }}
+              </div>
+          @enderror 
           </div>
 
           <div class="wrap-input100 validate-input m-b-16">
             <input class="input100" type="email" name="email" placeholder="Email">
             <span class="focus-input100"></span>
+            @error('email')
+              <div class="alert alert-danger" role="alert">
+                {{ $message }}
+              </div>
+            @enderror 
           </div>
 
           <div class="wrap-input100 validate-input m-b-16">
             <input class="input100" type="text" name="username" placeholder="Username">
             <span class="focus-input100"></span>
+            @error('username')
+              <div class="alert alert-danger" role="alert">
+                {{ $message }}        
+              </div>
+            @enderror 
           </div>
           
           <div class="wrap-input100 validate-input m-b-16">
             <input class="input100" type="password" name="password" placeholder="Password">
             <span class="focus-input100"></span>
+            @error('password')
+              <div class="alert alert-danger" role="alert">
+                {{ $message }}        
+              </div>
+            @enderror 
           </div>
 
           <div class="wrap-input100 validate-input m-b-16">

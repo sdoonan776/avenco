@@ -7,35 +7,37 @@
     <div class="container-login100">
       <div class="wrap-login100 p-t-50 p-b-90">
         <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('api.login') }}">
+          {{ csrf_field() }}
+
           <span class="login100-form-title p-b-51">
             Login to Continue
           </span>
 
-           @if(\Session::has('message'))
-              <div class="alert alert-danger" role="alert">
-                  <strong class="font-bold">
-                      {{ \Session::get('message') }}
-                  </strong>
-              </div>
-          @endif 
-
           <div class="wrap-input100 validate-input m-b-16">
             <input class="input100" type="text" name="email" placeholder="Email">
             <span class="focus-input100"></span>
+            @error('email')
+              <div class="alert alert-danger" role="alert">
+                {{ $message }}
+              </div>
+            @enderror
           </div>
           
           
           <div class="wrap-input100 validate-input m-b-16">
             <input class="input100" type="password" name="password" placeholder="Password">
             <span class="focus-input100"></span>
+            @error('password')
+              <div class="alert alert-danger" role="alert">
+                {{ $message }}        
+              </div>
+            @enderror 
           </div>
           
           <div class="flex-sb-m w-full p-t-3 p-b-24">
             <div class="contact100-form-checkbox">
               <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-              <label class="label-checkbox100" for="ckb1">
-                Remember me
-              </label>
+              Remember me                    
             </div>
 
             <div>

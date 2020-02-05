@@ -14,17 +14,17 @@
                         {{-- <span>2</span> --}}
                     </a>
                 </div>
-                @guest()
+                @guest
                     <div class="user-access">
                         <a href="{{ route('register') }}">Register</a>
                         <a href="{{ route('login') }}" class="in">Login</a>
                     </div>
                 @endguest
-                @auth()
+                @auth
                     <div class="user-access">
                         <a href="{{ route('api.logout') }}" class="in">Logout</a>
                     </div>
-                @endauth()
+                @endauth
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li><a class="active" href="{{ route('pages.home') }}">Home</a></li>

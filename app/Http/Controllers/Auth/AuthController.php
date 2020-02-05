@@ -4,18 +4,20 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthLoginRequest;
+use App\Models\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
-use Laravel\Passport\PersonalAccessTokenResult;
-use Laravel\Passport\Token;
 
 class AuthController extends Controller
 {
+    use AuthenticatesUsers;
 
-    protected $redirectTo = '/';
+    protected $redirectTo = 'pages.home';
 
     public function __construct()
     {
@@ -32,9 +34,9 @@ class AuthController extends Controller
 
     /**
      * @param \App\Http\Requests\AuthLoginRequest $request
-     * @return Response
+     * @return   RedirectResponse 
      */
-    public function login(AuthLoginRequest $request): Response
+    public function login(AuthLoginRequest $request): RedirectResponse
     {
         $params = $request->only('email', 'password');
 
@@ -43,14 +45,8 @@ class AuthController extends Controller
 
         if (\Auth::attempt(['email' => $username, 'password' => $password])) {
             $user = \Auth::user();
-            $token = $user->createToken('Laravel Password Grant Client')->accessToken;
-            $response = ['token' => $token];
-            return response($response, 200);
-        } else {
-            $response = "Invalid username or password";
-            return response($response, 442);
+            return  $user->createToken('Laravel Password Grant Client', []);
         }
-
         return response()->json(['error' => 'Invalid username or Password']);
     }
 
@@ -58,9 +54,9 @@ class AuthController extends Controller
      * Get the authenticated User
      *
      * @param  Request $request
-     * @return  Token
+     * @return  User
      */
-    public function user(Request $request)
+    public function user(Request $request): User
     {
         return $request->user();
     }
@@ -70,23 +66,33 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function refresh(): JsonResponse
+    public function refresh(Request $request): JsonResponse
     {
-       
+       $result = $request->user()->refresh();
     }
 
      /**
      * Log the user out (Invalidate the token)
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @param  Request $request
+     * @return RedirectResponse
      */
-    public function logout(): JsonResponse
+    public function logout(Request $request): RedirectResponse
     {
         $token = $request->user()->token();
         $token->revoke();
 
         $response = 'You have been succesfully logged out!';
-        return response($response, 200);
+        return redirectTo('pages.home')->with($response);
     }
+
+    // /**
+    //  * guard for authenticating user
+    //  * @return Auth
+    //  */
+    // protected function guard(): Auth
+    // {
+    //     return Auth::guard();
+    // }
     
 }

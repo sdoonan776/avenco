@@ -34,14 +34,14 @@ services:
     networks:
       - avenco_network
 
-   #MySQL Service
+  #MySQL Service
   mysql:
     image: mysql:8
     container_name: mysql
     restart: unless-stopped
     tty: true
     ports:
-      - "3306:3306"
+      - "3309:3309"
     environment:
       MYSQL_DATABASE: avenco
       MYSQL_USER: root
