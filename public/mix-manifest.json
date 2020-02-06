@@ -1,15 +1,4 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/resources/assets/img/logo.png": "/resources/assets/img/logo.png",
-    "/resources/assets/img/mastercard.jpg": "/resources/assets/img/mastercard.jpg",
-    "/resources/assets/img/paypal.jpg": "/resources/assets/img/paypal.jpg",
-    "/resources/assets/img/f-box-2.jpg": "/resources/assets/img/f-box-2.jpg",
-    "/resources/assets/img/f-box-1.jpg": "/resources/assets/img/f-box-1.jpg",
-    "/resources/assets/img/add.jpg": "/resources/assets/img/add.jpg",
-    "/resources/assets/img/f-box-3.jpg": "/resources/assets/img/f-box-3.jpg",
-    "/resources/assets/img/slider-1.jpg": "/resources/assets/img/slider-1.jpg",
-    "/resources/assets/img/slider-2.jpg": "/resources/assets/img/slider-2.jpg",
-    "/resources/assets/img/lookbok.jpg": "/resources/assets/img/lookbok.jpg",
-    "/resources/assets/img/slider-3.jpg": "/resources/assets/img/slider-3.jpg"
+    "/css/app.css": "/css/app.css"
 }

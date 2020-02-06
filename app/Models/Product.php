@@ -41,7 +41,7 @@ class Product extends Model
     ];
 
 
-    public function category(): BelongsToMany
+    public function category(): BelongsTo
     {
         return $this->belongsToMany(Category::class, 'category_id');
     }

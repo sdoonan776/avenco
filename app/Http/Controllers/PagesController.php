@@ -28,15 +28,6 @@ class PagesController extends Controller
     }
 
     /**
-     * return shopping-cart view
-     * @return View
-     */
-    public function cart(): View
-    {
-        return view('pages.shopping-cart');
-    }
-
-    /**
      * return checkout view
      * @return View
      */

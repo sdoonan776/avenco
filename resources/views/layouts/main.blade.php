@@ -14,12 +14,11 @@
 		  @include('partials.header')
 		  @include('partials.header-info')			
 		</header>
-		
-		<nav>
-	      @include('partials.sidebar')
-		</nav>
 
 		<main>
+		  @if(session('message'))
+		  	<div class="notification is-info">{{ session('message') }}</div>
+		  @endif	
 		  <div id="app">
 		  	@yield('main')
 		  </div>

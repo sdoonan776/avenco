@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(User::class, 100)->create();
-        factory(Product::class, 500)->create();
+        factory(Product::class, 300)->create();
+        // $this->call(CategorySeeder::class);
         DB::unprepared(file_get_contents('database/data.sql'));
     }        
 }

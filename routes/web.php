@@ -1,6 +1,6 @@
 <?php
 
-Auth::routes(['register' => false]);
+use App\Models\User;
 
 Route::get('/', 'HomeController@index')->name('pages.home');
 Route::get('about', 'PagesController@about')->name('pages.about');
@@ -9,7 +9,7 @@ Route::get('contact', 'PagesController@contact')->name('pages.contact');
 
 Route::group(['namespace' => 'Resources'], function () {
 	Route::get('products', 'ProductController@index')->name('product.index');
-	Route::get('products/{$category}', 'CategoryController@index')->name('product.category');
+	Route::get('products/{$category}', 'CategoryController@index')->name('products.category');
 	Route::get('product/{$category}/{$id}', 'ProductController@show')->name('product.category.show');
 	Route::get('product/{$id}', 'ProductController@show')->name('product.show');
 }); 
@@ -20,7 +20,7 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 
 Route::group(['middleware' => 'auth:api'], function () {
-	Route::get('/settings', 'SettingsController@index')->name('settings.index');
-	Route::get('cart', 'PagesController@cart')->name('pages.cart');
+	Route::get('settings', 'SettingsController@index')->name('settings.index');
+	Route::get('cart', 'CartController@index')->name('cart.index');
 	Route::get('checkout', 'PagesController@checkout')->name('pages.checkout');
 });

@@ -6,6 +6,7 @@
   <div class="limiter">
     <div class="container-login100">
       <div class="wrap-login100 p-t-50 p-b-90">
+        @include('partials.errors')
         <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('api.login') }}">
           {{ csrf_field() }}
 
@@ -14,7 +15,7 @@
           </span>
 
           <div class="wrap-input100 validate-input m-b-16">
-            <input class="input100" type="text" name="email" placeholder="Email">
+            <input class="input100" type="text" name="email" placeholder="Email" value="{{ old('email') ?? '' }}">
             <span class="focus-input100"></span>
             @error('email')
               <div class="alert alert-danger" role="alert">

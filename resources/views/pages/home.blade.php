@@ -14,16 +14,15 @@
                             <h2>Latest Products</h2>
                         </div>
                         <ul class="product-controls">
-                            <li data-filter="*">All</li>
-                            <li data-filter=".dresses">Dresses</li>
-                            <li data-filter=".bags">Bags</li>
-                            <li data-filter=".shoes">Shoes</li>
-                            <li data-filter=".accesories">Accesories</li>
+                            @foreach($categories as $category)
+                                <li data-filter="*">{{ $category->name }}</li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="row" id="product-list">
+                
                 @foreach($products as $product)
                 <div class="col-lg-3 col-sm-6 mix all dresses bags">
                     <div class="single-product-item">
@@ -38,7 +37,8 @@
                         </div>
                     </div>
                 </div>
-                @endforeach                                                               
+                @endforeach 
+
             </div>
         </div>
     </section>

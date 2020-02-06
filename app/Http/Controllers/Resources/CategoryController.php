@@ -17,4 +17,9 @@ class CategoryController extends Controller
     {
         return view('product.category');
     }
+
+    public function show($id): View
+    {
+        return view('');
+    }
 }

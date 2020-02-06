@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
+use Http\Client\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -18,15 +20,21 @@ class HomeController extends Controller
     {
     	try {
 		  $products = DB::table('products')->paginate(9);
-    	} catch (\Exception $e) {
+    	} catch (Exception $e) {
 		  $e->getMessage();
     	}
 
-        return view('pages.home', compact('products'));
+        try {
+            $categories = Category::all();
+        } catch (Exception $e) {
+            $e->getMessage();
+        }
+
+        return view('pages.home', compact('products', 'categories'));
     }
 
-    public function categoryFilter()
-    {
+    // public function categoryFilter()
+    // {
         
-    }
+    // }
 }

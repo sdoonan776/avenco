@@ -34,9 +34,9 @@ class AuthController extends Controller
 
     /**
      * @param \App\Http\Requests\AuthLoginRequest $request
-     * @return   JsonResponse 
+     * @return   RedirectResponse 
      */
-    public function login(AuthLoginRequest $request): JsonResponse
+    public function login(AuthLoginRequest $request): RedirectResponse
     {
         $params = $request->only('email', 'password');
 
@@ -46,7 +46,8 @@ class AuthController extends Controller
         if (Auth::attempt(['email' => $username, 'password' => $password])) {
             $user = Auth::user();
             $success['token'] = $user->createToken('Laravel Password Grant Client', [])->accessToken;
-            return response()->json(['success' => $success], 200);
+            $response = response()->json(['success' => $success], 200);
+            return redirect('pages.home', $response);
         }
         return response()->json(['error' => 'Invalid username or Password'], 401);
     }
