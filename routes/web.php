@@ -20,7 +20,7 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 
 Route::group(['middleware' => 'auth:api'], function () {
-	Route::get('settings', 'SettingController@index')->name('settings.index');
+	Route::get('/settings', 'SettingsController@index')->name('settings.index');
 	Route::get('cart', 'PagesController@cart')->name('pages.cart');
 	Route::get('checkout', 'PagesController@checkout')->name('pages.checkout');
 });

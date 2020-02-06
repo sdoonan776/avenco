@@ -20,8 +20,9 @@
 		</nav>
 
 		<main>
-		  @yield('main')
-		  <div id="app"></div>
+		  <div id="app">
+		  	@yield('main')
+		  </div>
 		</main>
 
 		<footer>

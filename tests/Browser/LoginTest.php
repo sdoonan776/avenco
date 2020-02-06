@@ -16,8 +16,9 @@ class LoginTest extends DuskTestCase
     public function testExample()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('login')
-                    ->assertSee('Login');
+            $browser->visit('/')
+                    ->
+                    ->assertSee('Login To Continue');
         });
     }
 }

@@ -8,13 +8,17 @@ use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    /** @test */
+    public function it_logs_in_a_user_with_valid_credentials_and_redirects_to_home_page()
     {
-        
+        $response = $this->json('post', '/api/auth/login', 
+            [
+                'email' => 'kerluke.jake@example.com',
+                'password' => 'secret',
+            ]);
+        $response->assertStatus(200);
+        $repsonse->assertJsonStructure([
+        	'info' => ['name']
+        ]);
     }
 }

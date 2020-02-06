@@ -7,9 +7,13 @@
                     </a>
                 </div>
                 <div class="header-right">
-                    <i class="search-trigger fas fa-search fa-lg"></i>
-                    <i class="far fa-user fa-lg"></i>
-                    <a href="#">
+                    <a href="">
+                        <i class="search-trigger fas fa-search fa-lg"></i>
+                    </a>
+                    <a href="{{ route('settings.index') }}">
+                        <i class="far fa-user fa-lg"></i>
+                    </a>
+                    <a href="{{ route('pages.cart') }}">
                         <i class="fas fa-shopping-cart fa-lg"></i>
                         {{-- <span>2</span> --}}
                     </a>
@@ -27,12 +31,16 @@
                 @endauth
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a class="active" href="{{ route('pages.home') }}">Home</a></li>
+                        <li><a href="{{ route('pages.home') }}">Home</a></li>
                         <li><a href="{{ route('product.index') }}">Shop</a>
                             <ul class="sub-menu">
+                                {{-- <li><a href="{{ route('product.category', ['slug' => $category->slug]) }}">Dresses</a></li> --}}
                                 <li><a href="{{ route('pages.checkout') }}">Dresses</a></li>
-                                <li><a href="{{ route('pages.cart') }}">Shopping Cart</a></li>
-                                <li><a href="{{ route('pages.checkout') }}">Check out</a></li>
+                                <li><a href="{{ route('pages.checkout') }}">Dresses</a></li>
+                                <li><a href="{{ route('pages.checkout') }}">Dresses</a></li>
+                                <li><a href="{{ route('pages.checkout') }}">Dresses</a></li>
+                                {{-- <li><a href="{{ route('pages.cart') }}">Shopping Cart</a></li>
+                                <li><a href="{{ route('pages.checkout') }}">Check out</a></li> --}}
                             </ul>
                         </li>
                         <li><a href="{{ route('pages.about') }}">About</a></li>

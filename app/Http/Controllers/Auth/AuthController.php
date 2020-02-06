@@ -15,9 +15,9 @@ use Illuminate\View\View;
 
 class AuthController extends Controller
 {
-    use AuthenticatesUsers;
+    // use AuthenticatesUsers;
 
-    protected $redirectTo = 'pages.home';
+    protected $redirectTo = 'page.home';
 
     public function __construct()
     {
@@ -34,20 +34,21 @@ class AuthController extends Controller
 
     /**
      * @param \App\Http\Requests\AuthLoginRequest $request
-     * @return   RedirectResponse 
+     * @return   JsonResponse 
      */
-    public function login(AuthLoginRequest $request): RedirectResponse
+    public function login(AuthLoginRequest $request): JsonResponse
     {
         $params = $request->only('email', 'password');
 
         $username = $params['email'];
         $password = $params['password'];
 
-        if (\Auth::attempt(['email' => $username, 'password' => $password])) {
-            $user = \Auth::user();
-            return  $user->createToken('Laravel Password Grant Client', []);
+        if (Auth::attempt(['email' => $username, 'password' => $password])) {
+            $user = Auth::user();
+            $success['token'] = $user->createToken('Laravel Password Grant Client', [])->accessToken;
+            return response()->json(['success' => $success], 200);
         }
-        return response()->json(['error' => 'Invalid username or Password']);
+        return response()->json(['error' => 'Invalid username or Password'], 401);
     }
 
     /**
@@ -59,16 +60,6 @@ class AuthController extends Controller
     public function user(Request $request): User
     {
         return $request->user();
-    }
-
-    /**
-     * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function refresh(Request $request): JsonResponse
-    {
-       $result = $request->user()->refresh();
     }
 
      /**
@@ -84,15 +75,5 @@ class AuthController extends Controller
 
         $response = 'You have been succesfully logged out!';
         return redirectTo('pages.home')->with($response);
-    }
-
-    // /**
-    //  * guard for authenticating user
-    //  * @return Auth
-    //  */
-    // protected function guard(): Auth
-    // {
-    //     return Auth::guard();
-    // }
-    
+    }    
 }
