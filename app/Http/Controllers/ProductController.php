@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Resources;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,11 @@ class CategoryController extends Controller
      */
     public function index(): View
     {
-        return view('product.category');
+        return view('product.index');
     }
 
     public function show($id): View
     {
-        return view('');
+        return view('product.show-product');
     }
 }

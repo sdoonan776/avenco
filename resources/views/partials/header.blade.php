@@ -7,13 +7,10 @@
                 </a>
             </div>
             <div class="header-right">
-                <a href="">
-                    <i class="search-trigger fas fa-search fa-lg"></i>
-                </a>
                 {{-- <a href="{{ route('settings.index') }}"> --}}
                     <i class="far fa-user fa-lg"></i>
                 {{-- </a> --}}
-                <a href="{{ route('pages.cart') }}">
+                <a href="{{ route('cart.index') }}">
                     <i class="fas fa-shopping-cart fa-lg"></i>
                     {{-- <span>2</span> --}}
                 </a>
@@ -30,17 +27,18 @@
             @endguest
             @auth
                 <div class="user-access">
-                    <a href="{{ route('api.logout') }}" class="in">Logout</a>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">{{ csrf_field() }}</form>
                 </div>
             @endauth
             <nav class="main-menu mobile-menu">
                 <ul>
                     <li><a href="{{ route('pages.home') }}">Home</a></li>
-                    <li><a href="{{ route('product.index') }}">Shop</a>
+                    <li><a href="{{ route('products.index') }}">Shop</a>
                         <ul class="sub-menu">
-                            @foreach($categories as $category)
-                            <li><a href="{{ route('products.category', $category->slug) }}">{{ $category->name }}</a></li>
-                            @endforeach
+                           {{--  @foreach($categories as $category)
+                            <li><a href="{{ route('category.index', $category->slug) }}">{{ $category->name }}</a></li>
+                            @endforeach --}}
                         </ul>
                     </li>
                     <li><a href="{{ route('pages.about') }}">About</a></li>

@@ -6,8 +6,7 @@
   <div class="limiter">
     <div class="container-login100">
       <div class="wrap-login100 p-t-50 p-b-90">
-        @include('partials.errors')
-        <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('api.login') }}">
+        <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('login') }}">
           @csrf
 
           <span class="login100-form-title p-b-51">
@@ -17,23 +16,23 @@
           <div class="wrap-input100 validate-input m-b-16">
             <input class="input100" type="text" name="email" placeholder="Email" value="{{ old('email') ?? '' }}">
             <span class="focus-input100"></span>
-            @error('email')
+          </div>
+           @error('email')
               <div class="alert alert-danger" role="alert">
                 {{ $message }}
               </div>
             @enderror
-          </div>
           
           
           <div class="wrap-input100 validate-input m-b-16">
             <input class="input100" type="password" name="password" placeholder="Password">
             <span class="focus-input100"></span>
-            @error('password')
+          </div>
+          @error('password')
               <div class="alert alert-danger" role="alert">
                 {{ $message }}        
               </div>
             @enderror 
-          </div>
           
           <div class="flex-sb-m w-full p-t-3 p-b-24">
             <div class="contact100-form-checkbox">

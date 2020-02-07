@@ -25,15 +25,6 @@ class RegisterController extends Controller
     protected $redirectTo = 'login';
 
     /**
-     * Return main register view
-     * @return View
-     */
-    public function index(): View
-    {
-        return view('auth.register');
-    }
-
-    /**
      * Validates a register request
      * 
      * @param  array  $data 
@@ -43,9 +34,9 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'full_name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'username' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6'],
         ]);
     }
     /**
@@ -64,19 +55,21 @@ class RegisterController extends Controller
         ]);
     }
 
-    // /**
-    //  * Handle a registration request for the application.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\RedirectResponse
-    //  */
-    // public function register(Request $request): RedirectResponse
-    // {
-    //     $validator = $this->validator($request->all())->validate();
+       /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
 
-    //     event(new Registered($user = $this->create($request->all())));
+        event(new Registered($user = $this->create($request->all())));
 
-    //     return $this->registered($request, $user)
-    //         ?: redirect('login');
-    // }
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath('login'));
+    }
+
+
 }

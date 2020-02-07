@@ -3,8 +3,6 @@
 @section('title', 'Home')
 
 @section('main')
-   <slideshow />
-
     <section class="latest-products spad">
         <div class="container">
             <div class="product-filter">
@@ -27,7 +25,7 @@
                 <div class="col-lg-3 col-sm-6 mix all dresses bags">
                     <div class="single-product-item">
                         <figure>
-                            <a href="{{ route('product.show', $product->id) }}">
+                            <a href="{{ route('products.show', $product->id) }}">
                                 <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
                             </a>
                         </figure>
