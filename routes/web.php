@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\User;
-
 Route::get('/', 'HomeController@index')->name('pages.home');
 Route::get('about', 'PagesController@about')->name('pages.about');
 Route::get('contact', 'PagesController@contact')->name('pages.contact');
@@ -19,7 +17,7 @@ Route::group(['namespace' => 'Auth'], function () {
 	Route::get('register', 'RegisterController@index')->name('register');
 });
 
-Route::group(['middleware' => 'auth:api'], function () {
+Route::middleware(['auth:api', 'verify'],)->group(function () {
 	Route::get('settings', 'SettingsController@index')->name('settings.index');
 	Route::get('cart', 'CartController@index')->name('cart.index');
 	Route::get('checkout', 'PagesController@checkout')->name('pages.checkout');

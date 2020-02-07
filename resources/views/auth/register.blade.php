@@ -8,7 +8,7 @@
       <div class="wrap-register100 p-t-50 p-b-90">
         @include('partials.errors')
         <form class="register100-form validate-form flex-sb flex-w" method="post" action="{{ route('api.register') }}">
-          {{ csrf_field() }}
+          @csrf
           
           <span class="register100-form-title p-b-51">
             Register

@@ -64,19 +64,19 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Handle a registration request for the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function register(Request $request): RedirectResponse
-    {
-        $validator = $this->validator($request->all())->validate();
+    // /**
+    //  * Handle a registration request for the application.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\RedirectResponse
+    //  */
+    // public function register(Request $request): RedirectResponse
+    // {
+    //     $validator = $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all())));
+    //     event(new Registered($user = $this->create($request->all())));
 
-        return $this->registered($request, $user)
-            ?: redirect('login');
-    }
+    //     return $this->registered($request, $user)
+    //         ?: redirect('login');
+    // }
 }

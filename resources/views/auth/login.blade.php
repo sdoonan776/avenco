@@ -8,7 +8,7 @@
       <div class="wrap-login100 p-t-50 p-b-90">
         @include('partials.errors')
         <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('api.login') }}">
-          {{ csrf_field() }}
+          @csrf
 
           <span class="login100-form-title p-b-51">
             Login to Continue
