@@ -1,0 +1,34 @@
+version: "3.2"
+services:
+  php:
+    build: .
+    networks:
+      - avenco_network
+    volumes:
+      - ./:/var/www/html/
+  apache:
+    image: httpd
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - avenco_network
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/html/
+  mysql:
+    image: mysql:5.6.40
+    ports:
+      - "3307:3307"
+    networks:
+      - avenco_network
+    environment:
+      - MYSQL_ROOT_PASSWORD=root031995
+    volumes:
+      - db-data:/var/lib/mysql
+
+networks:
+  avenco_network:
+volumes:
+  db-data:  
