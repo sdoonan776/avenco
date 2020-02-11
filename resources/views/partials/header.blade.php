@@ -7,17 +7,13 @@
                 </a>
             </div>
             <div class="header-right">
-                {{-- <a href="{{ route('settings.index') }}"> --}}
+                <a href="{{ route('settings.index') }}">
                     <i class="far fa-user fa-lg"></i>
-                {{-- </a> --}}
+                </a>
                 <a href="{{ route('cart.index') }}">
                     <i class="fas fa-shopping-cart fa-lg"></i>
                     {{-- <span>2</span> --}}
                 </a>
-                {{-- <ul class="sub-menu">
-                    <li><a href="{{ route('pages.cart') }}">Shopping Cart</a></li>
-                    <li><a href="{{ route('pages.checkout') }}">Check out</a></li>
-                </ul>   --}}  
             </div>
             @guest
                 <div class="user-access">

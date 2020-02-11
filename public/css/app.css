@@ -6151,9 +6151,9 @@ ol {
   line-height: 30px;
 }
 
-.inner-header .header-right i {
+.inner-header .header-right svg {
   display: inline-block;
-  margin-right: 20px;
+  margin-right: 7px;
   cursor: pointer;
 }
 
@@ -6162,7 +6162,7 @@ ol {
   position: relative;
 }
 
-.inner-header .header-right a i {
+.inner-header .header-right a svg {
   margin-right: 0;
   margin-left: 4px;
 }
@@ -6358,7 +6358,7 @@ ol {
   overflow: hidden;
 }
 
-.header-info .header-item i {
+.header-info .header-item img {
   display: inline-block;
   margin-right: 13px;
 }
@@ -6754,6 +6754,8 @@ ol {
 
 .logo-section {
   padding: 70px 120px;
+  display: -webkit-box;
+  display: flex;
 }
 
 .logo-section .logo-item {
@@ -6861,7 +6863,7 @@ ol {
   margin-right: 0;
 }
 
-.social-links a i {
+.social-links a svg {
   font-size: 30px;
   color: #d7d7d7;
   float: left;
@@ -6882,35 +6884,35 @@ ol {
   transition: all 0.3s;
 }
 
-.social-links a.instagram:hover i {
+.social-links a.instagram:hover svg {
   color: #2F5D84;
 }
 
-.social-links a.google-plus:hover i {
+.social-links a.google-plus:hover svg {
   color: #E04B37;
 }
 
-.social-links a.twitter:hover i {
+.social-links a.twitter:hover svg {
   color: #5abed6;
 }
 
-.social-links a.pinterest:hover i {
+.social-links a.pinterest:hover svg {
   color: #CD212D;
 }
 
-.social-links a.facebook:hover i {
+.social-links a.facebook:hover svg {
   color: #39599F;
 }
 
-.social-links a.twitter:hover i {
+.social-links a.twitter:hover svg {
   color: #5abed6;
 }
 
-.social-links a.youtube:hover i {
+.social-links a.youtube:hover svg {
   color: #D12227;
 }
 
-.social-links a.tumblr:hover i {
+.social-links a.tumblr:hover svg {
   color: #37475E;
 }
 
@@ -7059,7 +7061,7 @@ ol {
 }
 
 .categories-page {
-  padding-top: 0;
+  margin-top: 4em;
 }
 
 .categories-page .single-product-item figure {
@@ -7211,7 +7213,7 @@ ol {
   margin-bottom: 18px;
 }
 
-.product-content .pc-meta .rating i {
+.product-content .pc-meta .rating svg {
   font-size: 20px;
   color: #FFD200;
   margin-right: 4px;

@@ -4,12 +4,12 @@
 
 @section('main')
 
- <section class="page-add">
+{{--  <section class="page-add">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="page-breadcrumb">
-                        <h2>Dresses<span>.</span></h2>
+                        <h2></h2>
                         <a href="#">Home</a>
                         <a href="#">Dresses</a>
                         <a class="active" href="#">Night Dresses</a>
@@ -20,8 +20,7 @@
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Page Add Section End -->
+    </section> --}}
 
     <!-- Categories Page Section Begin -->
     <section class="categories-page spad">

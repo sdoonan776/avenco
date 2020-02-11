@@ -170,4 +170,4 @@
         $(this).toggleClass('active');
     });
 
-})(jQuery);
+})

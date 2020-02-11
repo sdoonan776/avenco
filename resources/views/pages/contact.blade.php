@@ -60,8 +60,8 @@
                         <div class="cw-item">
                             <h5>E-mail</h5>
                             <ul>
-                                <li>contact@violetstore.com</li>
-                                <li>www.violetstore.com</li>
+                                <li>contact@avenco.com</li>
+                                <li>www.avencostore.com</li>
                             </ul>
                         </div>
                     </div>

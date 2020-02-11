@@ -267,15 +267,15 @@ ol {
 	.header-right {
 		float: right;
 		line-height: 30px;
-		i {
+		svg {
 			display: inline-block;
-			margin-right: 20px;
+			margin-right: 7px;
 			cursor: pointer;
 		}
 		a {
 			display: inline-block;
 			position: relative;
-			i {
+			svg {
 				margin-right: 0;
 				margin-left: 4px;
 			}
@@ -462,7 +462,7 @@ ol {
 	padding: 10px 45px;
 	.header-item {
 		overflow: hidden;
-		i {
+		img {
 			display: inline-block;
 			margin-right: 13px;
 		}
@@ -822,6 +822,7 @@ ol {
 
 .logo-section {
 	padding: 70px 120px;
+	display: flex;
 	.logo-item {
 		display: -webkit-box;
 		display: -ms-flexbox;
@@ -923,7 +924,7 @@ ol {
 		&:last-child {
 			margin-right: 0;
 		}
-		i {
+		svg {
 			font-size: 30px;
 			color: #d7d7d7;
 			float: left;
@@ -944,56 +945,56 @@ ol {
 		}
 		&.instagram {
 			&:hover {
-				i {
+				svg {
 					color: #2F5D84;
 				}
 			}
 		}
 		&.google-plus {
 			&:hover {
-				i {
+				svg {
 					color: #E04B37;
 				}
 			}
 		}
 		&.twitter {
 			&:hover {
-				i {
+				svg {
 					color: #5abed6;
 				}
 			}
 		}
 		&.pinterest {
 			&:hover {
-				i {
+				svg {
 					color: #CD212D;
 				}
 			}
 		}
 		&.facebook {
 			&:hover {
-				i {
+				svg {
 					color: #39599F;
 				}
 			}
 		}
 		&.twitter {
 			&:hover {
-				i {
+				svg {
 					color: #5abed6;
 				}
 			}
 		}
 		&.youtube {
 			&:hover {
-				i {
+				svg {
 					color: #D12227;
 				}
 			}
 		}
 		&.tumblr {
 			&:hover {
-				i {
+				svg {
 					color: #37475E;
 				}
 			}
@@ -1136,7 +1137,7 @@ ol {
 }
 
 .categories-page {
-	padding-top: 0;
+	margin-top: 4em;
 	.single-product-item {
 		figure {
 			position: relative;
@@ -1277,7 +1278,7 @@ ol {
 			margin-bottom: 18px;
 		}
 		.rating {
-			i {
+			svg {
 				font-size: 20px;
 				color: #FFD200;
 				margin-right: 4px;

@@ -9,12 +9,10 @@ Route::get('contact', 'PagesController@contact')->name('pages.contact');
 Route::resource('products', 'ProductController')->only('index', 'show');
 Route::resource('categories', 'CategoryController')->only('index');
 
-// Route::get('product/{$category}/{$id}', 'ProductController@show')->name('product.category.show');
-
-Route::middleware(['auth:api', 'verify'],)->group(function () {
+Route::group(['middleware' => 'auth:api'], function () {
 	Route::get('settings', 'SettingsController@index')->name('settings.index');
 	Route::group(['namespace' => 'User'], function () {
 		Route::get('cart', 'CartController@index')->name('cart.index');
+		Route::get('checkout', 'CartController@checkout')->name('cart.checkout');
 	});
-	Route::get('checkout', 'PagesController@checkout')->name('pages.checkout');
 });

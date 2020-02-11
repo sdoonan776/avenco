@@ -19,9 +19,8 @@
 		  @if(session('message'))
 		  	<div class="notification is-info">{{ session('message') }}</div>
 		  @endif	
-		  <div id="app">
 		  	@yield('main')
-		  </div>
+		  	<div id="app"></div>
 		</main>
 
 		<footer>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -15,11 +17,13 @@ class ProductController extends Controller
      */
     public function index(): View
     {
-        return view('product.index');
+        $products = DB::table('products')->paginate(8);
+        return view('product.index', compact('products'));
     }
 
     public function show($id): View
     {
-        return view('product.show-product');
+        $product = Product::findOrFail($id);
+        return view('product.show-product', compact('product'));
     }
 }

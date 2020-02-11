@@ -13,7 +13,16 @@ class CartController extends Controller
      */
     public function index(): View
     {
-        return view('pages.shopping-cart');
+        return view('cart.shopping-cart');
+    }
+
+    /**
+     * return checkout view
+     * @return View
+     */
+    public function checkout(): View
+    {
+        return view('cart.checkout');
     }
 
     /**
