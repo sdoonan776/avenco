@@ -3,7 +3,9 @@
 @section('title', 'Home')
 
 @section('main')
-    <div id="app"></div>
+    <div id="app">
+        <slideshow />
+    </div>
    
     <section class="features-section spad">
         <div class="features-ads">
@@ -49,7 +51,7 @@
                                         <span class="trend-year">2019 Party</span>
                                         <h2>Jewelry</h2>
                                         <span class="trend-alert">Trend Allert</span>
-                                        <a href="#" class="primary-btn">See More</a>
+                                        <a href="{{ route('shop.index') }}" class="primary-btn">See More</a>
                                     </div>
                                 </div>
                             </div>
@@ -87,11 +89,6 @@
                         <div class="section-title">
                             <h2>Latest Products</h2>
                         </div>
-                        <ul class="product-controls">
-                            @foreach($categories as $category)
-                                <li data-filter="*">{{ $category->name }}</li>
-                            @endforeach
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -101,8 +98,8 @@
                 <div class="col-lg-3 col-sm-6 mix all dresses bags">
                     <div class="single-product-item">
                         <figure>
-                            <a href="{{ route('products.show', $product->id) }}">
-                                <img src="{{ asset('resources/assets/img/products/' . $product->product_image) }}" alt="{{ $product->name }}">
+                            <a href="{{ route('shop.show', $product->slug) }}">
+                                <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
                             </a>
                         </figure>
                         <div class="product-text">
@@ -131,7 +128,7 @@
                             Aenean non felis dapibus, placerat libero auctor, ornare ante. Morbi quis ex eleifend,
                             sodales nulla vitae, scelerisque ante. Nunc id vulputate dui. Suspendisse consectetur rutrum
                             metus nec scelerisque. s</p>
-                        <a href="#" class="primary-btn look-btn">See More</a>
+                        <a href="{{ route('shop.index') }}" class="primary-btn look-btn">See More</a>
                     </div>
                 </div>
                 <div class="col-lg-5 offset-lg-1">

@@ -75,7 +75,7 @@
         </div>
       </div>
 
-    <div class="container text-center pt-5">
+    <div class="container text-center pt-5 text-white">
       Copyright &copy;
       <script>
         document.write(new Date().getFullYear());

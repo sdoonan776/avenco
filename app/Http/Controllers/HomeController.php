@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function index(): View
     {
     	try {
-		  $products = DB::table('products')->paginate(9);
+		  $products = DB::table('products')->paginate(4);
     	} catch (Exception $e) {
 		  $e->getMessage();
     	}

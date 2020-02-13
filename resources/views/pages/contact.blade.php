@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="page-breadcrumb">
-                        <h2>Contact us<span>.</span></h2>
+                        <h2>Contact us</h2>
                     </div>
                 </div>
                 <div class="col-lg-8">

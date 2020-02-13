@@ -19,12 +19,14 @@
 
 <script>
 export default {
-
-  name: 'Slideshow',
-
   data() {
     return {
-
+        name: 'slideshow',
+        images: [
+            '../../../../public/resources/assets/img/slider-1',
+            '../../../../public/resources/assets/img/slider-2',
+            '../../../../public/resources/assets/img/slider-3',
+        ]
     };
   },
 };
