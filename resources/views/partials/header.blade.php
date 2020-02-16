@@ -12,7 +12,7 @@
                 </a>
                 <a href="{{ route('cart.index') }}">
                     <i class="fas fa-shopping-cart fa-lg"></i>
-                    {{-- <span>2</span> --}}
+                    <span>{{ Cart::count() }}</span>
                 </a>
             </div>
             @guest
@@ -31,13 +31,16 @@
                 <ul>
                     <li><a href="{{ route('pages.home') }}">Home</a></li>
                     <li><a href="{{ route('shop.index') }}">Shop</a>
-                        {{-- <ul class="sub-menu">
+                        <ul class="sub-menu">
                             @foreach($categories as $category)
-                            <li><a href="{{ route('shop.index') }}">{{ $category->name }}</a></li>
+                            <li>
+                                <a href="{{ route('shop.index') }}">
+                                    {{ $category->name }}
+                                </a>
+                            </li>
                             @endforeach
-                        </ul> --}}
+                        </ul>
                     </li>
-                    <li><a href="{{ route('pages.contact') }}">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -58,11 +61,6 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{ route('shop.index') }}">
                     Shop
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('pages.contact') }}">
-                    Contact
                 </a>
               </li>
             </ul>

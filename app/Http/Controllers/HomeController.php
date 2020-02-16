@@ -32,9 +32,4 @@ class HomeController extends Controller
 
         return view('pages.home', compact('products', 'categories'));
     }
-
-    // public function categoryFilter()
-    // {
-        
-    // }
 }

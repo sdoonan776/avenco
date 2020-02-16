@@ -14,8 +14,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        static $password;
+
+        User::create([
+            'full_name' => 'user',
+            'email' => 'user@test.com',
+            'username' => 'username',
+            'password' => $password ?: $password = bcrypt('password'),
+            'api_token' => Str::random(60),
+            'remember_token' => Str::random(10),
+            'email_verified_at' => now(),
+        ]);
         factory(User::class, 100)->create();
-        // factory(Product::class, 300)->create();
         $this->call(CategoriesTableSeeder::class);
         $this->call(ProductsTableSeeder::class);
     }        

@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
-	static $password, $api_token;
+	static $password;
 
     return [
         'full_name' => $faker->name,
@@ -17,6 +17,5 @@ $factory->define(User::class, function (Faker $faker) {
         'api_token' => Str::random(60),
         'remember_token' => Str::random(10),
         'email_verified_at' => now(),
-        'api_token' => Str::random(60),
     ];
 });

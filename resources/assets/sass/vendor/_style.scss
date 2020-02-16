@@ -270,7 +270,7 @@ ol {
 		line-height: 30px;
 		svg {
 			display: inline-block;
-			margin-right: 7px;
+			margin-right: 15px;
 			cursor: pointer;
 		}
 		a {
@@ -764,7 +764,7 @@ ol {
 		text-align: center;
 		h6 {
 			color: #727272;
-			margin-bottom: 15px;
+			margin: 15px 0;
 		}
 		p {
 			color: $primary-color;
@@ -1140,6 +1140,7 @@ ol {
 
 .categories-page {
 	margin-top: 4em;
+	padding-bottom: 100px;
 	.single-product-item {
 		figure {
 			position: relative;

@@ -38,6 +38,14 @@ class CartController extends Controller
      */
     public function store(Product $product): RedirectResponse
     {
+        $duplicates = Cart::search(function ($cartItem, $rowId) use ($product) {
+            return $cartItem->id === $product->id;
+        });
+
+        if ($duplicates->isNotEmpty()) {
+            return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart!');
+        }
+
         Cart::add($product->id, $product->name, 1, $product->price)
             ->associate('App\Models\Product');
 

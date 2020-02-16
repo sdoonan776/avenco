@@ -11,9 +11,6 @@
                         <h2>Cart</h2>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <img src="img/add.jpg" alt="">
-                </div>
             </div>
         </div>
     </section>
@@ -21,6 +18,7 @@
         <div class="container">
             <div class="cart-table">
                 <table>
+                    @if(Cart::count() > 0)
                     <thead>
                         <tr>
                             <th class="product-h">Product</th>
@@ -31,37 +29,36 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if($products)
-                        {{-- @foreach() --}}
+                        @foreach(Cart::content() as $item)
                             <tr>
                                 <td class="product-col">
                                     <img src="img/product/product-1.jpg" alt="">
                                     <div class="p-title">
-                                        <h5></h5>
+                                        <h5>{{ $item->name }}</h5>
                                     </div>
                                 </td>
-                                <td class="price-col"></td>
+                                <td class="price-col">{{ priceFormat($item->price) }}</td>
                                 <td class="quantity-col">
                                     <div class="pro-qty">
                                         <input type="text" value="1">
                                     </div>
                                 </td>
-                                <td class="total"></td>
-                                <td class="product-close">x</td>
+                                <td class="total">{{ priceFormat($item->price) }}</td>
+                                <td class="product-close">
+                                    x
+                                </td>
                             </tr>
-                        {{-- @endforeach --}}
-                        @else
-                            <tr>
-                                <td>
-                                    There are no items currently in your cart
-                                </td> 
-                            </tr>
-                        @endif
+                        @endforeach
                     </tbody>
                 </table>
             </div>
             <div class="cart-btn">
                 <div class="row">
+                    <div class="col-lg-6">
+                        <div class="coupon-input">
+                            <input type="text" placeholder="Enter cupone code">
+                        </div>
+                    </div>
                     <div class="col-lg-5 offset-lg-1 text-left text-lg-right">
                         <div class="site-btn clear-btn">Clear Cart</div>
                         <div class="site-btn update-btn">Update Cart</div>
@@ -109,6 +106,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @else
+                                            <div>
+                                                <p>
+                                                    There are no items currently in your cart. <a href="{{ route('shop.index') }}">
+                                                        Go Back to Shop
+                                                    </a>
+                                                </p> 
+                                            </div>
+                                        @endif
                                         <tr>
                                             <td class="total"></td>
                                             <td class="sub-total"></td>

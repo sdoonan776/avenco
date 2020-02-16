@@ -1,15 +1,5 @@
 <footer class="footer-section spad">
         <div class="container">
-            <div class="newslatter-form">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <form action="#">
-                            <input type="text" placeholder="Your email address">
-                            <button type="submit">Subscribe to our newsletter</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
             <div class="footer-widget">
                 <div class="row">
                     <div class="col-lg-3 col-sm-6">
@@ -76,7 +66,7 @@
       </div>
 
     <div class="container text-center pt-5 text-white">
-      Copyright &copy;
+      Avenco &copy;
       <script>
         document.write(new Date().getFullYear());
       </script> 

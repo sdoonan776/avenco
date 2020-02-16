@@ -3,15 +3,21 @@
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->name('pages.home');
-Route::get('contact', 'PagesController@contact')->name('pages.contact');
 
 Route::get('shop', 'ShopController@index')->name('shop.index');
-Route::get('shop/{slug}', 'ShopController@show')->name('shop.show');
+Route::get('shop/{product}', 'ShopController@show')->name('shop.show');
 
-// Route::resource('categories', 'CategoryController')->only('index');
+// Route::get('shop/{slug}', 'ShopController@category')->name('shop.category');
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::resource('cart', 'CartController')->except(['edit', 'create']);
+	Route::get('cart', 'CartController@index')->name('cart.index');
+	Route::post('cart/{product}', 'CartController@store')->name('cart.store');
+	Route::patch('cart/{product}', 'CartController@update')->name('cart.update');
+	Route::delete('cart/{product}', 'CartController@destroy')->name('cart.destroy');
+
+	Route::post('/coupon', 'CouponsController@store')->name('coupon.store');
+	Route::delete('/coupon', 'CouponsController@destroy')->name('coupon.destroy');
+
 	Route::get('settings', 'SettingsController@index')->name('settings.index');
 	Route::get('checkout', 'CartController@checkout')->name('cart.checkout');
 });
