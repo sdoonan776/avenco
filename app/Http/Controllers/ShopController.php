@@ -22,7 +22,7 @@ class ShopController extends Controller
         $categories = Category::all();
 
         if (request()->category) {
-            $products = Product::with('category')->whereHas('categories', function ($query) {
+            $products = Product::with('categories')->whereHas('categories', function ($query) {
                 $query->where('slug', request()->category);
             });
             $categoryName = optional($categories->where('slug', request()->category)->first())->name;
@@ -30,6 +30,14 @@ class ShopController extends Controller
            $products = DB::table('products')->paginate(8);
            $categoryName =  'All Products';
         }   
+
+        if (request()->sort == 'low_high') {
+            $products = $products->orderBy('price')->paginate(8);
+        } elseif (request()->sort == 'high_low') {
+            $products = $products->orderBy('price', 'desc')->paginate(8);
+        } else {
+            $products = DB::table('products')->paginate(8);
+        }
         
         return view('shop.index')->with([
             'products' => $products,

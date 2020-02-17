@@ -43,8 +43,8 @@ class Product extends Model
     ];
 
 
-    public function category(): BelongsTo
+    public function categories(): BelongsTo
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo('App\Models\Category', 'category_id');
     }
 }

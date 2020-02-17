@@ -34,7 +34,7 @@
                         <ul class="sub-menu">
                             @foreach($categories as $category)
                             <li>
-                                <a href="{{ route('shop.index') }}">
+                                <a href="{{ route('shop.index', ['category' => $category->slug]) }}">
                                     {{ $category->name }}
                                 </a>
                             </li>

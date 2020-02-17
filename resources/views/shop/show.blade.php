@@ -17,7 +17,7 @@
         </div>
     </div>
 </section>
-<section class="product-page">
+<section class="product-page spad-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
@@ -35,7 +35,7 @@
                         </div>
                         <p>{{ $product->description }}</p>
                         <ul class="tags">
-                            <li><span>Category : </span>{{ $product->category->name }}</li>
+                            <li><span>Category : </span>{{ $product->categories->name }}</li>
                         </ul>
                         <div class="product-quantity">
                             <div class="pro-qty">
@@ -43,10 +43,12 @@
                             </div>
                         </div>
                         @if ($product->quantity > 0)
-                            <form action="{{ route('cart.store', $product) }}" method="POST">
-                                {{ csrf_field() }}
-                                <button type="submit" class="primary-btn pc-btn">Add to Cart</button>
-                            </form>
+                            <div class="primary-btn pc-btn">
+                                <form action="{{ route('cart.store', $product) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    <button type="submit">Add to Cart</button>
+                                </form>
+                            </div>
                         @endif
                     </div>
                 </div>

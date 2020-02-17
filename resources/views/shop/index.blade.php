@@ -3,16 +3,33 @@
 @section('title', 'Shop')
 
 @section('main')
+    <div class="container">
+        @if (session()->has('success_message'))
+            <div class="alert alert-success">
+                {{ session()->get('success_message') }}
+            </div>
+        @endif
+
+        @if(count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
     <section class="page-add">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="page-breadcrumb">
                         <h2>{{ $categoryName }}</h2>
-                            @component('partials.breadcrumbs')
-                                <a href="/">Home</a>
-                                <span>Shop</span>
-                            @endcomponent
+                        @component('partials.breadcrumbs')
+                            <a href="/">Home</a>
+                            <span>Shop</span>
+                        @endcomponent
                     </div>
                 </div>
             </div>
@@ -26,14 +43,23 @@
                     <div class="col-lg-12">
                         <div class="categories-filter">
                             <div class="cf-left">
-                                <form action="">
+                                <ul>
+                                    @foreach($categories as $category)
+                                    <li>
+                                        <a href="{{ route('shop.index', ['category' => $category->slug]) }}">
+                                            {{ $category->name }}
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                                {{-- <form action="">
                                     <select class="sort">
                                             <option value="all">All</option>
                                         @foreach($categories as $category)
-                                            <option value="">{{ $category->name }}</option>
+                                            <option value="{{ $category->name }}">{{ $category->name }}</option>
                                         @endforeach    
                                     </select>
-                                </form>
+                                </form> --}}
                             </div>
                             <div class="cf-right">
                                 <form action="">
@@ -56,7 +82,7 @@
                             <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
                         </a>
                         <div class="product-text">
-                            <h6>{{ ucfirst($product->name) }}</h6>
+                            <h6>{{ $product->name }}</h6>
                             <p>{{ priceFormat($product->price) }}</p>
                         </div>
                     </div>
@@ -64,23 +90,7 @@
                 @endforeach 
             </div>
             <div class="cf-right">
-                <ul class="pagination">
-                    <li class="page-item">
-                      <a class="page-link" href="#!" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                      </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#!" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                      </a>
-                    </li>
-               </ul>
+                {{ $products->appends(request()->input())->links() }}
             </div>
         </div>
     </section>

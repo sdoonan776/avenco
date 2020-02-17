@@ -49200,17 +49200,17 @@ __webpack_require__(/*! ../../../node_modules/@fortawesome/fontawesome-free/js/a
 
 __webpack_require__(/*! ../../../node_modules/bootstrap/dist/js/bootstrap.min.js */ "./node_modules/bootstrap/dist/js/bootstrap.min.js");
 
+__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
 __webpack_require__(/*! ./bootstrap */ "./resources/assets/js/bootstrap.js");
 
 __webpack_require__(/*! ./main */ "./resources/assets/js/main.js");
 
+__webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js");
+
 __webpack_require__(/*! ./owl.carousel.min.js */ "./resources/assets/js/owl.carousel.min.js");
 
 __webpack_require__(/*! ./mixitup.min.js */ "./resources/assets/js/mixitup.min.js");
-
-__webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js");
-
-__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 var app = new Vue({

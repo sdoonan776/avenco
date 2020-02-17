@@ -6008,6 +6008,10 @@ ol {
   padding-bottom: 100px;
 }
 
+.spad-bottom {
+  padding: 0 0 100px 0;
+}
+
 .text-white h1,
 .text-white h2,
 .text-white h3,
@@ -7489,6 +7493,11 @@ ol {
 .shopping-method {
   padding-top: 50px;
   padding-bottom: 100px;
+}
+
+.shipping-select {
+  display: -webkit-box;
+  display: flex;
 }
 
 .shipping-info {

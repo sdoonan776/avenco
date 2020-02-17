@@ -7,8 +7,6 @@ Route::get('/', 'HomeController@index')->name('pages.home');
 Route::get('shop', 'ShopController@index')->name('shop.index');
 Route::get('shop/{product}', 'ShopController@show')->name('shop.show');
 
-// Route::get('shop/{slug}', 'ShopController@category')->name('shop.category');
-
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('cart', 'CartController@index')->name('cart.index');
 	Route::post('cart/{product}', 'CartController@store')->name('cart.store');
