@@ -51428,7 +51428,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     var n = document.createElement("a").style;
     return n.cssText = "pointer-events:auto", "auto" !== n.pointerEvents && e("html").addClass("no-csspointerevents"), this;
   };
-}(jQuery);
+}(jquery);
 
 /***/ }),
 

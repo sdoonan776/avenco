@@ -17,7 +17,7 @@ class CreateOrderProductsTable extends Migration
             $table->increments('id');
 
             $table->integer('order_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('sales_orders');
+            $table->foreign('order_id')->references('id')->on('sales_orders')->onDelete('cascade');
 
             $table->string('name');
             $table->string('slug');
@@ -25,6 +25,7 @@ class CreateOrderProductsTable extends Migration
             $table->integer('price');
             $table->integer('quantity');
             $table->integer('subtotal');
+            $table->date('order_date');
             $table->timestamps();
         });
     }

@@ -54,7 +54,7 @@
           @enderror 
 
           <div class="wrap-input100 validate-input m-b-16">
-            <input class="input100" type="password" name="password" placeholder="Confirm Password">
+            <input class="input100" type="password" name="confirm_password" placeholder="Confirm Password">
             <span class="focus-input100"></span>
           </div>
 

@@ -37,36 +37,37 @@
                             </div>
                             <div class="col-lg-10">
                                 <select class="cart-select country-usa">
-                                    <option value="USA">USA</option>
-                                    <option value="Afganistan">Afghanistan</option>
-                                       <option value="Albania">Albania</option>
-                                       <option value="Algeria">Algeria</option>
-                                       <option value="American Samoa">American Samoa</option>
-                                       <option value="Andorra">Andorra</option>
-                                       <option value="Angola">Angola</option>
-                                       <option value="Anguilla">Anguilla</option>
-                                       <option value="Antigua & Barbuda">Antigua & Barbuda</option>
-                                       <option value="Argentina">Argentina</option>
-                                       <option value="Armenia">Armenia</option>
-                                       <option value="Aruba">Aruba</option>
-                                       <option value="Australia">Australia</option>
-                                       <option value="Austria">Austria</option>
-                                       <option value="Azerbaijan">Azerbaijan</option>
-                                       <option value="Bahamas">Bahamas</option>
-                                       <option value="Bahrain">Bahrain</option>
-                                       <option value="Bangladesh">Bangladesh</option>
-                                       <option value="Barbados">Barbados</option>
-                                       <option value="Belarus">Belarus</option>
-                                       <option value="Belgium">Belgium</option>
-                                       <option value="Belize">Belize</option>
-                                       <option value="Benin">Benin</option>
-                                       <option value="Bermuda">Bermuda</option>
-                                       <option value="Bhutan">Bhutan</option>
-                                       <option value="Bolivia">Bolivia</option>
-                                       <option value="Bonaire">Bonaire</option>
-                                       <option value="Bosnia & Herzegovina">Bosnia & Herzegovina</option>
-                                       <option value="Botswana">Botswana</option>
-                                       <option value="Brazil">Brazil</option>
+                                   <option value="United Kingdom">United Kingdom</option>
+                                   <option value="USA">USA</option>
+                                   <option value="Afganistan">Afghanistan</option>
+                                   <option value="Albania">Albania</option>
+                                   <option value="Algeria">Algeria</option>
+                                   <option value="American Samoa">American Samoa</option>
+                                   <option value="Andorra">Andorra</option>
+                                   <option value="Angola">Angola</option>
+                                   <option value="Anguilla">Anguilla</option>
+                                   <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                                   <option value="Argentina">Argentina</option>
+                                   <option value="Armenia">Armenia</option>
+                                   <option value="Aruba">Aruba</option>
+                                   <option value="Australia">Australia</option>
+                                   <option value="Austria">Austria</option>
+                                   <option value="Azerbaijan">Azerbaijan</option>
+                                   <option value="Bahamas">Bahamas</option>
+                                   <option value="Bahrain">Bahrain</option>
+                                   <option value="Bangladesh">Bangladesh</option>
+                                   <option value="Barbados">Barbados</option>
+                                   <option value="Belarus">Belarus</option>
+                                   <option value="Belgium">Belgium</option>
+                                   <option value="Belize">Belize</option>
+                                   <option value="Benin">Benin</option>
+                                   <option value="Bermuda">Bermuda</option>
+                                   <option value="Bhutan">Bhutan</option>
+                                   <option value="Bolivia">Bolivia</option>
+                                   <option value="Bonaire">Bonaire</option>
+                                   <option value="Bosnia & Herzegovina">Bosnia & Herzegovina</option>
+                                   <option value="Botswana">Botswana</option>
+                                   <option value="Brazil">Brazil</option>
                                 </select>
                             </div>
                         </div>
@@ -113,27 +114,28 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="order-table">
+                            @foreach(Cart::content() as $item)
                             <div class="cart-item">
                                 <span>Product</span>
-                                @foreach(Cart::content as $item)
                                 <p class="product-name">{{ $item->model->name }}</p>
                             </div>
                             <div class="cart-item">
                                 <span>Price</span>
-                                <p>{{ $item->model->price }}</p>
+                                <p>{{ priceFormat($item->model->price) }}</p>
                             </div>
                             <div class="cart-item">
                                 <span>Quantity</span>
                                 <p>{{ $item->model->quantity }}</p>
                             </div>
-                            <div class="cart-item">
+                            @endforeach
+                            {{-- <div class="cart-item">
                                 <span>Shipping</span>
-                                <p>$10</p>
-                            </div>
+                                <p></p>
+                            </div> --}}
 
                             <div class="cart-total">
                                 <span>Total</span>
-                                <p>$39</p>
+                                <p>{{ Cart::total() }}</p>
                             </div>
                         </div>
                     </div>

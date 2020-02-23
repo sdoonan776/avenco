@@ -22,7 +22,7 @@ class ProductsTableSeeder extends Seeder
 
         	Product::insert([
                 'category_id' => $faker->numberBetween(1, 5),
-                'name' => ucfirst($name),
+                'name' => ucwords($name),
                 'slug' => $slug,
                 'description' => $faker->paragraphs(3, true),
                 'price' => $faker->numberBetween(1000, 10000),
@@ -37,7 +37,7 @@ class ProductsTableSeeder extends Seeder
 
             Product::insert([
                 'category_id' => 1,
-                'name' => ucfirst($name),
+                'name' => ucwords($name),
                 'slug' => $slug,
                 'description' => $faker->paragraphs(3, true),
                 'price' => $faker->numberBetween(1000, 10000),
@@ -52,7 +52,7 @@ class ProductsTableSeeder extends Seeder
 
             Product::insert([
                 'category_id' => 2,
-                'name' => ucfirst($name),
+                'name' => ucwords($name),
                 'slug' => $slug,
                 'description' => $faker->paragraphs(3, true),
                 'price' => $faker->numberBetween(1000, 10000),
@@ -67,7 +67,7 @@ class ProductsTableSeeder extends Seeder
 
             Product::insert([
                 'category_id' => 3,
-                'name' => ucfirst($name),
+                'name' => ucwords($name),
                 'slug' => $slug,
                 'description' => $faker->paragraphs(3, true),
                 'price' => $faker->numberBetween(1000, 10000),
@@ -82,7 +82,7 @@ class ProductsTableSeeder extends Seeder
 
             Product::insert([
                 'category_id' => 4,
-                'name' => ucfirst($name),
+                'name' => ucwords($name),
                 'slug' => $slug,
                 'description' => $faker->paragraphs(3, true),
                 'price' => $faker->numberBetween(1000, 10000),
@@ -97,7 +97,7 @@ class ProductsTableSeeder extends Seeder
 
             Product::insert([
                 'category_id' => 5,
-                'name' => ucfirst($name),
+                'name' => ucwords($name),
                 'slug' => $slug,
                 'description' => $faker->paragraphs(3, true),
                 'price' => $faker->numberBetween(1000, 10000),

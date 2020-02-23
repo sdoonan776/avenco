@@ -42,9 +42,13 @@ class Product extends Model
        'updated_at' => 'datetime',
     ];
 
-
     public function categories(): BelongsTo
     {
         return $this->belongsTo('App\Models\Category', 'category_id');
+    }
+
+    public function priceFormat()
+    {
+        return '£' . $this->price / 100;
     }
 }

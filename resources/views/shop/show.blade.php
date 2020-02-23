@@ -21,15 +21,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="product-slider owl-carousel">
-                        <div class="product-img">
-                            <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
-                        </div>
-                    </div> 
+                    <div class="product-img">
+                        <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
+                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="product-content">
-                        <h2>{{ ucfirst($product->name) }}</h2>
+                        <h2>{{ ($product->name) }}</h2>
                         <div class="pc-meta">
                             <h5>{{ priceFormat($product->price) }}</h5>
                         </div>
@@ -39,7 +37,11 @@
                         </ul>
                         <div class="product-quantity">
                             <div class="pro-qty">
-                                <input type="text" value="1">
+                                {{-- <form action="{{ route('cart.update') }}" method="POST"> --}}
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="text" value="1">
+                                {{-- </form> --}}
                             </div>
                         </div>
                         @if ($product->quantity > 0)

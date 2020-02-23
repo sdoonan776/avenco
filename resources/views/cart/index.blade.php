@@ -5,13 +5,13 @@
 @section('main')
     <div class="container">
         @if (session()->has('success_message'))
-            <div class="alert alert-success">
+            <div class="m-t alert alert-success">
                 {{ session()->get('success_message') }}
             </div>
         @endif
 
         @if(count($errors) > 0)
-            <div class="alert alert-danger">
+            <div class="m-t alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -83,15 +83,6 @@
                         </div>
                     </div>
                     <div class="col-lg-5 offset-lg-1 text-left text-lg-right">
-                        {{-- <div class="site-btn clear-btn">
-                            <form action="{{ route('cart.destroy') }}">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <button type="submit">
-                                    Clear Cart
-                                </button>
-                            </form>
-                        </div> --}}
                         <div class="site-btn update-btn">
                             <form action="{{ route('cart.update', $item->rowId) }}" method="POST">
                                 @csrf
@@ -146,11 +137,11 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="total">{{ Cart::total() }}</td>
-                                            <td class="sub-total">{{ Cart::subtotal() }}</td>
+                                            <td class="total">{{ priceFormat($total) }}</td>
+                                            <td class="sub-total">{{ priceFormat($subTotal) }}</td>
                                             <td class="shipping"></td>
-                                            <td class="tax">{{ Cart::tax() }}</td>
-                                            <td class="total-cart-p">{{ Cart::total() }}</td>
+                                            <td class="tax">{{ priceFormat($tax) }}</td>
+                                            <td class="total-cart-p">{{ priceFormat($total) }}</td>
                                         </tr>
                                         @else
                                             <div>
@@ -166,7 +157,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 text-right">
-                                    <a href="{{ route('cart.checkout') }}" class="primary-btn chechout-btn">Proceed to checkout</a>
+                                    <a href="{{ route('checkout.index') }}" class="primary-btn chechout-btn">Proceed to checkout</a>
                                 </div>
                             </div>
                         </div>

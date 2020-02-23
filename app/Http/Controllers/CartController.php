@@ -21,16 +21,7 @@ class CartController extends Controller
     {
         return view('cart.index');
     }
-
-    /**
-     * returns view to checkout
-     * @return View
-     */
-    public function checkout(): View
-    {
-        return view('cart.checkout');
-    }
-
+    
     /**
      * Add a new item to the cart.
      *

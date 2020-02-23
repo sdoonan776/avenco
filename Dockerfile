@@ -39,6 +39,6 @@ RUN docker-php-ext-install \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 ARG uid
-RUN useradd -G www-data,root -u $uid -d /home/devuser devuser
-RUN mkdir -p /home/devuser/.composer && \
-    chown -R devuser:devuser /home/devuser
+RUN useradd -G www-data,root -u $uid -d /home/sdoonan776 sdoonan776
+RUN mkdir -p /home/sdoonan776/.composer && \
+    chown -R sdoonan776:sdoonan776 /home/sdoonan776

@@ -52,14 +52,6 @@
                                     </li>
                                     @endforeach
                                 </ul>
-                                {{-- <form action="">
-                                    <select class="sort">
-                                            <option value="all">All</option>
-                                        @foreach($categories as $category)
-                                            <option value="{{ $category->name }}">{{ $category->name }}</option>
-                                        @endforeach    
-                                    </select>
-                                </form> --}}
                             </div>
                             <div class="cf-right">
                                 <form action="">
