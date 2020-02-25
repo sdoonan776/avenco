@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
@@ -49,20 +51,20 @@ class CartController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Cart  $cart
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): JsonResponse
     {
          $validator = Validator::make($request->all(), [
-            'quantity' => 'required|numeric|between:1,5'
+            'quantity' => 'required|numeric|between:1,30'
         ]);
 
         if ($validator->fails()) {
-            session()->flash('errors', collect(['Quantity must be between 1 and 5.']));
+            session()->flash('errors', collect(['Quantity must be between 1 and 30.']));
             return response()->json(['success' => false], 400);
         }
 
-        if ($request->quantity > $request->productQuantity) {
+        if ($request->qty > $request->productQuantity) {
             session()->flash('errors', collect(['We currently do not have enough items in stock.']));
             return response()->json(['success' => false], 400);
         }
@@ -75,12 +77,12 @@ class CartController extends Controller
     /**
      * Remove the specified item from storage.
      *
-     * @param  \App\Cart  $cart
-     * @return \Illuminate\Http\Response
+     * @param  $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         Cart::remove($id);
-        return back()->with('success_message', 'Item has been removed!');
+        return back()->with('success_message', 'Item has been removed');
     }
 }

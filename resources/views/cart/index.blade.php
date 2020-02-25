@@ -51,16 +51,16 @@
                                 <td class="product-col">
                                     <img src="{{ asset($item->model->product_image) }}" alt="">
                                     <div class="p-title">
-                                        <h5>{{ $item->model->name }}</h5>
+                                        <h5>{{ ucwords($item->model->name) }}</h5>
                                     </div>
                                 </td>
-                                <td class="price-col">{{ priceFormat($item->model->price) }}</td>
+                                <td class="price-col">{{ price_format($item->model->price) }}</td>
                                 <td class="quantity-col">
                                     <div class="pro-qty">
                                         <input type="text" value="1">
                                     </div>
                                 </td>
-                                <td class="total">{{ priceFormat($item->model->price) }}</td>
+                                <td class="total">{{ price_format($item->model->price) }}</td>
                                 <td class="product-close">
                                     <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
                                         {{ csrf_field() }}
@@ -92,6 +92,11 @@
                                 </button>
                             </form>
                         </div>
+                        <div class="site-btn clear-btn">
+                            <a href="#">
+                                Clear Cart
+                            </a> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,21 +109,9 @@
                             <h5>Choose a shipping</h5>
                             <div class="chose-shipping">
                                 <div class="shipping-select">
-                                    <input type="radio" name="cs" id="one">
+                                    <input class="shipping-input" type="radio" name="cs" id="one" required>
                                     <label for="one">
                                         Free Standard shipping
-                                    </label>
-                                </div>
-                                <div class="shipping-select">
-                                    <input type="radio" name="cs" id="two">
-                                    <label for="two">
-                                        Next Day delievery $10
-                                    </label>
-                                </div>
-                                <div class="shipping-select">
-                                    <input type="radio" name="cs" id="three">
-                                    <label for="three">
-                                        In Store Pickup - Free
                                     </label>
                                 </div>
                             </div>
@@ -130,26 +123,25 @@
                                         <tr>
                                             <th>Total</th>
                                             <th>Subtotal</th>
-                                            <th>Shipping</th>
                                             <th>Tax</th>
                                             <th class="total-cart">Total Cart</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="total">{{ priceFormat($total) }}</td>
-                                            <td class="sub-total">{{ priceFormat($subTotal) }}</td>
-                                            <td class="shipping"></td>
-                                            <td class="tax">{{ priceFormat($tax) }}</td>
-                                            <td class="total-cart-p">{{ priceFormat($total) }}</td>
+                                            <td class="total">{{ price_format(Cart::total()) }}</td>
+                                            <td class="sub-total">{{ price_format(Cart::subtotal()) }}</td>
+                                            <td class="tax">{{ price_format(Cart::tax()) }}</td>
+                                            <td class="total-cart-p">{{ price_format(Cart::total()) }}</td>
                                         </tr>
                                         @else
                                             <div>
                                                 <p>
-                                                    There are no items currently in your cart. <a href="{{ route('shop.index') }}">
-                                                        Go Back to Shop
-                                                    </a>
+                                                    There are no items currently in your cart. 
                                                 </p> 
+                                                <a class="btn btn-secondary" href="{{ route('shop.index') }}">
+                                                    Go Back to Shop
+                                                </a>
                                             </div>
                                         @endif
                                     </tbody>

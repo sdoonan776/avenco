@@ -5,7 +5,8 @@
 @section('main')
  <section class="cart-total-page spad">
         <div class="container">
-            <form action="#" class="checkout-form">
+            <form class="checkout-form" action="{{ route('checkout.store') }}" method="POST">
+                @csrf
                 <div class="row">
                     <div class="col-lg-12">
                         <h3>Your Information</h3>
@@ -13,70 +14,27 @@
                     <div class="col-lg-9">
                         <div class="row">
                             <div class="col-lg-2">
-                                <p class="in-name">Name*</p>
+                                <label for="billing_name" class="in-name">Full Name</label>
                             </div>
-                            <div class="col-lg-5">
-                                <input type="text" placeholder="First Name">
-                            </div>
-                            <div class="col-lg-5">
-                                <input type="text" placeholder="Last Name">
+                            <div class="col-lg-10">
+                                <input type="text" name="billing_name" value="{{ old('billing_name') }}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-2">
-                                <p class="in-name">Street Address*</p>
+                                <label for="billing_email" class="in-name">Email</label>
                             </div>
                             <div class="col-lg-10">
-                                <input type="text">
-                                <input type="text">
+                                <input type="email" name="billing_email" value="{{ old('billing_email') }}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-2">
-                                <p class="in-name">Country*</p>
+                                <label for="billing_address" class="in-name">Address</label>
                             </div>
                             <div class="col-lg-10">
-                                <select class="cart-select country-usa">
-                                   <option value="United Kingdom">United Kingdom</option>
-                                   <option value="USA">USA</option>
-                                   <option value="Afganistan">Afghanistan</option>
-                                   <option value="Albania">Albania</option>
-                                   <option value="Algeria">Algeria</option>
-                                   <option value="American Samoa">American Samoa</option>
-                                   <option value="Andorra">Andorra</option>
-                                   <option value="Angola">Angola</option>
-                                   <option value="Anguilla">Anguilla</option>
-                                   <option value="Antigua & Barbuda">Antigua & Barbuda</option>
-                                   <option value="Argentina">Argentina</option>
-                                   <option value="Armenia">Armenia</option>
-                                   <option value="Aruba">Aruba</option>
-                                   <option value="Australia">Australia</option>
-                                   <option value="Austria">Austria</option>
-                                   <option value="Azerbaijan">Azerbaijan</option>
-                                   <option value="Bahamas">Bahamas</option>
-                                   <option value="Bahrain">Bahrain</option>
-                                   <option value="Bangladesh">Bangladesh</option>
-                                   <option value="Barbados">Barbados</option>
-                                   <option value="Belarus">Belarus</option>
-                                   <option value="Belgium">Belgium</option>
-                                   <option value="Belize">Belize</option>
-                                   <option value="Benin">Benin</option>
-                                   <option value="Bermuda">Bermuda</option>
-                                   <option value="Bhutan">Bhutan</option>
-                                   <option value="Bolivia">Bolivia</option>
-                                   <option value="Bonaire">Bonaire</option>
-                                   <option value="Bosnia & Herzegovina">Bosnia & Herzegovina</option>
-                                   <option value="Botswana">Botswana</option>
-                                   <option value="Brazil">Brazil</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <p class="in-name">City*</p>
-                            </div>
-                            <div class="col-lg-10">
-                                <input type="text">
+                                <input type="text" name="billing_address" value="{{ old('billing_address') }}">
+                                <input type="text" name="billing_address" value="{{ old('billing_address') }}">
                             </div>
                         </div>
                         <div class="row">
@@ -84,31 +42,37 @@
                                 <p class="in-name">Country</p>
                             </div>
                             <div class="col-lg-10">
-                                <input type="text">
+                                <select class="cart-select">
+                                   <option value="select">select</option>
+                                   <option value="United Kingdom">United Kingdom</option>
+                                   <option value="USA">USA</option>
+                                   <option value="France">France</option>
+                                   <option value="Italy">Italy</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-2">
-                                <p class="in-name">Post Code/ZIP*</p>
+                                <label for="billing_city" class="in-name">City</label>
                             </div>
                             <div class="col-lg-10">
-                                <input type="text">
+                                <input type="text" name="billing_city" value="{{ old('city') }}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-2">
-                                <p class="in-name">Phone*</p>
+                                <label for="" class="in-name">Post Code/ZIP</label>
                             </div>
                             <div class="col-lg-10">
-                                <input type="text">
+                                <input type="text" name="billing_postalcode" value="{{ old('billing_postalcode') }}">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-12 text-right">
-                                <div class="diff-addr">
-                                    <input type="radio" id="one">
-                                    <label for="one">Ship to different address</label>
-                                </div>
+                            <div class="col-lg-2">
+                                <label for="billing_phone" class="in-name">Phone</label>
+                            </div>
+                            <div class="col-lg-10">
+                                <input type="text" name="billing_phone" value="{{ old('billing_phone') }}">
                             </div>
                         </div>
                     </div>
@@ -117,25 +81,21 @@
                             @foreach(Cart::content() as $item)
                             <div class="cart-item">
                                 <span>Product</span>
-                                <p class="product-name">{{ $item->model->name }}</p>
+                                <p class="product-name">{{ ucwords($item->model->name) }}</p>
                             </div>
                             <div class="cart-item">
                                 <span>Price</span>
-                                <p>{{ priceFormat($item->model->price) }}</p>
+                                <p>{{ price_format($item->model->price) }}</p>
                             </div>
                             <div class="cart-item">
                                 <span>Quantity</span>
-                                <p>{{ $item->model->quantity }}</p>
+                                <p>{{ $item->qty }}</p>
                             </div>
                             @endforeach
-                            {{-- <div class="cart-item">
-                                <span>Shipping</span>
-                                <p></p>
-                            </div> --}}
 
                             <div class="cart-total">
                                 <span>Total</span>
-                                <p>{{ Cart::total() }}</p>
+                                <p>{{ price_format(Cart::total()) }}</p>
                             </div>
                         </div>
                     </div>
@@ -145,11 +105,19 @@
                         <div class="payment-method">
                             <h3>Payment</h3>
                             <ul>
-                                <li>Paypal <img src="{{ asset('resources/assets/img/paypal.jpg') }}" alt="paypal"></li>
-                                <li>Credit / Debit card <img src="{{ asset('resources/assets/img/mastercard.jpg') }}" alt="credit card"></li>
-                                <li>
-                                    <label for="two">Pay when you get the package</label>
-                                    <input type="radio" id="two">
+                                {{-- <li>
+                                    Paypal 
+                                    <img src="{{ asset('resources/assets/img/paypal.jpg') }}" alt="paypal">
+                                </li> --}}
+                                <li class="col-lg-4">
+                                    Credit / Debit card 
+                                    <img src="{{ asset('resources/assets/img/mastercard.jpg') }}" alt="credit card">
+                                    <div class="form-group">
+                                        <input class="form-control" type="tel" name="billing_card_number" placeholder="Card Number">
+                                        <input class="form-control" type="" name="billing_expiry_date" placeholder="Expiry Date">
+                                        <input class="form-control" type="" name="billing_name_on_card" placeholder="Name on Card">
+                                        <input class="form-control" type="" name="cvv" placeholder="CVV">
+                                    </div>
                                 </li>
                             </ul>
                             <button type="submit">Place your order</button>

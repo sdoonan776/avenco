@@ -1,0 +1,78 @@
+.alert {
+	margin: 1.4rem 0;
+	width: 100%;
+}
+
+.page-add {
+	margin-bottom: 33px;
+}
+
+.page-breadcrumb {
+	padding-top: 0;
+}
+
+.product-img {
+	text-align: center;
+    padding: 1em;
+    border: 1px #CACACA solid;
+    img {
+    	width: 100%;
+    }
+}
+
+.hero-slider {
+	.col-lg-12 {
+		z-index: 999;
+	}
+}
+
+.shipping-input {
+	margin: .4em .4em 0 0;
+}
+
+.cart-table {
+	p {
+		margin: 1em 0;
+	}
+}
+
+.product-col {
+	img {
+		border: 1px #CACACA solid;
+		padding: 1em;
+	}
+}
+
+.inner-header {
+	.user-access {
+		display: block;
+	}
+} 
+
+.checkout-form {
+	h3 {
+		margin: 2em;
+	}
+}
+
+.payment-method {
+	.form-control {
+		margin: 1em 0;
+	}
+}
+
+input[type=text] {
+	border-style: none;
+}
+
+@media only screen and (max-width: 30em) {
+	.cart-table {
+		table {
+			tbody {
+				tr {
+					display: block;
+				}
+			}
+		}
+	}
+}

@@ -13,45 +13,35 @@
             Register
           </span>
 
+          @if(count($errors) > 0)
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
+
           <div class="wrap-input100 validate-input m-b-16">
             <input class="input100" type="text" name="full_name" placeholder="Full Name" value="{{ old('') ?? '' }}">
             <span class="focus-input100"></span>
           </div>
-          @error('full_name')
-            <div class="alert alert-danger" role="alert">
-              {{ $message }}
-            </div>
-          @enderror 
 
           <div class="wrap-input100 validate-input m-b-16">
             <input class="input100" type="email" name="email" placeholder="Email" value="{{ old('') ?? '' }}">
             <span class="focus-input100"></span>
           </div>
-          @error('email')
-            <div class="alert alert-danger" role="alert">
-              {{ $message }}
-            </div>
-          @enderror 
 
           <div class="wrap-input100 validate-input m-b-16">
             <input class="input100" type="text" name="username" placeholder="Username" value="{{ old('') ?? '' }}">
             <span class="focus-input100"></span>
           </div>
-          @error('username')
-            <div class="alert alert-danger" role="alert">
-              {{ $message }}        
-            </div>
-          @enderror 
           
           <div class="wrap-input100 m-b-16">
             <input class="input100" type="password" name="password" placeholder="Password">
             <span class="focus-input100"></span>
           </div>
-          @error('password')
-            <div class="alert alert-danger" role="alert">
-              {{ $message }}        
-            </div>
-          @enderror 
 
           <div class="wrap-input100 validate-input m-b-16">
             <input class="input100" type="password" name="confirm_password" placeholder="Confirm Password">

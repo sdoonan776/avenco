@@ -1,17 +1,17 @@
 @extends('layouts.main')
 
-@section('title', ucfirst($product->name))
+@section('title', ucwords($product->name))
 
 @section('main')
 
 <section class="page-add">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-10">
                  @component('partials.breadcrumbs')
                     <a href="/">Home</a>
                     <a href="/shop">Shop</a>
-                    <span>{{ $product->name }}</span>
+                    <span>{{ ucwords($product->name) }}</span>
                 @endcomponent
             </div>
         </div>
@@ -27,9 +27,9 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="product-content">
-                        <h2>{{ ($product->name) }}</h2>
+                        <h2>{{ ucwords($product->name) }}</h2>
                         <div class="pc-meta">
-                            <h5>{{ priceFormat($product->price) }}</h5>
+                            <h5>{{ price_format($product->price) }}</h5>
                         </div>
                         <p>{{ $product->description }}</p>
                         <ul class="tags">

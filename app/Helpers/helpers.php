@@ -1,6 +1,6 @@
 <?php
 
-function priceFormat($price)
+function price_format($price)
 {
-    return '£' . $price / 100;
+    return '£' . number_format(($price / 100), 2);
 }

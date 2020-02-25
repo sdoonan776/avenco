@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSalesOrdersTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSalesOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('sales_orders', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('user_id')->unsigned();
@@ -23,7 +23,7 @@ class CreateSalesOrdersTable extends Migration
             $table->string('billing_name')->nullable();
             $table->string('billing_address')->nullable();
             $table->string('billing_city')->nullable();
-            $table->string('billing_province')->nullable();
+            $table->string('billing_country')->nullable();
             $table->string('billing_postalcode')->nullable();
             $table->string('billing_phone')->nullable();
             $table->string('billing_name_on_card')->nullable();
@@ -46,6 +46,6 @@ class CreateSalesOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales_orders');
+        Schema::dropIfExists('orders');
     }
 }

@@ -74,16 +74,16 @@
                             <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
                         </a>
                         <div class="product-text">
-                            <h6>{{ $product->name }}</h6>
-                            <p>{{ priceFormat($product->price) }}</p>
+                            <h6>{{ ucwords($product->name) }}</h6>
+                            <p>{{ price_format($product->price) }}</p>
                         </div>
                     </div>
                 </div>
                 @endforeach 
             </div>
-            <div class="cf-right">
+            {{-- <div class="cf-right">
                 {{ $products->appends(request()->input())->links() }}
-            </div>
+            </div> --}}
         </div>
     </section>
 

@@ -3,15 +3,34 @@
 @section('title', 'Home')
 
 @section('main')
+    
+   <section class="hero-slider">
+        <div class="hero-items">
+            <div class="single-slider-item set-bg" style=" background-image: url({{ asset('resources/assets/img/slider-2.jpg') }})">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>2020</h1>
+                            <h2>Lookbook</h2>
+                            <a href="{{ route('shop.index') }}" class="primary-btn">
+                                See More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <div class="container">
-        @if (session()->has('success_message'))
-            <div class="alert alert-success">
-                {{ session()->get('success_message') }}
+        @if (session()->has('message'))
+            <div class="alert alert-success" role="alert-success">
+                {{ session()->get('message') }}
             </div>
         @endif
 
         @if(count($errors) > 0)
-            <div class="alert alert-danger">
+            <div class="alert alert-danger" role="alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -21,44 +40,6 @@
         @endif
     </div>
 
-   <section class="hero-slider">
-        <div class="hero-items owl-carousel">
-            <div class="single-slider-item set-bg" data-setbg="{{ asset('resources/assets/img/slider-1.jpg') }}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1>2019</h1>
-                            <h2>Lookbook.</h2>
-                            <a href="{{ route('shop.index') }}" class="primary-btn">See More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="single-slider-item set-bg" data-setbg="{{ asset('resources/assets/img/slider-2.jpg') }}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1>2019</h1>
-                            <h2>Lookbook.</h2>
-                            <a href="{{ route('shop.index') }}" class="primary-btn">See More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="single-slider-item set-bg" data-setbg="{{ asset('resources/assets/img/slider-3.jpg') }}">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1>2019</h1>
-                            <h2>Lookbook.</h2>
-                            <a href="{{ route('shop.index') }}" class="primary-btn">See More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-   
     <section class="features-section spad">
         <div class="features-ads">
             <div class="container">
@@ -99,7 +80,7 @@
                                 <div class="single-box-item first-box">
                                     <img src="{{ asset('resources/assets/img/f-box-1.jpg') }}" alt="features-image">
                                     <div class="box-text">
-                                        <span class="trend-year">2019 Party</span>
+                                        <span class="trend-year">2020 Party</span>
                                         <h2>Jewelry</h2>
                                         <span class="trend-alert">Trend Allert</span>
                                         <a href="{{ route('shop.index') }}" class="primary-btn">See More</a>
@@ -110,7 +91,7 @@
                                 <div class="single-box-item second-box">
                                     <img src="{{ asset('resources/assets/img/f-box-2.jpg') }}" alt="features-image">
                                     <div class="box-text">
-                                        <span class="trend-year">2019 Trend</span>
+                                        <span class="trend-year">2020 Trend</span>
                                         <h2>Footwear</h2>
                                         <span class="trend-alert">Bold & Black</span>
                                     </div>
@@ -122,7 +103,7 @@
                         <div class="single-box-item large-box">
                             <img src="{{ asset('resources/assets/img/f-box-3.jpg') }}" alt="features-image">
                             <div class="box-text">
-                                <span class="trend-year">2019 Party</span>
+                                <span class="trend-year">2020 Party</span>
                                 <h2>Collection</h2>
                                 <div class="trend-alert">Trend Allert</div>
                             </div>
@@ -154,8 +135,8 @@
                             </a>
                         </figure>
                         <div class="product-text">
-                            <h6>{{ $product->name }}</h6>
-                            <p>{{ priceFormat($product->price) }}</p>
+                            <h6>{{ ucwords($product->name) }}</h6>
+                            <p>{{ price_format($product->price) }}</p>
                         </div>
                     </div>
                 </div>
