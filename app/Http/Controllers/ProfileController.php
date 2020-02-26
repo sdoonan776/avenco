@@ -5,21 +5,28 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class SettingsController extends Controller
+class ProfileController extends Controller
 {
     /**
      * @return View
      */
-    public function index(): View
+    public function edit(): View
     {
     	$user = auth()->user();
-        return view('settings.index', compact('user'));
+        return view('profile.edit', compact('user'));
     }
 
-    public function update(UpdateUserRequest $request, User $user)
+    /**
+     * [update description]
+     * @param  UpdateUserRequest $request 
+     * @param  User $user    
+     * @return RedirectResponse
+     */
+    public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
         $user = auth()->user();
         $input = $request->except('password', 'confirm_password');

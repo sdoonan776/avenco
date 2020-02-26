@@ -26,6 +26,7 @@
                 <div class="col-lg-4">
                     <div class="page-breadcrumb">
                         <h2>Cart</h2>
+                        <span>{{ Cart::count() }} item(s) in Shopping Cart</span>
                     </div>
                 </div>
             </div>
@@ -41,7 +42,6 @@
                             <th class="product-h">Product</th>
                             <th>Price</th>
                             <th class="quan">Quantity</th>
-                            <th>Total</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -57,10 +57,10 @@
                                 <td class="price-col">{{ price_format($item->model->price) }}</td>
                                 <td class="quantity-col">
                                     <div class="pro-qty">
-                                        <input type="text" value="1">
+                                        <input class="quantity" data-id="{{ $item->rowId }}"
+                                        data-productQuantity="{{ $item->model->quantity }}" type="number" value="{{ $item->qty }}">
                                     </div>
                                 </td>
-                                <td class="total">{{ price_format($item->model->price) }}</td>
                                 <td class="product-close">
                                     <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
                                         {{ csrf_field() }}
@@ -78,24 +78,20 @@
             <div class="cart-btn">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="coupon-input">
-                            <input type="text" placeholder="Enter coupon code">
+                        <div class="coupon-input input-group">
+                            <input class="input-group-prepend" type="text" placeholder="Enter coupon code">
+                            <input class="btn btn-secondary" type="submit" name="Enter Coupon">
                         </div>
                     </div>
                     <div class="col-lg-5 offset-lg-1 text-left text-lg-right">
-                        <div class="site-btn update-btn">
-                            <form action="{{ route('cart.update', $item->rowId) }}" method="POST">
-                                @csrf
-                                {{ method_field('PATCH') }}
-                                <button type="submit">
-                                    Update Cart
-                                </button>
-                            </form>
-                        </div>
                         <div class="site-btn clear-btn">
-                            <a href="#">
-                                Clear Cart
-                            </a> 
+                            <form action="{{ route('cart.clearCart') }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">
+                                    Clear Cart
+                                </button> 
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -105,17 +101,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="shipping-info">
-                            <h5>Choose a shipping</h5>
-                            <div class="chose-shipping">
-                                <div class="shipping-select">
-                                    <input class="shipping-input" type="radio" name="cs" id="one" required>
-                                    <label for="one">
-                                        Free Standard shipping
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                         <div class="total-info">
                             <div class="total-table">
                                 <table>
@@ -123,7 +108,7 @@
                                         <tr>
                                             <th>Total</th>
                                             <th>Subtotal</th>
-                                            <th>Tax</th>
+                                            <th>VAT</th>
                                             <th class="total-cart">Total Cart</th>
                                         </tr>
                                     </thead>

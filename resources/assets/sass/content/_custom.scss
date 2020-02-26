@@ -1,8 +1,11 @@
-.alert {
-	margin: 1.4rem 0;
-	width: 100%;
-}
+// header
+.inner-header {
+	.user-access {
+		display: block;
+	}
+} 
 
+// product page
 .page-add {
 	margin-bottom: 33px;
 }
@@ -26,6 +29,13 @@
 	}
 }
 
+.alert {
+	margin: 1.4rem 0;
+	width: 100%;
+}
+
+// cart
+
 .shipping-input {
 	margin: .4em .4em 0 0;
 }
@@ -43,11 +53,14 @@
 	}
 }
 
-.inner-header {
-	.user-access {
-		display: block;
+.coupon-input {
+	input {
+		margin-left: .5em;
+		padding: .5em;
 	}
-} 
+}
+
+// checkout
 
 .checkout-form {
 	h3 {
@@ -59,11 +72,26 @@
 	.form-control {
 		margin: 1em 0;
 	}
+
+	.col-lg-4 {
+		margin: 0 3.5em;
+	}
 }
 
-input[type=text] {
-	border-style: none;
+// profile 
+.card-body {
+	margin: 0 auto;
+	h4 {
+		text-align: center;
+	}
+
+	.form-group {
+		label {
+			margin: .5em 0;
+		}
+	}
 }
+
 
 @media only screen and (max-width: 30em) {
 	.cart-table {
@@ -73,6 +101,11 @@ input[type=text] {
 					display: block;
 				}
 			}
+		}
+	}
+	.payment-method {
+		.col-lg-4 {
+			margin: 0;
 		}
 	}
 }

@@ -37,11 +37,7 @@
                         </ul>
                         <div class="product-quantity">
                             <div class="pro-qty">
-                                {{-- <form action="{{ route('cart.update') }}" method="POST"> --}}
-                                    @csrf
-                                    @method('PUT')
-                                    <input type="text" value="1">
-                                {{-- </form> --}}
+                                <input type="number" value="1">
                             </div>
                         </div>
                         @if ($product->quantity > 0)

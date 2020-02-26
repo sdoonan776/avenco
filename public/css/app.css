@@ -7438,51 +7438,6 @@ ol {
   padding: 50px 0;
 }
 
-.cart-btn .coupon-input {
-  padding-left: 35px;
-}
-
-.cart-btn .coupon-input input {
-  height: 57px;
-  width: 460px;
-  border: none;
-  border-bottom: 2px solid #D0D7DB;
-  background: transparent;
-  color: #1e1e1e;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.cart-btn .coupon-input input::-webkit-input-placeholder {
-  color: #1e1e1e;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.cart-btn .coupon-input input::-moz-placeholder {
-  color: #1e1e1e;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.cart-btn .coupon-input input:-ms-input-placeholder {
-  color: #1e1e1e;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.cart-btn .coupon-input input::-ms-input-placeholder {
-  color: #1e1e1e;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.cart-btn .coupon-input input::placeholder {
-  color: #1e1e1e;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
 .cart-btn .site-btn.clear-btn {
   color: #4a4a4a;
   border-color: #D0D7DB;
@@ -7652,7 +7607,8 @@ ol {
   margin-top: 18px;
 }
 
-.checkout-form input[type=text] {
+.checkout-form input[type=text],
+.checkout-form input[type=email] {
   width: 100%;
   border: 0;
   padding-bottom: 12px;
@@ -8332,9 +8288,8 @@ ol {
   }
 }
 
-.alert {
-  margin: 1.4rem 0;
-  width: 100%;
+.inner-header .user-access {
+  display: block;
 }
 
 .page-add {
@@ -8359,6 +8314,11 @@ ol {
   z-index: 999;
 }
 
+.alert {
+  margin: 1.4rem 0;
+  width: 100%;
+}
+
 .shipping-input {
   margin: 0.4em 0.4em 0 0;
 }
@@ -8372,8 +8332,9 @@ ol {
   padding: 1em;
 }
 
-.inner-header .user-access {
-  display: block;
+.coupon-input input {
+  margin-left: 0.5em;
+  padding: 0.5em;
 }
 
 .checkout-form h3 {
@@ -8384,13 +8345,29 @@ ol {
   margin: 1em 0;
 }
 
-input[type=text] {
-  border-style: none;
+.payment-method .col-lg-4 {
+  margin: 0 3.5em;
+}
+
+.card-body {
+  margin: 0 auto;
+}
+
+.card-body h4 {
+  text-align: center;
+}
+
+.card-body .form-group label {
+  margin: 0.5em 0;
 }
 
 @media only screen and (max-width: 30em) {
   .cart-table table tbody tr {
     display: block;
+  }
+
+  .payment-method .col-lg-4 {
+    margin: 0;
   }
 }
 

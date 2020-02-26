@@ -85,4 +85,10 @@ class CartController extends Controller
         Cart::remove($id);
         return back()->with('success_message', 'Item has been removed');
     }
+
+    public function clearCart(): RedirectResponse
+    {
+        Cart::destroy();
+        return back()->with('success_message', 'Cart has been successfully cleared');
+    }
 }

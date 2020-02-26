@@ -1495,44 +1495,44 @@ ol {
 .cart-btn {
 	background: #F9FBFB;
 	padding: 50px 0;
-	.coupon-input {
-		padding-left: 35px;
-		input {
-			height: 57px;
-			width: 460px;
-			border: none;
-			border-bottom: 2px solid #D0D7DB;
-			background: transparent;
-			color: $primary-color;
-			font-size: 14px;
-			font-weight: 500;
-			&::-webkit-input-placeholder {
-				color: $primary-color;
-				font-weight: 600;
-				text-transform: uppercase;
-			}
-			&::-moz-placeholder {
-				color: $primary-color;
-				font-weight: 600;
-				text-transform: uppercase;
-			}
-			&:-ms-input-placeholder {
-				color: $primary-color;
-				font-weight: 600;
-				text-transform: uppercase;
-			}
-			&::-ms-input-placeholder {
-				color: $primary-color;
-				font-weight: 600;
-				text-transform: uppercase;
-			}
-			&::placeholder {
-				color: $primary-color;
-				font-weight: 600;
-				text-transform: uppercase;
-			}
-		}
-	}
+	// .coupon-input {
+	// 	padding-left: 35px;
+	// 	input {
+	// 		height: 57px;
+	// 		width: 460px;
+	// 		border: none;
+	// 		border-bottom: 2px solid #D0D7DB;
+	// 		background: transparent;
+	// 		color: $primary-color;
+	// 		font-size: 14px;
+	// 		font-weight: 500;
+	// 		&::-webkit-input-placeholder {
+	// 			color: $primary-color;
+	// 			font-weight: 600;
+	// 			text-transform: uppercase;
+	// 		}
+	// 		&::-moz-placeholder {
+	// 			color: $primary-color;
+	// 			font-weight: 600;
+	// 			text-transform: uppercase;
+	// 		}
+	// 		&:-ms-input-placeholder {
+	// 			color: $primary-color;
+	// 			font-weight: 600;
+	// 			text-transform: uppercase;
+	// 		}
+	// 		&::-ms-input-placeholder {
+	// 			color: $primary-color;
+	// 			font-weight: 600;
+	// 			text-transform: uppercase;
+	// 		}
+	// 		&::placeholder {
+	// 			color: $primary-color;
+	// 			font-weight: 600;
+	// 			text-transform: uppercase;
+	// 		}
+	// 	}
+	// }
 	.site-btn.clear-btn {
 		color: #4a4a4a;
 		border-color: #D0D7DB;
@@ -1687,7 +1687,8 @@ ol {
 		margin: 0;
 		margin-top: 18px;
 	}
-	input[type=text] {
+	input[type=text], 
+	input[type=email] {
 		width: 100%;
 		border: 0;
 		padding-bottom: 12px;

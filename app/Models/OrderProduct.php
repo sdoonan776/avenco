@@ -9,6 +9,10 @@ class OrderProduct extends Model
 	public $table = 'order_products';
 
     public $fillable = [
-    	'',
+    	'order_id',
+    	'name',
+    	'slug',
+    	'price',
+    	'quantity'
     ];
 }

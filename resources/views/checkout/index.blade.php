@@ -3,41 +3,58 @@
 @section('title', 'Checkout')
 
 @section('main')
+ <div class="container">
+    @if (session()->has('success_message'))
+        <div class="m-t alert alert-success">
+            {{ session()->get('success_message') }}
+        </div>
+    @endif
+
+    @if(count($errors) > 0)
+        <div class="m-t alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+ </div>
  <section class="cart-total-page spad">
         <div class="container">
-            <form class="checkout-form" action="{{ route('checkout.store') }}" method="POST">
+            <form id="payment-form" class="checkout-form" action="{{ route('checkout.store') }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-lg-12">
                         <h3>Your Information</h3>
                     </div>
                     <div class="col-lg-9">
-                        <div class="row">
+                        <div class="row form-group">
                             <div class="col-lg-2">
-                                <label for="billing_name" class="in-name">Full Name</label>
+                                <label for="name" class="in-name">Full Name</label>
                             </div>
                             <div class="col-lg-10">
-                                <input type="text" name="billing_name" value="{{ old('billing_name') }}">
+                                <input type="text" name="name" value="{{ old('billing_name') }}">
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row form-group">
                             <div class="col-lg-2">
-                                <label for="billing_email" class="in-name">Email</label>
+                                <label for="email" class="in-name">Email</label>
                             </div>
                             <div class="col-lg-10">
-                                <input type="email" name="billing_email" value="{{ old('billing_email') }}">
+                                <input type="email" name="email" value="{{ auth()->user()->email }}">
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row form-group">
                             <div class="col-lg-2">
-                                <label for="billing_address" class="in-name">Address</label>
+                                <label for="address" class="in-name">Address</label>
                             </div>
                             <div class="col-lg-10">
-                                <input type="text" name="billing_address" value="{{ old('billing_address') }}">
-                                <input type="text" name="billing_address" value="{{ old('billing_address') }}">
+                                <input class="form-control" type="text" name="address_1" value="{{ old('address_1') }}">
+                                <input class="form-control" type="text" name="address_2" value="{{ old('address_2') }}">
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row form-group">
                             <div class="col-lg-2">
                                 <p class="in-name">Country</p>
                             </div>
@@ -51,28 +68,28 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row form-group">
                             <div class="col-lg-2">
-                                <label for="billing_city" class="in-name">City</label>
+                                <label for="city" class="in-name">City</label>
                             </div>
                             <div class="col-lg-10">
-                                <input type="text" name="billing_city" value="{{ old('city') }}">
+                                <input class="form-control" type="text" name="city" value="{{ old('city') }}">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-2">
+                                <label for="postalcode" class="in-name">Post Code/ZIP</label>
+                            </div>
+                            <div class="col-lg-10">
+                                <input class="form-control" type="text" name="postalcode" value="{{ old('billing_postalcode') }}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-2">
-                                <label for="" class="in-name">Post Code/ZIP</label>
+                                <label for="phone" class="in-name">Phone</label>
                             </div>
                             <div class="col-lg-10">
-                                <input type="text" name="billing_postalcode" value="{{ old('billing_postalcode') }}">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <label for="billing_phone" class="in-name">Phone</label>
-                            </div>
-                            <div class="col-lg-10">
-                                <input type="text" name="billing_phone" value="{{ old('billing_phone') }}">
+                                <input class="form-control" type="text" name="phone" value="{{ old('billing_phone') }}">
                             </div>
                         </div>
                     </div>
@@ -104,23 +121,14 @@
                     <div class="col-lg-12">
                         <div class="payment-method">
                             <h3>Payment</h3>
-                            <ul>
-                                {{-- <li>
-                                    Paypal 
-                                    <img src="{{ asset('resources/assets/img/paypal.jpg') }}" alt="paypal">
-                                </li> --}}
-                                <li class="col-lg-4">
-                                    Credit / Debit card 
-                                    <img src="{{ asset('resources/assets/img/mastercard.jpg') }}" alt="credit card">
-                                    <div class="form-group">
-                                        <input class="form-control" type="tel" name="billing_card_number" placeholder="Card Number">
-                                        <input class="form-control" type="" name="billing_expiry_date" placeholder="Expiry Date">
-                                        <input class="form-control" type="" name="billing_name_on_card" placeholder="Name on Card">
-                                        <input class="form-control" type="" name="cvv" placeholder="CVV">
-                                    </div>
-                                </li>
-                            </ul>
-                            <button type="submit">Place your order</button>
+                            <div class="col-lg-4 form-group">
+                                <label for="card-element">Credit / Debit card</label>
+                                <img src="{{ asset('resources/assets/img/mastercard.jpg') }}" alt="credit card">
+                                <div id="card-element">
+                                    {{-- stripe element will be inserted here --}}
+                                </div>
+                            </div>
+                            <button id="complete-order" type="submit">Place your order</button>
                         </div>
                     </div>
                 </div>
