@@ -37,7 +37,18 @@
     </section>
             
     <section class="categories-page">
-        <div class="container">
+       {{--  <div class="price-filter col-lg-10">
+            <div class="cf-right">
+                <form action="">
+                    <select class="sort">
+                        <option value="Latest">Latest</option>
+                        <option value="Price(Descending)">Price(Descending)</option>
+                        <option value="Price(Ascending)">Price(Ascending)</option>
+                    </select>
+                </form>                         
+            </div>
+        </div> --}}
+        <div class="container d-lg-flex">
             <div class="categories-controls">
                 <div class="row">
                     <div class="col-lg-12">
@@ -53,20 +64,11 @@
                                     @endforeach
                                 </ul>
                             </div>
-                            <div class="cf-right">
-                                <form action="">
-                                    <select class="sort">
-                                        <option value="">Latest</option>
-                                        <option value="">Price(Up to Down)</option>
-                                        <option value="">Price(Down to Up)</option>
-                                    </select>
-                                </form>                         
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-             <div class="row" id="product-list">                
+             <div class="row col-lg-10 product-list" id="product-list">                
                 @foreach($products as $product)
                 <div class="col-lg-3 col-sm-6 mix all dresses bags">
                     <div class="single-product-item">
@@ -81,9 +83,9 @@
                 </div>
                 @endforeach 
             </div>
-            {{-- <div class="cf-right">
-                {{ $products->appends(request()->input())->links() }}
-            </div> --}}
+        </div>
+        <div class="cf-right col-lg-6">
+            {{ $products->appends(request()->input())->links() }}
         </div>
     </section>
 

@@ -8292,6 +8292,15 @@ ol {
   display: block;
 }
 
+.price-filter {
+  margin: 1.8em;
+  text-align: right;
+}
+
+.product-list {
+  margin: 0 auto;
+}
+
 .page-add {
   margin-bottom: 33px;
 }
