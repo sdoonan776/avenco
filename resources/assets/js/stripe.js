@@ -1,6 +1,6 @@
 (function(){
     // Create a Stripe client
-    let stripe = Stripe("{{ config('services.stripe.key') }}");
+    let stripe = new Stripe("{{ config('services.stripe.key') }}");
     // Create an instance of Elements
     let elements = stripe.elements();
     // Custom styling can be passed to options when creating an Element.

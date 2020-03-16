@@ -24,32 +24,32 @@
           @endif
 
           <div class="wrap-input100 validate-input m-b-16">
-            <input class="input100" type="text" name="full_name" placeholder="Full Name" value="{{ old('') ?? '' }}">
+            <input class="input100" type="text" name="full_name" placeholder="Full Name" value="{{ old('') ?? '' }}" required>
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 validate-input m-b-16">
-            <input class="input100" type="email" name="email" placeholder="Email" value="{{ old('') ?? '' }}">
+            <input class="input100" type="email" name="email" placeholder="Email" value="{{ old('') ?? '' }}" required>
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 validate-input m-b-16">
-            <input class="input100" type="text" name="username" placeholder="Username" value="{{ old('') ?? '' }}">
+            <input class="input100" type="text" name="username" placeholder="Username" value="{{ old('') ?? '' }}" required>
             <span class="focus-input100"></span>
           </div>
           
           <div class="wrap-input100 m-b-16">
-            <input class="input100" type="password" name="password" placeholder="Password">
+            <input class="input100" type="password" name="password" placeholder="Password" required>
             <span class="focus-input100"></span>
           </div>
 
           <div class="wrap-input100 validate-input m-b-16">
-            <input class="input100" type="password" name="confirm_password" placeholder="Confirm Password">
+            <input class="input100" type="password" name="confirm_password" placeholder="Confirm Password" required>
             <span class="focus-input100"></span>
           </div>
 
           <div class="container-register100-form-btn m-t-17">
-            <button class="register100-form-btn">
+            <button class="register100-form-btn" name="register">
               Register
             </button>
           </div>

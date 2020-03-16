@@ -6319,6 +6319,94 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/form-urlencoded/form-urlencoded.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/form-urlencoded/form-urlencoded.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// Filename: formurlencoded.js
+// Timestamp: 2016.03.07-12:29:28 (last modified)
+// Author(s): Bumblehead (www.bumblehead.com), JBlashill (james@blashill.com), Jumper423 (jump.e.r@yandex.ru)
+//
+// http://www.w3.org/TR/html5/forms.html#url-encoded-form-data
+// input: {one:1,two:2} return: '[one]=1&[two]=2'
+
+module.exports = function (data, opts) {
+    "use strict";
+
+    // ES5 compatible version of `/[^ !'()~\*]/gu`, https://mothereff.in/regexpu
+    var encodechar = new RegExp([
+        '(?:[\0-\x1F"-&\+-\}\x7F-\uD7FF\uE000-\uFFFF]|',
+        '[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|',
+        '(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])'
+    ].join(''), 'g');
+
+    opts = typeof opts === 'object' ? opts : {};
+
+    function encode(value) {
+        return String(value)
+            .replace(encodechar, encodeURIComponent)
+            .replace(/ /g, '+')
+            .replace(/[!'()~\*]/g, function (ch) {
+                return '%' + ch.charCodeAt().toString(16).slice(-2).toUpperCase();
+            });
+    }
+
+    function keys(obj) {
+        var itemsKeys = Object.keys(obj);
+
+        return opts.sorted ? itemsKeys.sort() : itemsKeys;
+    }
+
+    function filterjoin(arr) {
+        return arr.filter(function (e) {
+            return e;
+        }).join('&');
+    }
+
+    function objnest(name, obj) {
+        return filterjoin(keys(obj).map(function (key) {
+            return nest(name + '[' + key + ']', obj[key]);
+        }));
+    }
+
+    function arrnest(name, arr) {
+        return arr.length ? filterjoin(arr.map(function (elem, index) {
+            if (opts.skipIndex) {
+                return nest(name + '[]', elem);
+            } else {
+                return nest(name + '[' + index + ']', elem);
+            }
+        })) : encode(name + '[]');
+    }
+
+    function nest(name, value) {
+        var type = typeof value,
+            f = null;
+
+        if (value === f) {
+            f = opts.ignorenull ? f : encode(name) + '=' + f;
+        } else if (/string|number|boolean/.test(type)) {
+            f = encode(name) + '=' + encode(value);
+        } else if (Array.isArray(value)) {
+            f = arrnest(name, value);
+        } else if (type === 'object') {
+            f = objnest(name, value);
+        }
+
+        return f;
+    }
+
+    return data && filterjoin(keys(data).map(function (key) {
+            return nest(key, data[key]);
+        }));
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/jquery/dist/jquery.js":
 /*!********************************************!*\
   !*** ./node_modules/jquery/dist/jquery.js ***!
@@ -37068,6 +37156,86 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/stripe-client/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/stripe-client/index.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const STRIPE_URL = 'https://api.stripe.com/v1/';
+const FORMURLENCODED = __webpack_require__(/*! form-urlencoded */ "./node_modules/form-urlencoded/form-urlencoded.js");
+
+module.exports = function(key) {
+  return {
+    createToken: async function (details) {
+      const keys = Object.keys(details);
+      const index = _findType(details, keys);
+      var token;
+      if (index == 0) {
+        let type = keys[index];
+        var newDetails = _convertDetails(type, details[type]);
+        token = await _createTokenHelper(newDetails, key);
+      } else {
+        token = await _createTokenHelper(details, key);
+      }
+      return _parseJSON(token);
+    }
+  }
+}
+
+// Stripe normally only allows for fetch format for the details provided.
+// _findType allows the user to use the node format of the details by
+// figuring out which format/type the details provided are.
+function _findType(details, keys) {
+  if (details.card != null) {
+    return keys.indexOf("card");
+  } else if (details.bank_account != null) {
+    return keys.indexOf("bank_account");
+  } else if (details.pii != null) {
+    return keys.indexOf("pii");
+  } else return false;
+}
+
+// _convertDetails converts and returns the data in the given details
+// to the correct Stripe format for the given type.
+function _convertDetails(type, details) {
+  var convertedDetails = {}
+  for (var data in details) {
+    const string = type + '[' + data + ']';
+    convertedDetails[string] = details[data];
+  }
+  return convertedDetails;
+}
+
+// Stripe gives a JSON object with the token object embedded as a JSON string.
+// _parseJSON finds that string in and returns it as a JSON object, or an error
+// if Stripe threw an error instead. If the JSON does not need to be parsed, returns the token.
+async function _parseJSON(token) {
+  if (token._bodyInit == null) {
+    return token;
+  } else {
+    const body = await token.json();
+    return body;
+  }
+}
+
+function _createTokenHelper(details, key) {
+  const formBody = FORMURLENCODED(details);
+  return fetch(STRIPE_URL + 'tokens', {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ' + key
+    },
+    body: formBody
+  });
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/timers-browserify/main.js":
 /*!************************************************!*\
   !*** ./node_modules/timers-browserify/main.js ***!
@@ -37219,6 +37387,8 @@ __webpack_require__(/*! ../../../node_modules/@fortawesome/fontawesome-free/js/a
 __webpack_require__(/*! ../../../node_modules/bootstrap/dist/js/bootstrap.min.js */ "./node_modules/bootstrap/dist/js/bootstrap.min.js");
 
 __webpack_require__(/*! ./stripe */ "./resources/assets/js/stripe.js");
+
+__webpack_require__(/*! stripe-client */ "./node_modules/stripe-client/index.js");
 
 __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
@@ -37464,7 +37634,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 (function () {
   // Create a Stripe client
-  var stripe = Stripe("{{ config('services.stripe.key') }}"); // Create an instance of Elements
+  var stripe = new Stripe("{{ config('services.stripe.key') }}"); // Create an instance of Elements
 
   var elements = stripe.elements(); // Custom styling can be passed to options when creating an Element.
   // (Note that this demo uses a wider set of styles than the guide below.)

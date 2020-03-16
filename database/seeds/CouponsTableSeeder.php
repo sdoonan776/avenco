@@ -1,8 +1,9 @@
 <?php
 
+use App\Models\Coupon;
 use Illuminate\Database\Seeder;
 
-class CouponSeeder extends Seeder
+class CouponsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -35,7 +35,7 @@
           
           <div class="flex-sb-m w-full p-t-3 p-b-24">
             <div class="contact100-form-checkbox">
-              <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+              <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember">
               Remember me                    
             </div>
 
@@ -47,7 +47,7 @@
           </div>
 
           <div class="container-login100-form-btn m-t-17">
-            <button class="login100-form-btn">
+            <button class="login100-form-btn" name="login">
               Login
             </button>
           </div>

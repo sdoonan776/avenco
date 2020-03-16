@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -28,6 +29,6 @@ class Category extends Model
 
     public function products(): HasMany
     {
-        $this->hasMany('App\Models\Product', 'product_id');
+        $this->hasMany(Product::class, 'product_id');
     }
 }

@@ -1,0 +1,20 @@
+[
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/js\/app.js 37636:15 Uncaught ReferenceError: Stripe is not defined",
+        "source": "javascript",
+        "timestamp": 1584390550008
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/js\/app.js 37636:15 Uncaught ReferenceError: Stripe is not defined",
+        "source": "javascript",
+        "timestamp": 1584390550622
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/js\/app.js 37636:15 Uncaught ReferenceError: Stripe is not defined",
+        "source": "javascript",
+        "timestamp": 1584390552022
+    }
+]

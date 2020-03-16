@@ -44,7 +44,7 @@ class Product extends Model
 
     public function categories(): BelongsTo
     {
-        return $this->belongsTo('App\Models\Category', 'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function priceFormat()

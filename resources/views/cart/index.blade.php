@@ -78,10 +78,13 @@
             <div class="cart-btn">
                 <div class="row">
                     <div class="col-lg-6">
-                        <div class="coupon-input input-group">
-                            <input class="input-group-prepend" type="text" placeholder="Enter coupon code">
-                            <input class="btn btn-secondary" type="submit" name="Enter Coupon">
-                        </div>
+                        <form action="{{ route('coupon.store') }}" method="POST">
+                            @csrf
+                            <div class="coupon-input input-group">
+                                <input class="input-group-prepend" name="coupon" type="text" placeholder="Enter coupon code">
+                                <input class="btn btn-secondary" type="submit" value="Submit">
+                            </div>
+                        </form>
                     </div>
                     <div class="col-lg-5 offset-lg-1 text-left text-lg-right">
                         <div class="site-btn clear-btn">
@@ -97,6 +100,14 @@
                 </div>
             </div>
         </div>
+        @if(session()->has('coupon')) 
+            <div class="row">
+                  <div>
+                      <p>Code</p>
+                      <p>{{ session()->get('coupon')['name'] }}</p>
+                  </div>
+            </div>
+        @endif    
         <div class="shopping-method">
             <div class="container">
                 <div class="row">
@@ -115,7 +126,11 @@
                                     <tbody>
                                         <tr>
                                             <td class="total">{{ price_format(Cart::total()) }}</td>
-                                            <td class="sub-total">{{ price_format(Cart::subtotal()) }}</td>
+                                            @if(session()->has('coupon'))
+                                                - {{ price_format($discount) }}
+                                                {{ price_format($newSubtotal) }}
+                                            @endif 
+                                                <td class="sub-total">{{ price_format(Cart::subtotal()) }}</td>
                                             <td class="tax">{{ price_format(Cart::tax()) }}</td>
                                             <td class="total-cart-p">{{ price_format(Cart::total()) }}</td>
                                         </tr>

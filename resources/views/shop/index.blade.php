@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Shop')
+@section('title', $categoryName)
 
 @section('main')
     <div class="container">
@@ -37,17 +37,6 @@
     </section>
             
     <section class="categories-page">
-       {{--  <div class="price-filter col-lg-10">
-            <div class="cf-right">
-                <form action="">
-                    <select class="sort">
-                        <option value="Latest">Latest</option>
-                        <option value="Price(Descending)">Price(Descending)</option>
-                        <option value="Price(Ascending)">Price(Ascending)</option>
-                    </select>
-                </form>                         
-            </div>
-        </div> --}}
         <div class="container d-lg-flex">
             <div class="categories-controls">
                 <div class="row">
