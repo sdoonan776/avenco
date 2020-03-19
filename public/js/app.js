@@ -37400,8 +37400,6 @@ __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.j
 
 __webpack_require__(/*! ./updateQuantity */ "./resources/assets/js/updateQuantity.js");
 
-__webpack_require__(/*! ./checkout */ "./resources/assets/js/checkout.js");
-
 /***/ }),
 
 /***/ "./resources/assets/js/bootstrap.js":
@@ -37433,17 +37431,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
-
-/***/ }),
-
-/***/ "./resources/assets/js/checkout.js":
-/*!*****************************************!*\
-  !*** ./resources/assets/js/checkout.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-
 
 /***/ }),
 
@@ -37515,56 +37502,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
       Carousel Slider
   --------------------*/
 
-  $(".hero-items").owlCarousel({
-    loop: true,
-    margin: 0,
-    nav: true,
-    items: 1,
-    dots: true,
-    animateOut: 'fadeOut',
-    animateIn: 'fadeIn',
-    navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-    smartSpeed: 1200,
-    autoplayHoverPause: true,
-    mouseDrag: false,
-    autoplay: false
-  });
-  /*------------------
-      Carousel Slider
-  --------------------*/
-
-  $(".logo-items").owlCarousel({
-    loop: true,
-    nav: false,
-    dots: false,
-    margin: 40,
-    autoplay: true,
-    responsive: {
-      0: {
-        items: 2
-      },
-      480: {
-        items: 2
-      },
-      768: {
-        items: 3
-      },
-      992: {
-        items: 5
-      }
-    }
-  });
-  /*------------------
-      Carousel Slider
-  --------------------*/
-
-  $(".product-slider").owlCarousel({
-    loop: true,
-    margin: 0,
-    nav: false,
-    items: 1,
-    dots: true,
-    autoplay: true
+  $('.carousel').carousel({
+    interval: 2000
   });
   /*------------------
       Magnific Popup
@@ -37572,40 +37511,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
   $('.pop-up').magnificPopup({
     type: 'image'
-  });
-  /*-------------------
-  Sort Select
-  --------------------- */
-
-  $('.sort').niceSelect();
-  /*-------------------
-  Cart Select
-  --------------------- */
-
-  $('.cart-select').niceSelect();
-  /*-------------------
-  Quantity change
-  --------------------- */
-
-  var proQty = $('.pro-qty');
-  proQty.prepend('<span class="dec qtybtn">-</span>');
-  proQty.append('<span class="inc qtybtn">+</span>');
-  proQty.on('click', '.qtybtn', function () {
-    var $button = $(this);
-    var oldValue = $button.parent().find('input').val();
-
-    if ($button.hasClass('inc')) {
-      var newVal = parseFloat(oldValue) + 1;
-    } else {
-      // Don't allow decrementing below zero
-      if (oldValue > 0) {
-        var newVal = parseFloat(oldValue) - 1;
-      } else {
-        newVal = 0;
-      }
-    }
-
-    $button.parent().find('input').val(newVal);
   });
   /*-------------------
   Radio Btn

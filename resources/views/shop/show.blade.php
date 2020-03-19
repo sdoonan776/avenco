@@ -29,7 +29,7 @@
                     <div class="product-content">
                         <h2>{{ ucwords($product->name) }}</h2>
                         <div class="pc-meta">
-                            <h5>{{ price_format($product->price) }}</h5>
+                            <h5>{{ priceFormat($product->price) }}</h5>
                         </div>
                         <p>{{ $product->description }}</p>
                         <ul class="tags">

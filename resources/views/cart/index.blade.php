@@ -54,7 +54,7 @@
                                         <h5>{{ ucwords($item->model->name) }}</h5>
                                     </div>
                                 </td>
-                                <td class="price-col">{{ price_format($item->model->price) }}</td>
+                                <td class="price-col">{{ priceFormat($item->model->price) }}</td>
                                 <td class="quantity-col">
                                     <div class="pro-qty">
                                         <input class="quantity" data-id="{{ $item->rowId }}"
@@ -102,10 +102,18 @@
         </div>
         @if(session()->has('coupon')) 
             <div class="row">
-                  <div>
-                      <p>Code</p>
-                      <p>{{ session()->get('coupon')['name'] }}</p>
-                  </div>
+              <div class="coupon-section">
+                  <p>Code</p>
+                  <p>{{ session()->get('coupon')['name'] }}</p>
+
+                <form action="{{ route('coupon.destroy') }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('delete') }}
+                    <button type="submit" style="font-size:14px;">
+                        Remove
+                    </button>
+                </form>
+              </div>
             </div>
         @endif    
         <div class="shopping-method">
@@ -117,7 +125,6 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Total</th>
                                             <th>Subtotal</th>
                                             <th>VAT</th>
                                             <th class="total-cart">Total Cart</th>
@@ -125,14 +132,14 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="total">{{ price_format(Cart::total()) }}</td>
+                                            <td class="sub-total">{{ priceFormat(Cart::subtotal()) }}</td>
                                             @if(session()->has('coupon'))
-                                                - {{ price_format($discount) }}
-                                                {{ price_format($newSubtotal) }}
+                                                - {{ priceFormat($discount) }}
+                                                {{ priceFormat($newSubtotal) }}
                                             @endif 
-                                                <td class="sub-total">{{ price_format(Cart::subtotal()) }}</td>
-                                            <td class="tax">{{ price_format(Cart::tax()) }}</td>
-                                            <td class="total-cart-p">{{ price_format(Cart::total()) }}</td>
+                                            
+                                            <td class="tax">{{ priceFormat(Cart::tax()) }}</td>
+                                            <td class="total-cart-p">{{ priceFormat(Cart::total()) }}</td>
                                         </tr>
                                         @else
                                             <div>

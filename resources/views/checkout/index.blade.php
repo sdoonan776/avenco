@@ -102,7 +102,7 @@
                             </div>
                             <div class="cart-item">
                                 <span>Price</span>
-                                <p>{{ price_format($item->model->price) }}</p>
+                                <p>{{ priceFormat($item->model->price) }}</p>
                             </div>
                             <div class="cart-item">
                                 <span>Quantity</span>
@@ -112,7 +112,7 @@
 
                             <div class="cart-total">
                                 <span>Total</span>
-                                <p>{{ price_format(Cart::total()) }}</p>
+                                <p>{{ priceFormat(Cart::total()) }}</p>
                             </div>
                         </div>
                     </div>

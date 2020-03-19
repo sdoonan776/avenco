@@ -8,4 +8,3 @@ require('./bootstrap');
 require('./main');
 require('popper.js');
 require('./updateQuantity');
-require('./checkout');

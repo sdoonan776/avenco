@@ -66,7 +66,7 @@
                         </a>
                         <div class="product-text">
                             <h6>{{ ucwords($product->name) }}</h6>
-                            <p>{{ price_format($product->price) }}</p>
+                            <p>{{ priceFormat($product->price) }}</p>
                         </div>
                     </div>
                 </div>

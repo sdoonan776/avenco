@@ -15,13 +15,16 @@ use Illuminate\View\View;
 class CartController extends Controller
 {
     /**
-     * Display a listing of cart items.
+     * Returns cart index page
      *
      * @return View
      */
     public function index(): View
     {
-        return view('cart.index');
+        return view('cart.index', [
+            // 'discount' => get_discounts()->get('discount'),
+            // 'newSubtotal' => get_discounts()->get('newSubtotal')
+        ]);                                        
     }
     
     /**
@@ -53,16 +56,16 @@ class CartController extends Controller
      * @param  \App\Cart  $cart
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id): JsonResponse
+    public function update(UpdateCartQuantityRequest $request, $id): JsonResponse
     {
-         $validator = Validator::make($request->all(), [
-            'quantity' => 'required|numeric|between:1,30'
-        ]);
+        //  $validator = Validator::make($request->all(), [
+        //     'quantity' => 'required|numeric|between:1,30'
+        // ]);
 
-        if ($validator->fails()) {
-            session()->flash('errors', collect(['Quantity must be between 1 and 30.']));
-            return response()->json(['success' => false], 400);
-        }
+        // if ($validator->fails()) {
+        //     session()->flash('errors', collect(['Quantity must be between 1 and 30.']));
+        //     return response()->json(['success' => false], 400);
+        // }
 
         if ($request->qty > $request->productQuantity) {
             session()->flash('errors', collect(['We currently do not have enough items in stock.']));

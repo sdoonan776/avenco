@@ -170,6 +170,9 @@ ol {
 	border: 2px solid $white-color;
 	border-radius: 50px;
 	text-transform: uppercase;
+	&:hover {
+		background-color: #949494;
+	}
 }
 
 .site-btn {

@@ -3,26 +3,8 @@
 @section('title', 'Home')
 
 @section('main')
-    
-   <section class="hero-slider">
-        <div class="hero-items">
-            <div class="single-slider-item set-bg" style=" background-image: url({{ asset('resources/assets/img/slider-2.jpg') }})">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1>2020</h1>
-                            <h2>Lookbook</h2>
-                            <a href="{{ route('shop.index') }}" class="primary-btn">
-                                See More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <div class="container">
+
+    <section id="messages" class="conatiner">
         @if (session()->has('message'))
             <div class="alert alert-success" role="alert-success">
                 {{ session()->get('message') }}
@@ -38,7 +20,34 @@
                 </ul>
             </div>
         @endif
-    </div>
+    </section>
+    
+   <section id="carousel" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselIndicators" data-slide-to="2"></li>
+      </ol>  
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img class="d-block w-100" src="{{ asset('resources/assets/img/slider-1.jpg') }}" alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="{{ asset('resources/assets/img/slider-2.jpg') }}" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img class="d-block w-100" src="{{ asset('resources/assets/img/slider-3.jpg') }}" alt="Third slide">
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </section>
 
     <section class="features-section spad">
         <div class="features-ads">
@@ -136,7 +145,7 @@
                         </figure>
                         <div class="product-text">
                             <h6>{{ ucwords($product->name) }}</h6>
-                            <p>{{ price_format($product->price) }}</p>
+                            <p>{{ priceFormat($product->price) }}</p>
                         </div>
                     </div>
                 </div>

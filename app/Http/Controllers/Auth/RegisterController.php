@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterUserRequest;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -26,22 +26,6 @@ class RegisterController extends Controller
     protected $redirectTo = 'login';
 
     /**
-     * Validates a register request
-     * 
-     * @param  array  $data 
-     * @return Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'full_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'username' => 'required|string|max:255|unique:users',
-            'password' => 'required|between:8,255|required_with:confirm_password|same:confirm_password',
-            'confirm_password' => 'min:8',
-        ]);
-    }
-    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array $data
@@ -58,16 +42,14 @@ class RegisterController extends Controller
         ]);
     }
 
-       /**
+    /**
      * Handle a registration request for the application.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function register(Request $request)
+    public function register(RegisterUserRequest $request )
     {
-        $this->validator($request->all())->validate();
-
         event(new Registered($user = $this->create($request->all())));
 
         return $this->registered($request, $user)
