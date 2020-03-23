@@ -1,20 +1,20 @@
 [
     {
         "level": "SEVERE",
-        "message": "http:\/\/localhost\/js\/app.js 37636:15 Uncaught ReferenceError: Stripe is not defined",
+        "message": "http:\/\/localhost\/js\/app.js 37541:15 Uncaught ReferenceError: Stripe is not defined",
         "source": "javascript",
-        "timestamp": 1584390550008
+        "timestamp": 1584916696753
     },
     {
         "level": "SEVERE",
-        "message": "http:\/\/localhost\/js\/app.js 37636:15 Uncaught ReferenceError: Stripe is not defined",
+        "message": "http:\/\/localhost\/js\/app.js 37541:15 Uncaught ReferenceError: Stripe is not defined",
         "source": "javascript",
-        "timestamp": 1584390550622
+        "timestamp": 1584916697435
     },
     {
         "level": "SEVERE",
-        "message": "http:\/\/localhost\/js\/app.js 37636:15 Uncaught ReferenceError: Stripe is not defined",
+        "message": "http:\/\/localhost\/js\/app.js 37541:15 Uncaught ReferenceError: Stripe is not defined",
         "source": "javascript",
-        "timestamp": 1584390552022
+        "timestamp": 1584916698727
     }
 ]

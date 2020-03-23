@@ -48,13 +48,12 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function register(RegisterUserRequest $request )
+    public function register(RegisterUserRequest $request)
     {
         event(new Registered($user = $this->create($request->all())));
 
         return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath('login'));
+                        ?: redirect($this->redirectPath())->with('message', 'User has been successfully created');
     }
-
 
 }

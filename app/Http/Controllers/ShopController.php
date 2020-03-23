@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\CategoryRepositoryInterface;
+use App\Interfaces\ProductRepositoryInterface;
 use App\Models\Category;
 use App\Models\Product;
 use App\Repository\CategoryRepository;
@@ -14,10 +16,15 @@ use Illuminate\View\View;
 class ShopController extends Controller
 {
 
-    protected CategoryRepository $categories;
+    protected CategoryRepositoryInterface $categoryRepository;
+    protected ProductRepositoryInterface $productRepository;
 
-    public function __construct(CategoryRepository $categories) {
-        $this->categories = $categories;
+    public function __construct(
+        CategoryRepositoryInterface $categoryRepository,
+        ProductRepositoryInterface $productRepository
+    ) {
+        $this->categoryRepository = $categoryRepository;
+        $this->productRepository = $productRepository;
     }
     
       /**
@@ -27,28 +34,29 @@ class ShopController extends Controller
      */
     public function index(): View
     {
-        $categories = $this->categories->all();
-        $products = $this->categories->filterProductsByCategory();
-        $categoryName = $this->categories->getCategoryName();
+        // $categories = $this->categories->all();
+        // $products = $this->categories->filterProductsByCategory();
+        // $categoryName = $this->categories->filterProductsByCategory();
+        // $categoryName = $this->categories->getCategoryName();
 
-        // if (request()->category) {
-        //     $products = Product::with('categories')->whereHas('categories', fn($query) =>
-        //         $query->where('slug', request()->category)
-        //     );
-        //     $categoryName = optional($categories->where('slug', request()->category)->first())->name;
-        // } else {
-        //    $products = DB::table('products')->paginate(8);
-        //    $categoryName =  'All Products';
-        // }   
+        $category = Category::all();
+
+        if (request()->category) {
+            $products = Product::with('categories')->whereHas('categories', fn($query) =>
+                $query->where('slug', request()->slug)
+            );
+            $categoryName = optional($categories->where('slug', request()->category)->first())->name;
+        } else {
+           $products = DB::table('products')->paginate(8);
+           $categoryName =  'All Products';
+        }   
         
-        // $products = $products->paginate(8);
-        
-        // $products = DB::table('products')->paginate(8);
-        
+        $products = $products->paginate(8);
+      
         return view('shop.index', [
+            'categories' => $categories,
             'products' => $products,
             'categoryName' => $categoryName,
-            'categories' => $categories,
         ]);
     }
 

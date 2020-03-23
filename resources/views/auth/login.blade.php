@@ -13,6 +13,12 @@
             Login to Continue
           </span>
 
+          @if (session()->has('message'))
+            <div class="alert alert-success" role="alert-success">
+                {{ session()->get('message') }}
+            </div>
+          @endif
+
           @if(count($errors) > 0)
             <div class="alert alert-danger" role="alert">
                 <ul>
@@ -29,25 +35,25 @@
           </div>
           
           <div class="wrap-input100 validate-input m-b-16">
-            <input class="input100" type="password" name="password" placeholder="Password">
+            <input class="input100" type="password" name="password" placeholder="Password" required>
             <span class="focus-input100"></span>
           </div>
           
           <div class="flex-sb-m w-full p-t-3 p-b-24">
             <div class="contact100-form-checkbox">
-              <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember">
+              <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me" required>
               Remember me                    
             </div>
 
             <div>
-              <a href="#" class="txt1">
+              <a href="{{ route('password.request') }}" class="txt1">
                 Forgot Password?
               </a>
             </div>
           </div>
 
           <div class="container-login100-form-btn m-t-17">
-            <button class="login100-form-btn" name="login">
+            <button class="login100-form-btn">
               Login
             </button>
           </div>

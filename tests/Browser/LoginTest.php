@@ -40,7 +40,7 @@ class LoginTest extends DuskTestCase
                     ->type('email', $user->email)
                     ->type('password', $user->password)
                     ->press('login')
-                    ->assertPathIs('');
+                    ->assertPathIs('/');
         });
     }
 }

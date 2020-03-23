@@ -60,11 +60,13 @@
                             </div>
                             <div class="col-lg-10">
                                 <select class="cart-select">
+                                @if($selected == 'selected')
                                    <option value="select">select</option>
                                    <option value="United Kingdom">United Kingdom</option>
                                    <option value="USA">USA</option>
                                    <option value="France">France</option>
                                    <option value="Italy">Italy</option>
+                                @endif   
                                 </select>
                             </div>
                         </div>
