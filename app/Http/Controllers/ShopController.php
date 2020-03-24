@@ -7,7 +7,6 @@ use App\Interfaces\CategoryRepositoryInterface;
 use App\Interfaces\ProductRepositoryInterface;
 use App\Models\Category;
 use App\Models\Product;
-use App\Repository\CategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
@@ -34,29 +33,27 @@ class ShopController extends Controller
      */
     public function index(): View
     {
-        // $categories = $this->categories->all();
-        // $products = $this->categories->filterProductsByCategory();
-        // $categoryName = $this->categories->filterProductsByCategory();
-        // $categoryName = $this->categories->getCategoryName();
 
-        $category = Category::all();
+        $categories = $this->categoryRepository->listCategories();
+    
+        // $category = Category::all();
 
-        if (request()->category) {
-            $products = Product::with('categories')->whereHas('categories', fn($query) =>
-                $query->where('slug', request()->slug)
-            );
-            $categoryName = optional($categories->where('slug', request()->category)->first())->name;
-        } else {
-           $products = DB::table('products')->paginate(8);
-           $categoryName =  'All Products';
-        }   
+        // if (request()->category) {
+        //     $products = Product::with('categories')->whereHas('categories', fn($query) =>
+        //         $query->where('slug', request()->slug)
+        //     );
+        //     $categoryName = optional($categories->where('slug', request()->category)->first())->name;
+        // } else {
+        //    $products = DB::table('products')->paginate(8);
+        //    $categoryName =  'All Products';
+        // }   
         
-        $products = $products->paginate(8);
+        // $products = $products->paginate(8);
       
         return view('shop.index', [
             'categories' => $categories,
-            'products' => $products,
-            'categoryName' => $categoryName,
+            // 'products' => $products,
+            // 'categoryName' => $categoryName,
         ]);
     }
 
@@ -67,9 +64,11 @@ class ShopController extends Controller
      */
     public function show($slug): View
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
+        // $product = Product::where('slug', $slug)->firstOrFail();
 
-        return view('shop.show')->with([
+        $product = $this->productRepository->findProductBySlug($slug);
+
+        return view('shop.show', [
             'product' => $product,
         ]);
     }

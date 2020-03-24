@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-interface ProductRepositoryInterface 
+interface ProductRepositoryInterface
 {	
 	/**
      * @param string $order

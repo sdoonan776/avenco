@@ -17,7 +17,7 @@ class HomeController extends Controller
      * returns the main home view
      * @return View
      */
-    public function index(): View
+    public function __invoke(): View
     {
 	    $products = DB::table('products')->paginate(4);    
       return view('pages.home', compact('products'));

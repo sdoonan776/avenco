@@ -34,7 +34,7 @@
                                 <label for="name" class="in-name">Full Name</label>
                             </div>
                             <div class="col-lg-10">
-                                <input type="text" name="name" value="{{ old('billing_name') }}">
+                                <input type="text" name="name" value="{{ old('name') }}">
                             </div>
                         </div>
                         <div class="row form-group">
@@ -60,13 +60,13 @@
                             </div>
                             <div class="col-lg-10">
                                 <select class="cart-select">
-                                @if($selected == 'selected')
+                                {{-- @if($selected == 'selected') --}}
                                    <option value="select">select</option>
                                    <option value="United Kingdom">United Kingdom</option>
                                    <option value="USA">USA</option>
                                    <option value="France">France</option>
                                    <option value="Italy">Italy</option>
-                                @endif   
+                                {{-- @endif    --}}
                                 </select>
                             </div>
                         </div>
@@ -105,6 +105,10 @@
                             <div class="cart-item">
                                 <span>Price</span>
                                 <p>{{ priceFormat($item->model->price) }}</p>
+                            </div>
+                            <div class="cart-item">
+                                <span>VAT</span>
+                                <p>{{ priceFormat(Cart::tax()) }}</p>
                             </div>
                             <div class="cart-item">
                                 <span>Quantity</span>

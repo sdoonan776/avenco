@@ -36,7 +36,10 @@ class BaseRepository implements BaseInterface
      * @param int $id
      * @return mixed
      */
-    public function update(array $attributes, int $id);
+    public function update(array $attributes, int $id)
+    {
+        return $this->find($id)->update($attributes);
+    }
 
     /**
      * Return all model rows
@@ -45,7 +48,10 @@ class BaseRepository implements BaseInterface
      * @param string $sortBy
      * @return mixed
      */
-    public function all($columns = array('*'), string $orderBy = 'id', string $sortBy = 'desc');
+    public function all($columns = array('*'), string $orderBy = 'id', string $sortBy = 'desc')
+    {
+        return $this->model->orderBy($orderBy, $sortBy)->get($columns);
+    }
 
     /**
      * Find one by ID

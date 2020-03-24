@@ -16,6 +16,12 @@ use Illuminate\View\View;
 
 class CheckoutController extends Controller
 {
+
+    public function __construct()
+    {
+        
+    }
+
 	/**
 	 * returns checkout view
 	 * @return View
@@ -80,18 +86,18 @@ class CheckoutController extends Controller
         // Insert into orders table
         $order = Order::create([
             'user_id' => auth()->user() ? auth()->user()->id : null,
-            'billing_email' => $request->email,
-            'billing_name' => $request->name,
-            'billing_address' => $request->address,
-            'billing_city' => $request->city,
-            'billing_postalcode' => $request->postalcode,
-            'billing_phone' => $request->phone,
-            'billing_name_on_card' => $request->name_on_card,
-            'billing_discount' => getNumbers()->get('discount'),
-            'billing_discount_code' => getNumbers()->get('code'),
-            'billing_subtotal' => getNumbers()->get('newSubtotal'),
-            'billing_tax' => getNumbers()->get('newTax'),
-            'billing_total' => getNumbers()->get('newTotal'),
+            'email' => $request->email,
+            'name' => $request->name,
+            'address' => $request->address,
+            'city' => $request->city,
+            'postalcode' => $request->postalcode,
+            'phone' => $request->phone,
+            'name_on_card' => $request->name_on_card,
+            'discount' => getNumbers()->get('discount'),
+            'discount_code' => getNumbers()->get('code'),
+            'subtotal' => getNumbers()->get('newSubtotal'),
+            'tax' => getNumbers()->get('newTax'),
+            'total' => getNumbers()->get('newTotal'),
             'error' => $error,
         ]);
 

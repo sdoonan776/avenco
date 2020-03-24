@@ -1,9 +1,12 @@
 <?php
 
-Auth::routes(['verify' => true]);
+// auth
+Auth::routes(['verified' => true]);
 
-Route::get('/', 'HomeController@index')->name('pages.home');
+// home
+Route::get('/', 'HomeController')->name('pages.home');
 
+// shop
 Route::get('shop', 'ShopController@index')->name('shop.index');
 Route::get('shop/{product}', 'ShopController@show')->name('shop.show');
 

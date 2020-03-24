@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Interfaces\CateogryRepositoryInterface;
 use App\Repository\BaseRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
@@ -22,56 +23,34 @@ class CategoryRepository extends BaseRepository implements CateogryRepositoryInt
 	 * gets all category names in shop index
      * @return
 	 */
-    public function all()
+    public function listCategories(string $order = 'id', string $sort = 'desc', array $columns = ['*'])
     {
-    	$categories = Category::all();
-
-        if (request()->category) {
-            return $categories;
-        }
-
-    	return $categories;
-    }
-
-    /**
-     * filters products by category
-     * @return 
-     */
-    public function filterProductsByCategory()
-    {
-        $categories = Category::all();
-
-    	if (request()->category) {
-            $products = Product::with('categories')->whereHas('categories', function ($query){
-                $query->where('category_id', request()->category_id);
-            });
-            $categoryName = optional($categories->where('slug', request()->category)->first())->name;            
-        } else {
-           $products = DB::table('products')->paginate(8);
-           $categoryName =  'All Products';
-        }   
-
-        $products = $products->paginate(8);
-
-        return [
-            'products' => $products,
-            'categoryName' => $categoryName,
-            'categories' => $categories
-        ];
+        return $this->all($columns, $order, $sort);
     }
     /**
-     * get category name
-     * @return string
+     * finds a category by id
+     * @param  int $id 
      */
-    public function getCategoryName(): string
+    public function findCategoryById(int $id)
     {
-        // $categories = Category::all();
+        return $this->findOneOrFail($id);
+    }
 
-        if (request()->category) {
-            return $this->categories->where('slug', request()->category)->first()->name;
-        } else {
-            return 'All Products'; 
-        }
+    public function treeList()
+    {
+        return Category::orderByRaw('-name ASC')
+            ->get()
+            ->nest()
+            ->setIndent('|–– ')
+            ->listsFlattened('name');   
+    }
+
+    public function findBySlug($slug)
+    {
+        return Category::with('products')
+            ->where('slug', $slug)
+            ->where('menu', 1)
+            ->first();
     }
 }
 
