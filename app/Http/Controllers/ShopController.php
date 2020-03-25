@@ -26,8 +26,8 @@ class ShopController extends Controller
         $this->productRepository = $productRepository;
     }
     
-      /**
-     * Display all products
+    /**
+     * Displays all products
      *
      * @return View
      */
@@ -35,25 +35,13 @@ class ShopController extends Controller
     {
 
         $categories = $this->categoryRepository->listCategories();
-    
-        // $category = Category::all();
-
-        // if (request()->category) {
-        //     $products = Product::with('categories')->whereHas('categories', fn($query) =>
-        //         $query->where('slug', request()->slug)
-        //     );
-        //     $categoryName = optional($categories->where('slug', request()->category)->first())->name;
-        // } else {
-        //    $products = DB::table('products')->paginate(8);
-        //    $categoryName =  'All Products';
-        // }   
-        
-        // $products = $products->paginate(8);
+        $categoryName = $this->categoryRepository->getCategoryName();
+        $products = $this->productRepository->productPagination();
       
         return view('shop.index', [
             'categories' => $categories,
-            // 'products' => $products,
-            // 'categoryName' => $categoryName,
+            'categoryName' => $categoryName,
+            'products' => $products,
         ]);
     }
 

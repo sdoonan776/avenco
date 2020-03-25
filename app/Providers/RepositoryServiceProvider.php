@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Interfaces\CategoryRepositoryInterface;
 use App\Interfaces\CouponRepositoryInterface;
 use App\Interfaces\ProductRepositoryInterface;
+use App\Repository\CategoryRepository;
 use App\Repository\CouponRepository;
 use App\Repository\ProductRepository;
 use Illuminate\Support\ServiceProvider;

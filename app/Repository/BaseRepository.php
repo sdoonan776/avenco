@@ -48,7 +48,7 @@ class BaseRepository implements BaseInterface
      * @param string $sortBy
      * @return mixed
      */
-    public function all($columns = array('*'), string $orderBy = 'id', string $sortBy = 'desc')
+    public function all(string $orderBy = 'id', string $sortBy = 'desc', $columns = array('*'))
     {
         return $this->model->orderBy($orderBy, $sortBy)->get($columns);
     }

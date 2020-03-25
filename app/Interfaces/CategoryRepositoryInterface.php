@@ -28,4 +28,10 @@ interface CategoryRepositoryInterface
      * @return mixed
      */
     public function findBySlug($slug);
+
+    /**
+     * Gets the name of the request category
+     * @return mixed
+     */
+    public function getCategoryName();
 }

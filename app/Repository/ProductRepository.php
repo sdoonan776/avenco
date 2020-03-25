@@ -5,11 +5,12 @@ namespace App\Repository;
 use App\Interfaces\ProductRepositoryInterface;
 use App\Models\Product;
 use App\Repository\BaseRepository;
+use Illuminate\Support\Facades\DB;
 
-class ProductRepository extends BaseRespository implements ProductRepositoryInterface
+class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
 
-	protected Product $model;
+	protected $model;
 
 	/**
 	 * Contructor for ProductRepository
@@ -30,6 +31,24 @@ class ProductRepository extends BaseRespository implements ProductRepositoryInte
     public function listProducts(string $order = 'id', string $sort = 'desc', array $columns = ['*']) 
     {
     	return $this->all($order, $sort, $columns);
+    }
+
+    /**
+     * Returns a list of products with the paginator
+     * @return mixed
+     */
+    public function productPagination()
+    {
+        if (request()->category) {
+            $products = Product::with('categories')->whereHas('categories', fn($query) =>
+                $query->where('slug', request()->slug)
+            );    
+        } else {
+            return DB::table('products')->paginate(8);
+        }
+
+        return $products->paginate(8);
+        
     }
 
     /**

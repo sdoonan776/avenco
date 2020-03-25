@@ -4,14 +4,14 @@ namespace App\Repository;
 
 use App\Models\Category;
 use App\Models\Product;
-use App\Interfaces\CateogryRepositoryInterface;
+use App\Interfaces\CategoryRepositoryInterface;
 use App\Repository\BaseRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
-class CategoryRepository extends BaseRepository implements CateogryRepositoryInterface
+class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
 {
-    protected Category $model;
+    protected $model;
 
     public function __construct(Category $model)
     {
@@ -25,7 +25,7 @@ class CategoryRepository extends BaseRepository implements CateogryRepositoryInt
 	 */
     public function listCategories(string $order = 'id', string $sort = 'desc', array $columns = ['*'])
     {
-        return $this->all($columns, $order, $sort);
+        return $this->all($order, $sort, $columns);
     }
     /**
      * finds a category by id
@@ -51,6 +51,21 @@ class CategoryRepository extends BaseRepository implements CateogryRepositoryInt
             ->where('slug', $slug)
             ->where('menu', 1)
             ->first();
+    }
+
+    /**
+     * Gets the name of the request category
+     * @return mixed
+     */
+    public function getCategoryName()
+    {
+        $categories = $this->listCategories();
+
+        if (request()->category) {
+            return optional($categories->where('slug', request()->category)->first())->name;
+        } else {
+            return 'All Products';
+        }
     }
 }
 
