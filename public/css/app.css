@@ -8294,7 +8294,7 @@ ol {
 
 /** ----- Base ------ */
 
-.primary-btn:hover {
+button:hover {
   background-color: #4D4949;
   color: #fff;
 }

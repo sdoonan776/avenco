@@ -14,6 +14,13 @@ use Illuminate\View\View;
 
 class CartController extends Controller
 {
+    protected $productRepository;
+
+    public function __construct($param = null)
+    {
+        $this->param = $param;
+    }
+
     /**
      * Returns cart index page
      *
@@ -22,8 +29,8 @@ class CartController extends Controller
     public function index(): View
     {
         return view('cart.index', [
-            // 'discount' => get_discounts()->get('discount'),
-            // 'newSubtotal' => get_discounts()->get('newSubtotal')
+            // 'discount' => getDiscounts()->get('discount'),
+            // 'newSubtotal' => getDiscounts()->get('newSubtotal')
         ]);                                        
     }
     
@@ -35,6 +42,7 @@ class CartController extends Controller
      */
     public function store(Product $product): RedirectResponse
     {
+        // $this->productRepository->checkForDuplicates();
         $duplicates = Cart::search(function ($cartItem, $rowId) use ($product) {
             return $cartItem->id === $product->id;
         });
@@ -58,21 +66,14 @@ class CartController extends Controller
      */
     public function update(UpdateCartQuantityRequest $request, $id): JsonResponse
     {
-        //  $validator = Validator::make($request->all(), [
-        //     'quantity' => 'required|numeric|between:1,30'
-        // ]);
-
-        // if ($validator->fails()) {
-        //     session()->flash('errors', collect(['Quantity must be between 1 and 30.']));
-        //     return response()->json(['success' => false], 400);
-        // }
-
+    
         if ($request->qty > $request->productQuantity) {
             session()->flash('errors', collect(['We currently do not have enough items in stock.']));
             return response()->json(['success' => false], 400);
         }
 
         Cart::update($id, $request->quantity);
+
         session()->flash('success_message', 'Quantity was updated successfully!');
         return response()->json(['success' => true]);
     }

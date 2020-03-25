@@ -2,27 +2,42 @@
 
 namespace App\Services;
 
-use App\Models\Coupon;
+use App\Interfaces\CouponRepositoryInterface;
 
-class CouponDiscountService 
+class CouponDiscountService
 {
-    protected Coupon $model;
+    protected $couponRepository;
 
-    public function __construct(Coupon $model)
+    public function __construct(CouponRepositoryInterface $couponRepository)
     {
-        $this->model = $model;
+        $this->couponRepository = $couponRepository;
     }
+
+    /**
+     * Gets discounts totals to be applied to cart item
+     * @return mixed
+     */
+    public function getDiscount()
+    {
+        Cart::subtotal();
+    }
+
+    public function getSubTotal()
+    {
+        
+    }
+    
     /**
      * applys discount coupon to cart total
-     * @param  [type] $total [description]
-     * @return [type]        [description]
+     * @param  $total 
+     * @return mixed
      */
-    public function discount($total)
+    public function applyDiscount($total)
     {
-        if ($this->model->type == 'fixed') {
-            return $this->model->value;
-        } elseif ($this->model->type == 'percent') {
-            return round(($this->model->percent_off / 100) * $total);
+        if ($this->couponRepository->type == 'fixed') {
+            return $this->couponRepository->value;
+        } elseif ($this->couponRepository->type == 'percent') {
+            return round(($this->couponRepository->percent_off / 100) * $total);
         } else {
             return 0;
         }

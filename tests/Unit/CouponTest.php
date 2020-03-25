@@ -2,25 +2,28 @@
 
 namespace Tests\Unit;
 
-use App\Models\Coupon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Interfaces\CouponRespositoryInterface;
 use Illuminate\Foundation\Testing\WithFaker;
+use Mockery;
 use Tests\TestCase;
 
 class CouponTest extends TestCase
 {
-    protected Coupon $coupon;
+    protected $coupon;
 
     public function setUp(): void
     {
-        parent::setUp();
-        $this->coupon = new Coupon();
+        $this->coupon = Mockery::mock(CouponRespositoryInterface::class);
+    }
+
+    public function tearDown(): void
+    {
+        Mockery::close();
     }
     
     public function tests_that_coupon_code_has_been_found(): void
     {
-        // $coupon = $this->coupon->findByCode('ABC123');
-        $this->assertTrue(method_exists($this->coupon, findByCode('ABC123')));
+        $this->assertTrue(method_exists($this->coupon));
     }
 
     public function tests_that_coupon_has_not_been_found(): void

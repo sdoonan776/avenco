@@ -10,4 +10,10 @@ interface CouponRepositoryInterface {
 	 */
 	public function findByCode($code);
 
+	/** 
+	 * Delete selected coupon by id
+	 * @param $id 
+	 */
+	public function deleteCoupon($id);
+
 }
