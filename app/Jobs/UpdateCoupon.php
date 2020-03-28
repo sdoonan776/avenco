@@ -14,16 +14,16 @@ class UpdateCoupon implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $coupon;
+    protected $model;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Coupon $coupon)
+    public function __construct(Coupon $model)
     {
-        $this->coupon = $coupon;
+        $this->model = $model;
     }
 
     /**
@@ -35,8 +35,8 @@ class UpdateCoupon implements ShouldQueue
     {
         if (Cart::currentInstance() === 'default') {
             session()->put('coupon', [
-                'name' => $this->coupon->code,
-                'discount' => $this->coupon->discount(Cart::subtotal()),
+                'name' => $this->model->code,
+                'discount' => $this->model->discount(Cart::subtotal()),
             ]);
         }
     }

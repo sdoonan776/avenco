@@ -3,10 +3,8 @@
 namespace App\Repository;
 
 use App\Models\Category;
-use App\Models\Product;
 use App\Interfaces\CategoryRepositoryInterface;
 use App\Repository\BaseRepository;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
@@ -38,7 +36,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 
     public function treeList()
     {
-        return Category::orderByRaw('-name ASC')
+        return $this->model::orderByRaw('-name ASC')
             ->get()
             ->nest()
             ->setIndent('|–– ')
@@ -47,7 +45,7 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
 
     public function findBySlug($slug)
     {
-        return Category::with('products')
+        return $this->model::with('products')
             ->where('slug', $slug)
             ->where('menu', 1)
             ->first();
@@ -59,10 +57,8 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
      */
     public function getCategoryName()
     {
-        $categories = $this->listCategories();
-
         if (request()->category) {
-            return optional($categories->where('slug', request()->category)->first())->name;
+            return optional($this->listCategories()->where('slug', request()->category)->first())->name;
         } else {
             return 'All Products';
         }

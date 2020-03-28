@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Models\Category;
+use App\Models\OrderProduct;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
@@ -42,13 +44,22 @@ class Product extends Model
        'updated_at' => 'datetime',
     ];
 
+    /**
+     * Gets product category
+     * @return [type] [description]
+     */
     public function categories(): BelongsTo
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
 
-    public function priceFormat()
+    /**
+     * 
+     * @return [type] [description]
+     */
+    public function orders(): HasMany
     {
-        return '£' . number_format($this->price / 100, 2);
+        return $this->hasMany(OrderProduct::class, 'product_id');
     }
+
 }

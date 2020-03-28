@@ -2,17 +2,30 @@
 
 namespace App\Models;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class OrderProduct extends Model
 {
-	public $table = 'order_products';
+	protected $table = 'order_products';
 
-    public $fillable = [
-    	'order_id',
-    	'name',
-    	'slug',
-    	'price',
-    	'quantity'
+    protected $fillable = [
+    	'order_id', 'product_id', 'price', 'quantity'
     ];
+
+    protected $cast = [
+		'created_at' => 'datetime',
+		'updated_at' => 'datetime'
+	];
+
+	/**
+	 * Get ordered product
+	 * @return BelongsTo
+	 */
+	public function product(): BelongsTo
+	{
+		return $this->belongsTo(Product::class, 'product_id');
+	}
+
 }

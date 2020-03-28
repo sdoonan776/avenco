@@ -2,21 +2,13 @@
 
 namespace App\Providers;
 
+
 use App\Models\Category;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-
-    }
 
     /**
      * Bootstrap services.
@@ -26,8 +18,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('partials.header', function ($view) {
-            $categories = Category::all();
-            $view->with('categories', $categories);
+            $view->with('categories', Category::orderByRaw('-name ASC')->get());
         });
     }
 }

@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="inner-header">
             <div class="logo">
-                <a href="{{ route('pages.home') }}">
+                <a href="{{ route('home.index') }}">
                     <h3>AVENCO</h3>
                 </a>
             </div>
@@ -29,7 +29,7 @@
             @endauth
             <nav class="main-menu mobile-menu">
                 <ul>
-                    <li><a href="{{ route('pages.home') }}">Home</a></li>
+                    <li><a href="{{ route('home.index') }}">Home</a></li>
                     <li><a href="{{ route('shop.index') }}">Shop</a>
                         <ul class="sub-menu">
                             @foreach($categories as $category)
@@ -54,7 +54,7 @@
 
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('pages.home') }}">
+                <a class="nav-link" href="{{ route('home.index') }}">
                     Home
                 </a>
               </li>

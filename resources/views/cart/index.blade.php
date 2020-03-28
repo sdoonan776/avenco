@@ -58,7 +58,7 @@
                                 <td class="quantity-col">
                                     <div class="pro-qty">
                                         <input class="quantity" data-id="{{ $item->rowId }}"
-                                        data-productQuantity="{{ $item->model->quantity }}" type="number" value="{{ $item->qty }}">
+                                        data-productQuantity="{{ $item->model->quantity }}" type="text" value="{{ $item->qty }}">
                                     </div>
                                 </td>
                                 <td class="product-close">

@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+    avenco_web:
+        build:
+            context: .
+            dockerfile: dockerfile
+        image: avenco_web
+        container_name: avenco_web
+        depends_on:
+            - avenco_mysql
+        networks:
+            - avenco_network
+        ports:
+            - 80:80
+    avenco_mysql:
+        image: mysql:5.7
+        container_name: avenco_mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: P4ss-W0rd!
+        networks:
+            - avenco_network
+        ports:
+            - 13306:3306
+        volumes:
+            - mysql:/var/opt/mssql
+    
+networks:
+    avenco_network:
+
+volumes:
+    mysql:
+    

@@ -56,18 +56,10 @@
                         </div>
                         <div class="row form-group">
                             <div class="col-lg-2">
-                                <p class="in-name">Country</p>
+                                <label for="country" class="in-name">Country</label>
                             </div>
                             <div class="col-lg-10">
-                                <select class="cart-select">
-                                {{-- @if($selected == 'selected') --}}
-                                   <option value="select">select</option>
-                                   <option value="United Kingdom">United Kingdom</option>
-                                   <option value="USA">USA</option>
-                                   <option value="France">France</option>
-                                   <option value="Italy">Italy</option>
-                                {{-- @endif    --}}
-                                </select>
+                                <input class="form-control" type="text" name="country" value="{{ old('country') }}">
                             </div>
                         </div>
                         <div class="row form-group">
@@ -131,7 +123,10 @@
                                 <label for="card-element">Credit / Debit card</label>
                                 <img src="{{ asset('resources/assets/img/mastercard.jpg') }}" alt="credit card">
                                 <div id="card-element">
-                                    {{-- stripe element will be inserted here --}}
+                                    <input type="text" name="">
+                                    <input type="" name="">
+                                    <input type="" name="">
+                                    <input type="" name="">
                                 </div>
                             </div>
                             <button id="complete-order" type="submit">Place your order</button>

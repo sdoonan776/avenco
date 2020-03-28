@@ -2,6 +2,10 @@
 
 An eccommerce site to better understand design priciples in php and laravel. Design patterns include factory, composition, repository and dependency injection
 
+## Design Patterns
+
+
+
 ## Installation
 
 Install needed composer and yarn dependencies

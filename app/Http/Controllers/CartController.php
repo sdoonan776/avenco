@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\ProductRepositoryInterface;
 use App\Models\Product;
+use App\Services\CouponDiscountService;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -15,11 +17,16 @@ use Illuminate\View\View;
 class CartController extends Controller
 {
     protected $productRepository;
+    protected $couponDiscountService;
 
-    public function __construct($param = null)
+    public function __construct(
+        ProductRepositoryInterface $productRepository,
+        CouponDiscountService $couponDiscountService
+    )
     {
-        $this->param = $param;
-    }
+        $this->productRepository = $productRepository;
+        $this->couponDiscountService = $couponDiscountService;
+    }   
 
     /**
      * Returns cart index page
@@ -29,8 +36,12 @@ class CartController extends Controller
     public function index(): View
     {
         return view('cart.index', [
-            // 'discount' => getDiscounts()->get('discount'),
-            // 'newSubtotal' => getDiscounts()->get('newSubtotal')
+            'discount' => $this->couponDiscountService->getDiscount(),
+            'tax' => $this->couponDiscountService->getTax(),
+            'code' => $this->couponDiscountService->getCode(),
+            'newSubTotal' => $this->couponDiscountService->getNewSubTotal(),
+            'newTax' => $this->couponDiscountService->getNewTax(),
+            'newTotal' => $this->couponDiscountService->getNewTotal(),
         ]);                                        
     }
     
@@ -42,7 +53,6 @@ class CartController extends Controller
      */
     public function store(Product $product): RedirectResponse
     {
-        // $this->productRepository->checkForDuplicates();
         $duplicates = Cart::search(function ($cartItem, $rowId) use ($product) {
             return $cartItem->id === $product->id;
         });

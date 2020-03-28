@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
+
+    protected $model;
+
+    public function __construct(Coupon $model)
+    {
+        $this->model = $model;
+    }
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -17,7 +25,7 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        $coupon = Coupon::where('code', $request->coupon_code)->first();
+        $coupon = $this->model::where('code', $request->coupon_code)->first();
 
         if (!$coupon) {
             return back()->withErrors('Invalid coupon code. Please try again.');

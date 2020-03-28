@@ -14,9 +14,10 @@ interface ProductRepositoryInterface
 
     /**
      * Returns a list of products with the paginator
+     * @param int $pagination
      * @return mixed
      */
-    public function productPagination();
+    public function productPagination(int $pagination);
 
     /**
      * @param int $id

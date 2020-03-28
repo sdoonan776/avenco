@@ -24,17 +24,20 @@ class CheckoutRequest extends FormRequest
     public function rules()
     {
         return [
-            'billing_name' => 'required|string|max:255',
-            'billing_email' => 'required|email|max:255',
-            'billing_address' => 'required|string|max:255',
-            'billing_city' => 'required|string|max:255',
-            'billing_country' => 'required|string|max:255',
-            'billing_postalcode' => 'required|string|max:255',
-            'billing_phone' => 'required|string|max:255',
-            'billing_name_on_card' => 'required|string|max:255',
-            'cvv' => 'required',
-            'billing_expiry_date' => 'required',
-            'billing_card_number' => 'required',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'address_1' => 'required|string|max:255',
+            'address_2' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'country' => 'required|string|max:255',
+            'postalcode' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'name_on_card' => 'required|string|max:255',
+            'discount' => 'required',
+            'discount_code' => 'required',
+            'subtotal' => 'required|numeric',
+            'tax' => 'required|numeric',
+            'total' => 'requied|numeric'
         ];
     }
 }

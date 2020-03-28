@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Interfaces\ProductRepositoryInterface;
 use App\Models\Category;
 use App\Models\Product;
 use Http\Client\Exception;
@@ -12,14 +13,20 @@ use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    
+    protected $productRepository;
+
+	public function __construct(ProductRepositoryInterface $productRepository)
+	{
+		$this->productRepository = $productRepository;
+	}
+
     /**
      * returns the main home view
      * @return View
      */
     public function __invoke(): View
     {
-	    $products = DB::table('products')->paginate(4);    
-      return view('pages.home', compact('products'));
+      $products = $this->productRepository->productPagination(4);    
+      return view('home.index', compact('products'));
     }
 }

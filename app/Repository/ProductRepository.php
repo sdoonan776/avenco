@@ -13,8 +13,8 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 	protected $model;
 
 	/**
-	 * Contructor for ProductRepository
-	 * @param Product $model [description]
+	 * Constructor for ProductRepository
+	 * @param Product $model
 	 */
     public function __construct(Product $model)
     {
@@ -35,23 +35,23 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
 
     /**
      * Returns a list of products with the paginator
+     * @param int $pagination
      * @return mixed
      */
-    public function productPagination()
+    public function productPagination(int $pagination)
     {
         if (request()->category) {
-            $products = Product::with('categories')->whereHas('categories', fn($query) =>
-                $query->where('slug', request()->slug)
-            );    
+            $products = $this->model::with('categories')->whereHas('categories', fn($query) =>
+                $query->where('slug', request()->category)
+            );
         } else {
-            return DB::table('products')->paginate(8);
+            return $this->model->paginate($pagination);
         }
-
-        return $products->paginate(8);
-        
+        return $products->paginate($pagination);
     }
 
     /**
+     * Finds product by id
      * @param int $id
      * @return mixed
      */
@@ -61,12 +61,13 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
     }
 
     /**
+     * Finds product by slug
      * @param $slug
      * @return mixed
      */
     public function findProductBySlug($slug)
     {
-    	$product = Product::where('slug', $slug)->first();
-    	return $product;
+    	return $this->model::where('slug', $slug)->first();
     }
+
 }

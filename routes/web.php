@@ -1,7 +1,7 @@
 <?php
 
 // home
-Route::get('/', 'HomeController')->name('pages.home');
+Route::get('/', 'HomeController')->name('home.index');
 
 // shop
 Route::get('shop', 'ShopController@index')->name('shop.index');
@@ -30,7 +30,8 @@ Route::group(['middleware' => 'auth'], function () {
 	
 	// checkout
 	Route::get('checkout', 'CheckoutController@index')->name('checkout.index');
-	Route::post('checkout', 'CheckoutController@store')->name('checkout.store');
+	Route::post('checkout/order', 'CheckoutController@store')->name('checkout.store');
+	Route::get('checkout/order/confirmation', 'CheckoutController@confirmation')->name('checkout.order-confirmation');
 });
 
 // Authentication Routes...

@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use App\Models\Product;
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -40,10 +41,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'id' => 'integer',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime'
     ];
 
-    public function product(): BelongsToMany
+    public function order(): HasMany
     {
-        $this->BelongsToMany(Product::class, 'product_id');        
+        $this->BelongsToMany(Order::class, 'user_id');        
     }
 }

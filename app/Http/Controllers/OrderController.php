@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class OrdersController extends Controller
+class OrderController extends Controller
 {
     public function index(): View
     {

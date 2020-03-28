@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\OrderProduct;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Order extends Model
 {
+	public $table = 'orders';
 
 	public $fillable =	[
 		'user_id',
@@ -48,8 +50,8 @@ class Order extends Model
 	 * Get ordered product
 	 * @return BelongsToMany
 	 */
- 	public function order(): BelongsToMany
+ 	public function product(): HasMany
  	{
- 	    return $this->belongsToMany(Product::class, 'order_id');
+ 	    return $this->hasMany(OrderProduct::class, 'order_id');
  	}
 }

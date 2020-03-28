@@ -35,19 +35,21 @@
                         <ul class="tags">
                             <li><span>Category : </span>{{ $product->categories->name }}</li>
                         </ul>
-                        <div class="product-quantity">
-                            <div class="pro-qty">
-                                <input type="number" value="1">
-                            </div>
-                        </div>
                         @if ($product->quantity > 0)
-                            <div class="primary-btn pc-btn">
+                            <div class="pc-btn">
                                 <form action="{{ route('cart.store', $product) }}" method="POST">
                                     {{ csrf_field() }}
-                                    <button type="submit">Add to Cart</button>
+                                    <button class="btn btn-secondary" type="submit">Add to Cart</button>
                                 </form>
                             </div>
-                        @endif
+                        @else 
+                            <div>
+                                <span>This Product is currently out of stock</span>  
+                                <a class="btn btn-secondary" href="{{ route('shop.index') }}">
+                                    Go Back to Shop
+                                </a>
+                            </div>
+                        @endif    
                     </div>
                 </div>
             </div>

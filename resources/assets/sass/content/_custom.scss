@@ -7,8 +7,15 @@ button {
 	}
 }
 
-.pagination {
-	margin: 0 auto;
+.categories-page {				
+	.cf-right {
+		nav {
+			.pagination {
+				margin: 0 auto;
+				width: 20%;
+			}
+		}
+	}
 }
 
 /**---- header -----*/
@@ -28,6 +35,15 @@ button {
 
 .product-list {
 	margin: 0 auto;
+}
+
+.single-product-item {
+	a {
+		img {
+			height: 30vw;
+			width: 100vw;
+		}
+	}
 }
 
 

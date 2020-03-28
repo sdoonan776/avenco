@@ -3,10 +3,10 @@
 namespace App\Providers;
 
 use App\Interfaces\CategoryRepositoryInterface;
-use App\Interfaces\CouponRepositoryInterface;
+use App\Interfaces\OrderRepositoryInterface;
 use App\Interfaces\ProductRepositoryInterface;
 use App\Repository\CategoryRepository;
-use App\Repository\CouponRepository;
+use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -15,7 +15,7 @@ class RepositoryServiceProvider extends ServiceProvider
     protected $repositories = [
         CategoryRepositoryInterface::class => CategoryRepository::class,
         ProductRepositoryInterface::class => ProductRepository::class,
-        CouponRepositoryInterface::class => CouponRepository::class,
+        OrderRepositoryInterface::class => OrderRepository::class,
     ];
 
 

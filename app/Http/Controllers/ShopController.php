@@ -36,7 +36,7 @@ class ShopController extends Controller
 
         $categories = $this->categoryRepository->listCategories();
         $categoryName = $this->categoryRepository->getCategoryName();
-        $products = $this->productRepository->productPagination();
+        $products = $this->productRepository->productPagination(8);
       
         return view('shop.index', [
             'categories' => $categories,
@@ -52,8 +52,6 @@ class ShopController extends Controller
      */
     public function show($slug): View
     {
-        // $product = Product::where('slug', $slug)->firstOrFail();
-
         $product = $this->productRepository->findProductBySlug($slug);
 
         return view('shop.show', [

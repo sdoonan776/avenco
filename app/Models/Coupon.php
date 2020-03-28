@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Coupon extends Model
 {
+	protected $table = 'coupons';
 
     protected $fillable = [
         'code',
@@ -14,9 +15,13 @@ class Coupon extends Model
         'percent_off'
     ];
 
-    public static function findByCode($code)
+    /**
+     * find coupon by code
+     * @param $code 
+     */
+    public function findByCode($code)
     {
-        return self::where('code', $code)->first();
+        return $this->model::where('code', $code)->first();
     }
 
 }
