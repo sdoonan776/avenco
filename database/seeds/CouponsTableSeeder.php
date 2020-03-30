@@ -14,14 +14,20 @@ class CouponsTableSeeder extends Seeder
     {
         Coupon::create([
             'code' => 'ABC123',
-            'type' => 'fixed',
-            'value' => 3000,
+            'type' => 'percent',
+            'percent_off' => 20,
         ]);
 
         Coupon::create([
-            'code' => 'DEF456',
+            'code' => 'CAPTHE456',
             'type' => 'percent',
-            'percent_off' => 50,
+            'percent_off' => 10,
+        ]);
+
+        Coupon::create([
+            'code' => 'DEFG972',
+            'type' => 'percent',
+            'percent_off' => 30,
         ]);
     }
 }

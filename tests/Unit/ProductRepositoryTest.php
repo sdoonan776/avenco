@@ -27,10 +27,8 @@ class ProductRepositoryTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function test()
     {
-        $response = $this->get('/');
-
         $response->assertStatus(200);
     }
 }

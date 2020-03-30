@@ -23,21 +23,16 @@ class CheckoutRequest extends FormRequest
      */
     public function rules()
     {
+        $emailValidation = auth()->user() ? 'required|email' : 'required|email|unique:users';
+
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'address_1' => 'required|string|max:255',
-            'address_2' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'country' => 'required|string|max:255',
-            'postalcode' => 'required|string|max:255',
-            'phone' => 'required|string|max:255',
-            'name_on_card' => 'required|string|max:255',
-            'discount' => 'required',
-            'discount_code' => 'required',
-            'subtotal' => 'required|numeric',
-            'tax' => 'required|numeric',
-            'total' => 'requied|numeric'
+            'email' => $emailValidation,
+            'name' => 'required',
+            'address_1' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'postalcode' => 'required',
+            'phone' => 'required',
         ];
     }
 }

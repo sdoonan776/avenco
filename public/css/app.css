@@ -8410,6 +8410,11 @@ button:hover {
   .payment-method .col-lg-4 {
     margin: 0;
   }
+
+  .single-product-item a img {
+    height: 70vw;
+    width: 100vw;
+  }
 }
 
 /*//////////////////////////////////////////////////////////////////

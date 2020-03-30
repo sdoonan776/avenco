@@ -26,7 +26,7 @@
                 @csrf
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3>Your Information</h3>
+                        <h3>Checkout</h3>
                     </div>
                     <div class="col-lg-9">
                         <div class="row form-group">
@@ -34,7 +34,7 @@
                                 <label for="name" class="in-name">Full Name</label>
                             </div>
                             <div class="col-lg-10">
-                                <input type="text" name="name" value="{{ old('name') }}">
+                                <input type="text" id="name" name="name" value="{{ old('name') }}" required>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -42,7 +42,7 @@
                                 <label for="email" class="in-name">Email</label>
                             </div>
                             <div class="col-lg-10">
-                                <input type="email" name="email" value="{{ auth()->user()->email }}">
+                                <input type="email" id="email" name="email" value="{{ auth()->user()->email }}" required>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -50,16 +50,8 @@
                                 <label for="address" class="in-name">Address</label>
                             </div>
                             <div class="col-lg-10">
-                                <input class="form-control" type="text" name="address_1" value="{{ old('address_1') }}">
-                                <input class="form-control" type="text" name="address_2" value="{{ old('address_2') }}">
-                            </div>
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-lg-2">
-                                <label for="country" class="in-name">Country</label>
-                            </div>
-                            <div class="col-lg-10">
-                                <input class="form-control" type="text" name="country" value="{{ old('country') }}">
+                                <input class="form-control" type="text" id="address_1" name="address_1" value="{{ old('address_1') }}" required>
+                                <input class="form-control" type="text" id="address_2" name="address_2" value="{{ old('address_2') }}">
                             </div>
                         </div>
                         <div class="row form-group">
@@ -67,7 +59,15 @@
                                 <label for="city" class="in-name">City</label>
                             </div>
                             <div class="col-lg-10">
-                                <input class="form-control" type="text" name="city" value="{{ old('city') }}">
+                                <input class="form-control" type="text" id="city" name="city" value="{{ old('city') }}" required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-lg-2">
+                                <label for="country" class="in-name">Country</label>
+                            </div>
+                            <div class="col-lg-10">
+                                <input class="form-control" type="text" id="country" name="country" value="{{ old('country') }}" required>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -75,7 +75,7 @@
                                 <label for="postalcode" class="in-name">Post Code/ZIP</label>
                             </div>
                             <div class="col-lg-10">
-                                <input class="form-control" type="text" name="postalcode" value="{{ old('billing_postalcode') }}">
+                                <input class="form-control" type="text" id="postalcode" name="postalcode" value="{{ old('postalcode') }}" required>
                             </div>
                         </div>
                         <div class="row">
@@ -83,7 +83,7 @@
                                 <label for="phone" class="in-name">Phone</label>
                             </div>
                             <div class="col-lg-10">
-                                <input class="form-control" type="text" name="phone" value="{{ old('billing_phone') }}">
+                                <input class="form-control" type="text" id="phone" name="phone" value="{{ old('phone') }}" required>
                             </div>
                         </div>
                     </div>
@@ -101,6 +101,10 @@
                             <div class="cart-item">
                                 <span>VAT</span>
                                 <p>{{ priceFormat(Cart::tax()) }}</p>
+                                @if(session()->has('coupon'))
+                                    - {{ priceFormat($discount) }}
+                                    {{ priceFormat($newTax) }}
+                                @endif 
                             </div>
                             <div class="cart-item">
                                 <span>Quantity</span>
@@ -123,10 +127,7 @@
                                 <label for="card-element">Credit / Debit card</label>
                                 <img src="{{ asset('resources/assets/img/mastercard.jpg') }}" alt="credit card">
                                 <div id="card-element">
-                                    <input type="text" name="">
-                                    <input type="" name="">
-                                    <input type="" name="">
-                                    <input type="" name="">
+                                     {{-- stripe element will be inserted here --}}
                                 </div>
                             </div>
                             <button id="complete-order" type="submit">Place your order</button>

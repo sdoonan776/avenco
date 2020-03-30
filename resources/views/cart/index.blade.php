@@ -58,13 +58,13 @@
                                 <td class="quantity-col">
                                     <div class="pro-qty">
                                         <input class="quantity" data-id="{{ $item->rowId }}"
-                                        data-productQuantity="{{ $item->model->quantity }}" type="text" value="{{ $item->qty }}">
+                                        data-productQuantity="{{ $item->model->quantity }}" type="number" value="{{ $item->qty }}">
                                     </div>
                                 </td>
                                 <td class="product-close">
                                     <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
+                                        @csrf
+                                        @method('DELETE') 
                                         <button type="submit">
                                             x
                                         </button>
@@ -81,21 +81,17 @@
                         <form action="{{ route('coupon.store') }}" method="POST">
                             @csrf
                             <div class="coupon-input input-group">
-                                <input class="input-group-prepend" name="coupon" type="text" placeholder="Enter coupon code">
+                                <input class="input-group-prepend border" name="coupon" type="text" placeholder="Enter coupon code">
                                 <input class="btn btn-secondary" type="submit" value="Submit">
                             </div>
                         </form>
                     </div>
                     <div class="col-lg-5 offset-lg-1 text-left text-lg-right">
-                        <div class="site-btn clear-btn">
-                            <form action="{{ route('cart.clearCart') }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">
-                                    Clear Cart
-                                </button> 
-                            </form>
-                        </div>
+                        <form action="{{ route('cart.clearCart') }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input class="btn btn-primary mx-lg-5 mx-2" type="submit" value="Clear Cart">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -107,8 +103,8 @@
                   <p>{{ session()->get('coupon')['name'] }}</p>
 
                 <form action="{{ route('coupon.destroy') }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('delete') }}
+                    @csrf
+                    @method('DELETE') 
                     <button type="submit" style="font-size:14px;">
                         Remove
                     </button>

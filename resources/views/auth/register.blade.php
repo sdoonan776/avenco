@@ -49,7 +49,7 @@
           </div>
 
           <div class="container-register100-form-btn m-t-17">
-            <button class="register100-form-btn" name="register">
+            <button class="register100-form-btn" type="submit" name="register">
               Register
             </button>
           </div>

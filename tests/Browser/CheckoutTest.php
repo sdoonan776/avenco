@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class OrderTest extends DuskTestCase
+class CheckoutTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
@@ -16,8 +16,9 @@ class OrderTest extends DuskTestCase
     public function testExample()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Laravel');
+            $browser->loginAs('user@test.com')
+                    ->visit('/checkout')
+                    ->assertSee('Checkout');
         });
     }
 }

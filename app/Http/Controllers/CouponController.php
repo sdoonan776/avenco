@@ -18,14 +18,14 @@ class CouponController extends Controller
     }
     
     /**
-     * Store a newly created resource in storage.
+     * Obtain the coupon code and update the cart items
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $coupon = $this->model::where('code', $request->coupon_code)->first();
+        $coupon = $this->coupon::where('code', $request->coupon_code)->first();
 
         if (!$coupon) {
             return back()->withErrors('Invalid coupon code. Please try again.');

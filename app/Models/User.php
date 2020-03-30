@@ -45,7 +45,7 @@ class User extends Authenticatable
         'updated_at' => 'datetime'
     ];
 
-    public function order(): HasMany
+    public function orders(): HasMany
     {
         $this->BelongsToMany(Order::class, 'user_id');        
     }

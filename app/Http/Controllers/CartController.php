@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\ProductRepositoryInterface;
+use App\Models\Coupon;
 use App\Models\Product;
 use App\Services\CouponDiscountService;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -18,14 +19,17 @@ class CartController extends Controller
 {
     protected $productRepository;
     protected $couponDiscountService;
+    protected $coupon;
 
     public function __construct(
         ProductRepositoryInterface $productRepository,
-        CouponDiscountService $couponDiscountService
+        CouponDiscountService $couponDiscountService,
+        Coupon $coupon
     )
     {
         $this->productRepository = $productRepository;
         $this->couponDiscountService = $couponDiscountService;
+        $this->coupon = $coupon;
     }   
 
     /**
@@ -36,12 +40,12 @@ class CartController extends Controller
     public function index(): View
     {
         return view('cart.index', [
-            'discount' => $this->couponDiscountService->getDiscount(),
-            'tax' => $this->couponDiscountService->getTax(),
-            'code' => $this->couponDiscountService->getCode(),
-            'newSubTotal' => $this->couponDiscountService->getNewSubTotal(),
-            'newTax' => $this->couponDiscountService->getNewTax(),
-            'newTotal' => $this->couponDiscountService->getNewTotal(),
+            'discount' => $this->coupon->getDiscount(),
+            'tax' => $this->coupon->getTax(),
+            'code' => $this->coupon->getCode(),
+            'newSubTotal' => $this->coupon->getNewSubTotal(),
+            'newTax' => $this->coupon->getNewTax(),
+            'newTotal' => $this->coupon->getNewTotal(),
         ]);                                        
     }
     
@@ -62,7 +66,7 @@ class CartController extends Controller
         }
 
         Cart::add($product->id, $product->name, 1, $product->price)
-            ->associate('App\Models\Product');
+            ->associate(Product::class);
 
         return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');
     }
@@ -82,7 +86,7 @@ class CartController extends Controller
             return response()->json(['success' => false], 400);
         }
 
-        Cart::update($id, $request->quantity);
+        Cart::update($id, $request->qauntity);
 
         session()->flash('success_message', 'Quantity was updated successfully!');
         return response()->json(['success' => true]);

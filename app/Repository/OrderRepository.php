@@ -24,10 +24,10 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     /**
      * Stores the order request 
      * @param CheckoutRequest $request 
-     * @param ?string $error
+     * @param string $error
      * @return mixed
      */
-    public function addToOrdersTable(CheckoutRequest $request, ?string $error)
+    public function addToOrdersTable(CheckoutRequest $request, string $error)
     {
         // insert into orders table
     	$order = Order::create([
@@ -61,9 +61,20 @@ class OrderRepository extends BaseRepository implements OrderRepositoryInterface
     
     /**
 	 * Gets all placed orders
+     * @return mixed
 	 */
     public function getOrders()
     {
-    	
+        return $this->all();    	
+    }
+
+    /**
+     * Gets a single instance of the order resource
+     * @param  int $id
+     * @return Order
+     */
+    public function getSingleOrder(int $id)
+    {
+        return $this->find($id);
     }
 }

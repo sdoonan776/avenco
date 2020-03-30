@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckoutRequest;
 use App\Interfaces\OrderRepositoryInterface;
 use App\Mail\OrderPlaced;
+use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
@@ -22,29 +23,34 @@ class CheckoutController extends Controller
 {
     protected $orderRepository;
     protected $stripeService;
-    protected $couponDiscountService;
+    protected $coupon;
 
     public function __construct(
         OrderRepositoryInterface $orderRepository,
         StripeService $stripeService,
-        CouponDiscountService $couponDiscountService
+        Coupon $coupon
     )
     {
         $this->orderRepository = $orderRepository;
         $this->stripeService = $stripeService;
-        $this->couponDiscountService = $couponDiscountService;
+        $this->coupon = $coupon;
     }
 
 	/**
 	 * returns checkout view
-	 * @return View
 	 */
-    public function index(): View
+    public function index()
 	{
 		if (Cart::instance('default')->count() == 0) {
             return redirect()->route('shop.index');
         }
-		return view('checkout.index');	    
+
+		return view('checkout.index', [
+            'discount' => $this->coupon->getDiscount(),
+            'newSubTotal' => $this->coupon->getNewSubTotal(),
+            'newTax' => $this->coupon->getNewTax(),
+            'newTotal' => $this->coupon->getNewTotal(),
+        ]);	    
 	}
 
 	/**
@@ -60,20 +66,7 @@ class CheckoutController extends Controller
     	})->values()->toJson();
 
     	try {
-            // $charge = Stripe::charges()->create([
-            //     'amount' => $this->couponDiscountService->getNewTotal() / 100,
-            //     'currency' => 'GBP',
-            //     'source' => $request->stripeToken,
-            //     'description' => 'Order',
-            //     'receipt_email' => $request->email,
-            //     'metadata' => [
-            //         'contents' => $contents,
-            //         'quantity' => Cart::instance('default')->count(),
-            //         'discount' => collect(session()->get('coupon'))->toJson(),
-            //     ],
-            // ]);
-            
-            $charge = $this->stripeService->;
+            $charge = $this->stripeService->processPayment($request);
 
             $order = $this->orderRepository->addToOrdersTables($request, null);
             Mail::send(new OrderPlaced($order));
@@ -84,9 +77,9 @@ class CheckoutController extends Controller
             Cart::instance('default')->destroy();
             session()->forget('coupon');
 
-            return redirect()->route('confirmation.index')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
+            return redirect()->route('checkout.order-confirmation')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
         } catch (CardErrorException $e) {
-            $this->addToOrdersTables($request, $e->getMessage());
+            $this->orderRepository->addToOrdersTables($request, $e->getMessage());
             return back()->withErrors('Error! ' . $e->getMessage());
         }
 	}

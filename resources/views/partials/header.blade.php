@@ -7,7 +7,7 @@
                 </a>
             </div>
             <div class="header-right">
-                <a href="{{ route('profile.edit') }}">
+                <a href="{{ route('user.edit') }}">
                     <i class="far fa-user fa-lg"></i>
                 </a>
                 <a href="{{ route('cart.index') }}">

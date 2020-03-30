@@ -17,16 +17,16 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::delete('cart', 'CartController@clearCart')->name('cart.clearCart');
 
 	// coupons
-	Route::post('coupon', 'CouponController@store')->name('coupon.store');
-	Route::delete('coupon', 'CouponController@destroy')->name('coupon.destroy');
+	Route::post('coupon/store', 'CouponController@store')->name('coupon.store');
+	Route::delete('coupon/destory', 'CouponController@destroy')->name('coupon.destroy');
 
 	// profile
-	Route::get('profile', 'ProfileController@edit')->name('profile.edit');
-	Route::patch('profile', 'ProfileController@update')->name('profile.update');
+	Route::get('profile', 'UserController@edit')->name('user.edit');
+	Route::patch('profile', 'UserController@update')->name('user.update');
 
 	// orders 
-	Route::get('orders', 'OrdersController@index')->name('orders.index');
-	Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
+	Route::get('orders', 'OrderController@index')->name('order.index');
+	Route::get('orders/{order}', 'OrderController@show')->name('order.show');
 	
 	// checkout
 	Route::get('checkout', 'CheckoutController@index')->name('checkout.index');

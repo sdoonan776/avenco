@@ -2,7 +2,6 @@
 
 namespace App\Listeners;
 
-use App\Interfaces\CouponRepositoryInterface;
 use App\Jobs\UpdateCoupon;
 use App\Models\Coupon;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,16 +9,16 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class CartUpdatedListener
 {
-    protected $model;
+    protected $coupon;
 
     /**
      * Create the event listener.
      *
      * @return void
      */
-    public function __construct(CouponRepositoryInterface $model)
+    public function __construct(Coupon $coupon)
     {
-        $this->model = $model;
+        $this->coupon = $coupon;
     }
 
     /**

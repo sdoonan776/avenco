@@ -14,16 +14,16 @@ class UpdateCoupon implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $model;
+    protected $coupon;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Coupon $model)
+    public function __construct(Coupon $coupon)
     {
-        $this->model = $model;
+        $this->coupon = $coupon;
     }
 
     /**
