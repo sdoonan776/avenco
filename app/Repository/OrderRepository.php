@@ -4,46 +4,52 @@ namespace App\Repository;
 
 use App\Http\Requests\CheckoutRequest;
 use App\Interfaces\OrderRepositoryInterface;
+use App\Models\Coupon;
 use App\Models\Order;
+use App\Models\OrderProduct;
 use App\Repository\BaseRepository;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class OrderRepository extends BaseRepository implements OrderRepositoryInterface
 {
 	protected $model;
+    protected $coupon;
 
 	/**
 	 * Constructor for OrderRepository
 	 * @param Order $model
 	 */
-	public function __construct(Order $model)
+	public function __construct(Order $model, Coupon $coupon)
     {
     	parent::__construct($model);
     	$this->model = $model;
+        $this->coupon = $coupon;
     }    
 
     /**
      * Stores the order request 
      * @param CheckoutRequest $request 
-     * @param string $error
+     * @param ?string $error
      * @return mixed
      */
-    public function addToOrdersTable(CheckoutRequest $request, string $error)
+    public function addToOrdersTable($request, ?string $error)
     {
         // insert into orders table
     	$order = Order::create([
             'user_id' => auth()->user() ? auth()->user()->id : null,
             'email' => $request->email,
             'name' => $request->name,
-            'address' => $request->address,
+            'address_1' => $request->address,
+            'address_2' => $request->address,
             'city' => $request->city,
             'postalcode' => $request->postalcode,
             'phone' => $request->phone,
             'name_on_card' => $request->name_on_card,
-            'discount' => getNumbers()->get('discount'),
-            'discount_code' => getNumbers()->get('code'),
-            'subtotal' => getNumbers()->get('newSubtotal'),
-            'tax' => getNumbers()->get('newTax'),
-            'total' => getNumbers()->get('newTotal'),
+            'discount' => $this->coupon->getDiscount(),
+            'discount_code' => $this->coupon->getCode(),
+            'subtotal' => $this->coupon->getNewSubtotal(),
+            'tax' => $this->coupon->getNewTax(),
+            'total' => $this->coupon->getNewTotal(),
             'error' => $error,
         ]);
 

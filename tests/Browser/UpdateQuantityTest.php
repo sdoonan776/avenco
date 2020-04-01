@@ -13,11 +13,15 @@ class UpdateQuantity extends DuskTestCase
      *
      * @return void
      */
-    public function testExample()
+    public function tests_that_cart_quantity_updated_successfully()
     {
+        $this->markTestIncomplete();
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Laravel');
+            $browser->loginAs('user@test.com')
+                    ->visit('/shop/omnis-accusamus')
+                    ->visit('/cart');
         });
     }
+
+
 }

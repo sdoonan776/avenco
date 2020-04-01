@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckoutRequest;
 use App\Interfaces\OrderRepositoryInterface;
+use App\Jobs\DecreaseProductQuantity;
 use App\Mail\OrderPlaced;
 use App\Models\Coupon;
 use App\Models\Order;
@@ -13,7 +14,6 @@ use App\Models\Product;
 use App\Services\CouponDiscountService;
 use App\Services\StripeService;
 use Cartalyst\Stripe\Exception\CardErrorException;
-use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -59,25 +59,23 @@ class CheckoutController extends Controller
 	 * @param  CheckoutRequest $request 
 	 * @return mixed
 	 */
-	public function store(CheckoutRequest $request): mixed
+	public function store(CheckoutRequest $request)
 	{
- 		$contents = Cart::content()->map(function ($item) {
-        	return $item->model->slug.', '.$item->qty;
-    	})->values()->toJson();
-
     	try {
-            $charge = $this->stripeService->processPayment($request);
+            $this->stripeService->processPayment($request);
 
-            $order = $this->orderRepository->addToOrdersTables($request, null);
+            $order = $this->orderRepository->addToOrdersTable($request, null);
+
             Mail::send(new OrderPlaced($order));
 
             // decrease the quantities of all the products in the cart
-            $this->decreaseQuantities();
+            dispatch_now(new DecreaseProductQuantity());
 
             Cart::instance('default')->destroy();
             session()->forget('coupon');
 
             return redirect()->route('checkout.order-confirmation')->with('success_message', 'Thank you! Your payment has been successfully accepted!');
+
         } catch (CardErrorException $e) {
             $this->orderRepository->addToOrdersTables($request, $e->getMessage());
             return back()->withErrors('Error! ' . $e->getMessage());
@@ -96,14 +94,4 @@ class CheckoutController extends Controller
             $product->update(['quantity' => $product->quantity - $item->qty]);
         }
     }
-
-    /**
-     * Displays the order confirmation page
-     * @return View
-     */
-    public function confirmation(): View
-    {
-        return view('checkout.order-confirmation');
-    }
-
 }

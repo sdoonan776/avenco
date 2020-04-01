@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
+    public $table = 'products';
+
     /**
      * The attributes that are mass assignable.
      *

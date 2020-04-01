@@ -21,7 +21,8 @@ class OrderController extends Controller
      */
     public function index(): View
     {
-    	$orders = $this->user->orders()->all();
+    	$orders = auth()->user();
+
         return view('order.index', [
             'orders' => $orders
         ]);

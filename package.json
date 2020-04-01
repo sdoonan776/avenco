@@ -29,7 +29,6 @@
         "imagemin-mozjpeg": "^8.0.0",
         "jquery": "^3.4.1",
         "laravel-mix-imagemin": "^1.0.3",
-        "popper.js": "^1.16.1",
-        "stripe": "^8.38.0"
+        "popper.js": "^1.16.1"
     }
 }

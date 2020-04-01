@@ -9,10 +9,10 @@ interface OrderRepositoryInterface
 	/**
 	 * Stores the order request 
 	 * @param CheckoutRequest $request 
-	 * @param string $error
+	 * @param ?string $error
 	 * @return mixed
 	 */
-	public function addToOrdersTable(CheckoutRequest $request, string $error);
+	public function addToOrdersTable($request, ?string $error);
 	
 	/**
 	 * Gets all placed orders

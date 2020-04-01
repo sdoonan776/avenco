@@ -10,22 +10,25 @@ use Illuminate\Http\Request;
 class CouponController extends Controller
 {
 
-    protected $model;
+    protected $coupon;
 
-    public function __construct(Coupon $model)
+    public function __construct(Coupon $coupon)
     {
-        $this->model = $model;
+        $this->coupon = $coupon;
     }
     
     /**
      * Obtain the coupon code and update the cart items
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  $coupon 
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $coupon = $this->coupon::where('code', $request->coupon_code)->first();
+        // $coupon = $this->coupon::where('code', $request->coupon_code)->first();
+
+        $coupon = $this->coupon->findByCode($coupon);
 
         if (!$coupon) {
             return back()->withErrors('Invalid coupon code. Please try again.');

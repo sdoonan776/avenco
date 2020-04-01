@@ -1,17 +1,18 @@
 @extends('layouts.main')
 
-@section('title', 'Profile')
+@section('title', 'Edit Profile')
 
 @section('main')
 	<div class="container d-flex flex-lg-row p-5">
 	    <div class="profile-menu col-lg-4">
 	    	<nav class="nav flex-column">
-    	    	<a class="nav-link" href="{{ route('orders.index') }}">Orders</a>
-	    	    <a class="nav-link" href="{{ route('profile.edit') }}">Profile</a>
+    	    	<a class="nav-link" href="{{ route('order.index') }}">Orders</a>
+	    	    <a class="nav-link" href="{{ route('user.index') }}">Profile</a>
+    	    	<a class="nav-link" href="{{ route('user.edit') }}"> Edit Profile</a>
 	    	</nav>
 	    </div>
 	    <div class="col-lg-4">
-		   	<form action="{{ route('profile.update') }}" method="POST">
+		   	<form action="{{ route('user.update') }}" method="POST">
 		   	  @method('PATCH')
 		   	  @csrf
 			  <div class="profile-form form-group">

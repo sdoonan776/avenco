@@ -21,8 +21,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::delete('coupon/destory', 'CouponController@destroy')->name('coupon.destroy');
 
 	// profile
-	Route::get('profile', 'UserController@edit')->name('user.edit');
-	Route::patch('profile', 'UserController@update')->name('user.update');
+	Route::get('profile', 'UserController@index')->name('user.index');
+	Route::get('profile/edit', 'UserController@edit')->name('user.edit');
+	Route::patch('profile/update', 'UserController@update')->name('user.update');
 
 	// orders 
 	Route::get('orders', 'OrderController@index')->name('order.index');
@@ -31,7 +32,9 @@ Route::group(['middleware' => 'auth'], function () {
 	// checkout
 	Route::get('checkout', 'CheckoutController@index')->name('checkout.index');
 	Route::post('checkout/order', 'CheckoutController@store')->name('checkout.store');
-	Route::get('checkout/order/confirmation', 'CheckoutController@confirmation')->name('checkout.order-confirmation');
+
+	// Order Confirmation
+	Route::get('checkout/order/confirmation', 'ConfirmationController')->name('checkout.order-confirmation');
 });
 
 // Authentication Routes...

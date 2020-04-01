@@ -16,7 +16,7 @@ class OrderPlaced extends Mailable
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param OrderRepositoryInterface $order
      */
     public function __construct(Order $order)
     {
@@ -30,9 +30,8 @@ class OrderPlaced extends Mailable
      */
     public function build()
     {
-        return $this->to($this->order->billing_email, $this->order->billing_name)
-                    ->bcc('another@another.com')
+        return $this->to($this->order->email, $this->order->name)
                     ->subject('Your order has been placed')
-                    ->markdown('emails.orders.placed');
+                    ->markdown('emails.order-placed');
     }
 }

@@ -34,7 +34,7 @@
                                 <label for="name" class="in-name">Full Name</label>
                             </div>
                             <div class="col-lg-10">
-                                <input type="text" id="name" name="name" value="{{ old('name') }}" required>
+                                <input class="form-control" type="text" id="name" name="name" value="{{ old('name') }}" required>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -42,7 +42,7 @@
                                 <label for="email" class="in-name">Email</label>
                             </div>
                             <div class="col-lg-10">
-                                <input type="email" id="email" name="email" value="{{ auth()->user()->email }}" required>
+                                <input class="form-control" type="email" id="email" name="email" value="{{ auth()->user()->email }}" required>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -67,7 +67,13 @@
                                 <label for="country" class="in-name">Country</label>
                             </div>
                             <div class="col-lg-10">
-                                <input class="form-control" type="text" id="country" name="country" value="{{ old('country') }}" required>
+                                <select class="form-control" name="country" id="country">
+                                    <form>
+                                        @foreach(country() as $country_code => $country)
+                                            <option value="{{ $country_code }}">{{ $country }}</option>
+                                        @endforeach
+                                    </form>
+                                </select>
                             </div>
                         </div>
                         <div class="row form-group">
@@ -88,33 +94,32 @@
                         </div>
                     </div>
                     <div class="col-lg-3">
-                        <div class="order-table">
+                        <div class="order-table border">
                             @foreach(Cart::content() as $item)
-                            <div class="cart-item">
-                                <span>Product</span>
-                                <p class="product-name">{{ ucwords($item->model->name) }}</p>
-                            </div>
-                            <div class="cart-item">
-                                <span>Price</span>
-                                <p>{{ priceFormat($item->model->price) }}</p>
-                            </div>
-                            <div class="cart-item">
-                                <span>VAT</span>
-                                <p>{{ priceFormat(Cart::tax()) }}</p>
-                                @if(session()->has('coupon'))
-                                    - {{ priceFormat($discount) }}
-                                    {{ priceFormat($newTax) }}
-                                @endif 
-                            </div>
-                            <div class="cart-item">
-                                <span>Quantity</span>
-                                <p>{{ $item->qty }}</p>
-                            </div>
+                                <div class="cart-item">
+                                    <span>Product</span>
+                                    <p class="product-name">{{ ucwords($item->model->name) }}</p>
+                                </div>
+                                <div class="cart-item">
+                                    <span>Price</span>
+                                    <p>{{ priceFormat($item->model->price) }}</p>
+                                </div>
+                                <div class="cart-item">
+                                    <span>VAT</span>
+                                    <p>{{ priceFormat(Cart::tax()) }}</p>
+                                </div>
+                                <div class="cart-item">
+                                    <span>Quantity</span>
+                                    <p>{{ $item->qty }}</p>
+                                </div>
                             @endforeach
 
                             <div class="cart-total">
                                 <span>Total</span>
                                 <p>{{ priceFormat(Cart::total()) }}</p>
+                                @if(session()->has('coupon'))
+                                    {{ priceFormat($newTotal) }}
+                                @endif 
                             </div>
                         </div>
                     </div>
@@ -123,11 +128,21 @@
                     <div class="col-lg-12">
                         <div class="payment-method">
                             <h3>Payment</h3>
-                            <div class="col-lg-4 form-group">
-                                <label for="card-element">Credit / Debit card</label>
-                                <img src="{{ asset('resources/assets/img/mastercard.jpg') }}" alt="credit card">
-                                <div id="card-element">
-                                     {{-- stripe element will be inserted here --}}
+                            <div class="form-row">
+                                <div class="form-group col-lg-4 mx-8">
+                                    <label class="py-2" for="card-element">Credit / Debit card</label>
+                                    <img class="py-2" src="{{ asset('resources/assets/img/mastercard.jpg') }}" alt="credit card">
+
+                                    <div class="p-2 border" id="card-element">
+                                         {{-- stripe element will be inserted here --}}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control p-2 border" id="name_on_card" name="name_on_card" placeholder="Name on Card">
+                                    </div>
+                                     <div class="py-2 alert" id="card-errors" role="alert">
+                                         {{-- stripe card errors will go here --}}
+                                     </div>
                                 </div>
                             </div>
                             <button id="complete-order" type="submit">Place your order</button>
@@ -138,3 +153,10 @@
         </div>
     </section>
 @endsection
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    const stripe = Stripe('{{ config('services.stripe.key') }}');
+    const elements = stripe.elements();
+</script>
+<script src="{{ mix('js/stripe.js') }}" defer></script>
+

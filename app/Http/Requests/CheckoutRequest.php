@@ -33,6 +33,7 @@ class CheckoutRequest extends FormRequest
             'country' => 'required',
             'postalcode' => 'required',
             'phone' => 'required',
+            'name_on_card' => 'required'
         ];
     }
 }

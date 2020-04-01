@@ -3,29 +3,35 @@
 namespace App\Services;
 
 use App\Http\Requests\CheckoutRequest;
-use Cartalyst\Stripe\Stripe;
+use App\Models\Coupon;
+use App\Services\CartContentService;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
+use Gloudemans\Shoppingcart\Facades\Cart;
+
 
 class StripeService
 {
-	protected $stripe;
+	protected $coupon;
     
-	public function __construct()
+	public function __construct(
+    Coupon $coupon,
+    CartContentService $cartContentService
+  )
 	{
-		if (config('services.stripe.key') == '' | config('services.stripe.secret') == '') {
-			return redirect()->back()->with('error', 'There are no stripe settings found');
-		}		
-
-		$this->stripe = Stripe::make(config('services.stripe.key', config('services.stripe.key')));
+		$this->coupon = $coupon;
+    $this->cartContentService = $cartContentService;
 	}
 
 	/**
 	 * Uses the Stripe facade to process the card payment
    * @param CheckoutRequest $request
-	 * @return Stripe
+	 * @return array
 	 */
-	public function processPayment(CheckoutRequest $request): Stripe
+	public function processPayment(CheckoutRequest $request): array
 	{
-		return $this->stripe::charges()->create([
+    $contents = $this->cartContentService->getCartContents();
+
+		return Stripe::charges()->create([
         'amount' => $this->coupon->getNewTotal() / 100,
         'currency' => 'GBP',
         'source' => $request->stripeToken,

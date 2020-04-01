@@ -13,13 +13,14 @@ class Order extends Model
 {
 	public $table = 'orders';
 
-	public $fillable =	[
+	protected $fillable =	[
 		'user_id',
 		'email',
 		'name',
-		'address',
+		'address_1',
+		'address_2',
 		'city',
-		'province',
+		'country',
 		'postalcode',
 		'phone', 
 		'name_on_card',
@@ -33,7 +34,7 @@ class Order extends Model
 		'error'
 	];
 
-	public $cast = [
+	protected $cast = [
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime'
 	];

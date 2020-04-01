@@ -4,16 +4,16 @@ namespace App\Models;
 
 use App\Models\Order;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable
 {
     use Notifiable, SoftDeletes;
+
+    public $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -45,8 +45,12 @@ class User extends Authenticatable
         'updated_at' => 'datetime'
     ];
 
+    /**
+     * Gets orders related to user
+     * @return HasMany
+     */
     public function orders(): HasMany
     {
-        $this->BelongsToMany(Order::class, 'user_id');        
+        $this->hasMany(Order::class, 'user_id');
     }
 }

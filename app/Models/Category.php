@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Category extends Model
 {
+    public $table = 'categories';
+
     /**
      * The attributes that are mass assignable.
      *

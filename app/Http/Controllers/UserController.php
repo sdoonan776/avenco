@@ -11,13 +11,24 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
+
     /**
+     * Returns the profile index page
+     * @return View
+     */
+    public function index(): View
+    {
+        return view('user.index');
+    }
+
+    /**
+     * Returns the edit page
      * @return View
      */
     public function edit(): View
     {
     	$user = auth()->user();
-        return view('profile.edit', compact('user'));
+        return view('user.edit', compact('user'));
     }
 
     /**
