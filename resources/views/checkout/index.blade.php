@@ -68,11 +68,9 @@
                             </div>
                             <div class="col-lg-10">
                                 <select class="form-control" name="country" id="country">
-                                    <form>
-                                        @foreach(country() as $country_code => $country)
-                                            <option value="{{ $country_code }}">{{ $country }}</option>
-                                        @endforeach
-                                    </form>
+                                    @foreach($countries as $country)
+                                        <option value="{{ $country->country_code }}">{{ $country->country_name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -96,30 +94,34 @@
                     <div class="col-lg-3">
                         <div class="order-table border">
                             @foreach(Cart::content() as $item)
-                                <div class="cart-item">
-                                    <span>Product</span>
-                                    <p class="product-name">{{ ucwords($item->model->name) }}</p>
-                                </div>
-                                <div class="cart-item">
-                                    <span>Price</span>
-                                    <p>{{ priceFormat($item->model->price) }}</p>
-                                </div>
-                                <div class="cart-item">
-                                    <span>VAT</span>
-                                    <p>{{ priceFormat(Cart::tax()) }}</p>
-                                </div>
-                                <div class="cart-item">
-                                    <span>Quantity</span>
-                                    <p>{{ $item->qty }}</p>
-                                </div>
+                                <div class="cart-items">
+                                    <span>Order Summary</span>
+                                    <div class="cart-item">
+                                        <span>Product</span>
+                                        <p class="product-name">{{ ucwords($item->model->name) }}</p>
+                                    </div>
+                                    <div class="cart-item">
+                                        <span>Price</span>
+                                        <p>{{ priceFormat($item->model->price) }}</p>
+                                    </div>
+                                    <div class="cart-item">
+                                        <span>VAT</span>
+                                        <p>{{ priceFormat(Cart::tax()) }}</p>
+                                    </div>
+                                    <div class="cart-item">
+                                        <span>Quantity</span>
+                                        <p>{{ $item->qty }}</p>
+                                    </div>
+                                </div>    
                             @endforeach
 
                             <div class="cart-total">
                                 <span>Total</span>
-                                <p>{{ priceFormat(Cart::total()) }}</p>
                                 @if(session()->has('coupon'))
-                                    {{ priceFormat($newTotal) }}
-                                @endif 
+                                    <p>{{ priceFormat($newTotal) }}</p>
+                                @else 
+                                    <p>{{ priceFormat(Cart::total()) }}</p>
+                                @endif    
                             </div>
                         </div>
                     </div>
@@ -131,7 +133,11 @@
                             <div class="form-row">
                                 <div class="form-group col-lg-4 mx-8">
                                     <label class="py-2" for="card-element">Credit / Debit card</label>
-                                    <img class="py-2" src="{{ asset('resources/assets/img/mastercard.jpg') }}" alt="credit card">
+                                    <div class="payment-icons">
+                                        <img class="py-2" src="{{ asset('resources/assets/img/mastercard.svg') }}" alt="mastercard">
+                                        <img class="py-2" src="{{ asset('resources/assets/img/visa.svg') }}" alt="visa">
+                                        <img class="py-2" src="{{ asset('resources/assets/img/american-express.svg') }}" alt="american express">
+                                    </div>
 
                                     <div class="p-2 border" id="card-element">
                                          {{-- stripe element will be inserted here --}}

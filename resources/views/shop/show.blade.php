@@ -22,7 +22,9 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="product-img">
-                        <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
+                        <a href="{{ asset($product->product_image) }}">
+                            <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -36,6 +38,7 @@
                             <li><span>Category : </span>{{ $product->categories->name }}</li>
                         </ul>
                         @if ($product->quantity > 0)
+                            <input class="" type="number" id="" name="">
                             <div class="pc-btn">
                                 <form action="{{ route('cart.store', $product) }}" method="POST">
                                     {{ csrf_field() }}

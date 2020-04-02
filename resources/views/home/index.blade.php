@@ -39,11 +39,11 @@
           <img class="d-block w-100" src="{{ asset('resources/assets/img/slider-3.jpg') }}" alt="Third slide">
         </div>
       </div>
-      <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+      <a class="carousel-control-prev" href="" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
-      <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+      <a class="carousel-control-next" href="" role="button" data-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
       </a>
@@ -53,7 +53,7 @@
         <div class="features-ads">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div>
                         <div class="single-features-ads first">
                             <img src="{{ asset('resources/assets/img/icons/f-delivery.png') }}" alt="features-icon">
                             <h4>Free shipping</h4>
@@ -61,7 +61,7 @@
                                 esuada aliquet libero viverra cursus. </p>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div>
                         <div class="single-features-ads second">
                             <img src="{{ asset('resources/assets/img/icons/coin.png') }}" alt="features-icon">
                             <h4>100% Money back </h4>
@@ -69,7 +69,7 @@
                                 aliquet libero viverra cursus. </p>
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div>
                         <div class="single-features-ads">
                             <img src="{{ asset('resources/assets/img/icons/chat.png') }}" alt="features-icon">
                             <h4>Online support 24/7</h4>
@@ -160,16 +160,19 @@
                 <div class="col-lg-4 offset-lg-1">
                     <div class="lookbok-left">
                         <div class="section-title">
-                            <h2>2019 <br />#lookbook</h2>
+                            <h2>2020 <br />#lookbook</h2>
                         </div>
-                        <p>Fusce urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vestibulum malesuada
+                        <p>
+                            Fusce urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vestibulum malesuada
                             aliquet libero viverra cursus. Aliquam erat volutpat. Morbi id dictum quam, ut commodo
                             lorem. In at nisi nec arcu porttitor aliquet vitae at dui. Sed sollicitudin nulla non leo
                             viverra scelerisque. Phasellus facilisis lobortis metus, sit amet viverra lectus finibus ac.
                             Aenean non felis dapibus, placerat libero auctor, ornare ante. Morbi quis ex eleifend,
                             sodales nulla vitae, scelerisque ante. Nunc id vulputate dui. Suspendisse consectetur rutrum
-                            metus nec scelerisque. s</p>
-                        <a href="{{ route('shop.index') }}" class="primary-btn look-btn">See More</a>
+                            metus nec scelerisque.
+                        </p>
+                        <a href="{{ route('shop.index') }}" class="primary-btn look-btn">   See More
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-5 offset-lg-1">

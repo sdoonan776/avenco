@@ -86,10 +86,10 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/assets/js/stripe.js":
-/*!***************************************!*\
-  !*** ./resources/assets/js/stripe.js ***!
-  \***************************************/
+/***/ "./resources/assets/js/components/stripe.js":
+/*!**************************************************!*\
+  !*** ./resources/assets/js/components/stripe.js ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -169,13 +169,13 @@
 /***/ }),
 
 /***/ 1:
-/*!*********************************************!*\
-  !*** multi ./resources/assets/js/stripe.js ***!
-  \*********************************************/
+/*!********************************************************!*\
+  !*** multi ./resources/assets/js/components/stripe.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/sdoonan776/laravel_projects/avenco/resources/assets/js/stripe.js */"./resources/assets/js/stripe.js");
+module.exports = __webpack_require__(/*! /home/sdoonan776/laravel_projects/avenco/resources/assets/js/components/stripe.js */"./resources/assets/js/components/stripe.js");
 
 
 /***/ })

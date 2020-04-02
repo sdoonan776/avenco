@@ -1,0 +1,51 @@
+.header-section {
+	padding: 34px 0 24px 0;
+	margin: 0;
+	border-bottom: 1px solid #B7B7B7;
+}
+
+.inner-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	
+	.user-access {
+		display: block;
+		order: 2;
+	}
+
+	.header-right {
+		order: 3;
+	}
+
+	.mobile-menu {
+		order: 1;
+	}
+} 
+
+
+
+.navbar {
+	padding: .5rem 0;
+	margin: 0 1.5rem;
+}
+
+.main-menu {
+	.sub-menu {
+		display: none;
+	}	
+}
+
+
+@media only screen and (min-width: 1024px) {
+	.header-section {
+		margin: 0 45px;
+	}
+	.slicknav_menu {
+		display: none;
+	}
+	.navbar-nav {
+		display: flex;
+		flex-direction: row;
+	}
+}

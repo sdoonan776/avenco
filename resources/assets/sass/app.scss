@@ -1,9 +1,18 @@
-// imports
 @import '../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-@import './content/style';
-@import './content/custom';
+@import './base/base';
+@import './content/cart';
+@import './content/checkout';
+@import './content/product-page';
+@import './content/profile';
+@import './content/shop';
+@import './content/home';
+
+@import './components/header';
+@import './components/footer';
+
+@import './base/style';
 
 @import './form/main';
 @import './form/util';

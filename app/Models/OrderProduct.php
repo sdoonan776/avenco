@@ -20,7 +20,7 @@ class OrderProduct extends Model
 	];
 
 	/**
-	 * Get ordered product
+	 * Get ordered products
 	 * @return BelongsTo
 	 */
 	public function product(): BelongsTo

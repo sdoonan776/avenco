@@ -4,11 +4,9 @@
 
 @section('main')
 
-	<div class="container">
-		<div class="row">
-			<h1>Thank You!!</h1>
-			<span>Your order is now being processed</span>
-		</div>
+	<div class="order-placed">
+		<img src="{{ asset('resources/assets/img/tick.svg') }}" alt="tick">		
+		<span>Your order has been successfully placed</span>
 	</div>
 
 @endsection

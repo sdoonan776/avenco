@@ -7,6 +7,7 @@ use App\Http\Requests\CheckoutRequest;
 use App\Interfaces\OrderRepositoryInterface;
 use App\Jobs\DecreaseProductQuantity;
 use App\Mail\OrderPlaced;
+use App\Models\Country;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderProduct;
@@ -24,16 +25,19 @@ class CheckoutController extends Controller
     protected $orderRepository;
     protected $stripeService;
     protected $coupon;
+    protected $countries;
 
     public function __construct(
         OrderRepositoryInterface $orderRepository,
         StripeService $stripeService,
-        Coupon $coupon
+        Coupon $coupon, 
+        Country $countries
     )
     {
         $this->orderRepository = $orderRepository;
         $this->stripeService = $stripeService;
         $this->coupon = $coupon;
+        $this->countries = $countries;
     }
 
 	/**
@@ -45,7 +49,10 @@ class CheckoutController extends Controller
             return redirect()->route('shop.index');
         }
 
+        $countries = $this->countries::all();
+
 		return view('checkout.index', [
+            'countries' => $countries,
             'discount' => $this->coupon->getDiscount(),
             'newSubTotal' => $this->coupon->getNewSubTotal(),
             'newTax' => $this->coupon->getNewTax(),
@@ -81,17 +88,4 @@ class CheckoutController extends Controller
             return back()->withErrors('Error! ' . $e->getMessage());
         }
 	}
-
-    /**
-     * Decrease the quantity of the main checkout resource
-     * @return void
-     */
-	protected function decreaseQuantities(): void
-    {
-        foreach (Cart::content() as $item) {
-            $product = Product::find($item->model->id);
-
-            $product->update(['quantity' => $product->quantity - $item->qty]);
-        }
-    }
 }

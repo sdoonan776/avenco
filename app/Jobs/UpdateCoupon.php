@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Coupon;
+use App\Services\CouponDiscountService;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -31,12 +32,12 @@ class UpdateCoupon implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(CouponDiscountService $couponDiscountService)
     {
         if (Cart::currentInstance() === 'default') {
             session()->put('coupon', [
                 'name' => $this->coupon->code,
-                'discount' => $this->coupon->discount(Cart::subtotal()),
+                'discount' => $couponDiscountService->applyDiscount(Cart::subtotal()),
             ]);
         }
     }

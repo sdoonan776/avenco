@@ -37,14 +37,6 @@
             <div class="cart-table">
                 <table>
                     @if(Cart::count() > 0)
-                    <thead>
-                        <tr>
-                            <th class="product-h">Product</th>
-                            <th>Price</th>
-                            <th class="quan">Quantity</th>
-                            <th></th>
-                        </tr>
-                    </thead>
                     <tbody>
                         @foreach(Cart::content() as $item)
                             <tr>
@@ -56,8 +48,8 @@
                                 </td>
                                 <td class="price-col">{{ priceFormat($item->model->price) }}</td>
                                 <td class="quantity-col">
-                                    <div class="pro-qty">
-                                        <input class="quantity" data-id="{{ $item->rowId }}"
+                                    <div class="input-group">
+                                        <input class="input-control quantity" data-id="{{ $item->rowId }}"
                                         data-productQuantity="{{ $item->model->quantity }}" type="number" value="{{ $item->qty }}">
                                     </div>
                                 </td>
@@ -65,8 +57,8 @@
                                     <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
                                         @csrf
                                         @method('DELETE') 
-                                        <button type="submit">
-                                            x
+                                        <button class="btn btn-secondary" type="submit">
+                                            Remove
                                         </button>
                                     </form>
                                 </td>
@@ -97,20 +89,18 @@
             </div>
         </div>
         @if(session()->has('coupon')) 
-            <div class="row">
-              <div class="coupon-section">
-                  <p>Code</p>
-                  <p>{{ session()->get('coupon')['name'] }}</p>
+          <div class="coupon-section d-flex col-lg-10 mx-auto">
+              <p>Code</p>
+              <p>{{ session()->get('coupon')['name'] }}</p>
 
-                <form action="{{ route('coupon.destroy') }}" method="POST">
-                    @csrf
-                    @method('DELETE') 
-                    <button type="submit" style="font-size:14px;">
-                        Remove
-                    </button>
-                </form>
-              </div>
-            </div>
+            <form action="{{ route('coupon.destroy') }}" method="POST">
+                @csrf
+                @method('DELETE') 
+                <button class="btn btn-secondary" type="submit">
+                    Remove
+                </button>
+            </form>
+          </div>            
         @endif    
         <div class="shopping-method">
             <div class="container">
@@ -129,11 +119,6 @@
                                     <tbody>
                                         <tr>
                                             <td class="sub-total">{{ priceFormat(Cart::subtotal()) }}</td>
-                                            @if(session()->has('coupon'))
-                                                - {{ priceFormat($discount) }}
-                                                {{ priceFormat($newSubtotal) }}
-                                            @endif 
-                                            
                                             <td class="tax">{{ priceFormat(Cart::tax()) }}</td>
                                             <td class="total-cart-p">{{ priceFormat(Cart::total()) }}</td>
                                         </tr>

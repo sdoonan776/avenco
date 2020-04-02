@@ -61,9 +61,11 @@
                 @foreach($products as $product)
                 <div class="col-lg-3 col-sm-6 mix all dresses bags">
                     <div class="single-product-item">
-                        <a href="{{ route('shop.show', $product->slug) }}">
-                            <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
-                        </a>
+                        <figure>
+                            <a href="{{ route('shop.show', $product->slug) }}">
+                                <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
+                            </a>
+                        </figure>
                         <div class="product-text">
                             <h6>{{ ucwords($product->name) }}</h6>
                             <p>{{ priceFormat($product->price) }}</p>

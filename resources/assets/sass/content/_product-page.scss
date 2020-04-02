@@ -1,0 +1,37 @@
+.page-add {
+	margin-bottom: 33px;
+}
+
+.page-breadcrumb {
+
+	padding-top: 0;
+}
+
+.product-img {
+	text-align: center;
+    padding: 1em;
+    width: 100%;
+    height: auto;
+    border: 1px #CACACA solid;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+    img {
+    	width: 100%;
+    	height: auto;
+    }
+}
+
+.alert {
+	margin: 1.4rem 0;
+	width: 100%;
+}
+
+@media only screen and (max-width: 30em) {
+    .single-product-item {
+        a {
+            img {
+                height: 70vw;
+                width: 100vw;
+            }
+        }
+    }
+}

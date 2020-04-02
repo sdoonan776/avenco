@@ -17,8 +17,8 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::delete('cart', 'CartController@clearCart')->name('cart.clearCart');
 
 	// coupons
-	Route::post('coupon/store', 'CouponController@store')->name('coupon.store');
-	Route::delete('coupon/destory', 'CouponController@destroy')->name('coupon.destroy');
+	Route::post('coupon', 'CouponController@store')->name('coupon.store');
+	Route::delete('coupon', 'CouponController@destroy')->name('coupon.destroy');
 
 	// profile
 	Route::get('profile', 'UserController@index')->name('user.index');

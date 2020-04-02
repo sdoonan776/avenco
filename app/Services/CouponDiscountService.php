@@ -20,7 +20,7 @@ class CouponDiscountService
      * @param  $total 
      * @return mixed
      */
-    public function applyDiscount($total)
+    public function applyDiscount(int $total)
     {
         if ($this->model->type == 'fixed') {
             return $this->model->value;

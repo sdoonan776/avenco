@@ -5,7 +5,7 @@ require('laravel-mix-imagemin');
 mix.disableNotifications();
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .js('resources/assets/js/stripe.js', 'public/js')
+   .js('resources/assets/js/components/stripe.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css')
    .imagemin(
         'resources/assets/img/**', 'public/img',

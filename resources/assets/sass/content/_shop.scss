@@ -1,0 +1,39 @@
+.price-filter {
+	margin: 1.8em;
+	text-align: right;
+}
+
+.product-list {
+	margin: 0 auto;
+}
+
+.single-product-item {
+	background-color: #DEDEDE;
+	padding: 0 0 2em 0;
+	box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+
+	a {
+		img {
+			height: 40vw;
+			width: 100vw;
+			transition: .2s;
+			border: 1px solid rgba(0,0,0,0.1);
+			box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
+			&:hover {
+				transform: scale(1.2);
+			}
+		}
+	}
+}
+
+.categories-page {				
+	.cf-right {
+		nav {
+			.pagination {
+				margin: 0 auto;
+				width: 20%;
+			}
+		}
+	}
+}
+
