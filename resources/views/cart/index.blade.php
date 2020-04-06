@@ -3,147 +3,107 @@
 @section('title', 'Cart')
 
 @section('main')
-    <div class="container">
-        @if (session()->has('success_message'))
-            <div class="m-t alert alert-success">
-                {{ session()->get('success_message') }}
-            </div>
-        @endif
-
-        @if(count($errors) > 0)
-            <div class="m-t alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+<div class="wrapper">
+    
+    <div id="messages">
+        @include('partials.errors')
+        @include('partials.messages')
     </div>
-	 <section class="page-add cart-page-add">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="page-breadcrumb">
-                        <h2>Cart</h2>
-                        <span>{{ Cart::count() }} item(s) in Shopping Cart</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+	
+    <div class="breadcrumbs my-4">
+        <h2>Cart</h2>
+        <span>{{ Cart::count() }} item(s) in Shopping Cart</span>
+    </div>
+
     <div class="cart-page">
-        <div class="container">
-            <div class="cart-table">
-                <table>
-                    @if(Cart::count() > 0)
-                    <tbody>
-                        @foreach(Cart::content() as $item)
-                            <tr>
-                                <td class="product-col">
-                                    <img src="{{ asset($item->model->product_image) }}" alt="">
-                                    <div class="p-title">
-                                        <h5>{{ ucwords($item->model->name) }}</h5>
-                                    </div>
-                                </td>
-                                <td class="price-col">{{ priceFormat($item->model->price) }}</td>
-                                <td class="quantity-col">
-                                    <div class="input-group">
-                                        <input class="input-control quantity" data-id="{{ $item->rowId }}"
-                                        data-productQuantity="{{ $item->model->quantity }}" type="number" value="{{ $item->qty }}">
-                                    </div>
-                                </td>
-                                <td class="product-close">
-                                    <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE') 
-                                        <button class="btn btn-secondary" type="submit">
-                                            Remove
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            <div class="cart-btn">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <form action="{{ route('coupon.store') }}" method="POST">
+        @if(Cart::count() > 0)
+        @foreach(Cart::content() as $item)
+            <div class="product">
+                <img src="{{ asset($item->model->product_image) }}" alt="{{ ucwords($item->model->name) }}">
+                <div class="product-info">
+                    <h5>{{ ucwords($item->model->name) }}</h5>
+                    <p>{{ priceFormat($item->model->price) }}</p>
+                    <input class="quantity" data-id="{{ $item->rowId }}"
+                    data-productQuantity="{{ $item->model->quantity }}" type="number" value="{{ $item->qty }}">
+                    <div class="product-remove">
+                        <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
                             @csrf
-                            <div class="coupon-input input-group">
-                                <input class="input-group-prepend border" name="coupon" type="text" placeholder="Enter coupon code">
-                                <input class="btn btn-secondary" type="submit" value="Submit">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-lg-5 offset-lg-1 text-left text-lg-right">
-                        <form action="{{ route('cart.clearCart') }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <input class="btn btn-primary mx-lg-5 mx-2" type="submit" value="Clear Cart">
+                            @method('DELETE') 
+                            <button class="cart-btn" type="submit">
+                                x
+                            </button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
-        @if(session()->has('coupon')) 
-          <div class="coupon-section d-flex col-lg-10 mx-auto">
-              <p>Code</p>
-              <p>{{ session()->get('coupon')['name'] }}</p>
-
-            <form action="{{ route('coupon.destroy') }}" method="POST">
-                @csrf
-                @method('DELETE') 
-                <button class="btn btn-secondary" type="submit">
-                    Remove
-                </button>
-            </form>
-          </div>            
-        @endif    
-        <div class="shopping-method">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="total-info">
-                            <div class="total-table">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Subtotal</th>
-                                            <th>VAT</th>
-                                            <th class="total-cart">Total Cart</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="sub-total">{{ priceFormat(Cart::subtotal()) }}</td>
-                                            <td class="tax">{{ priceFormat(Cart::tax()) }}</td>
-                                            <td class="total-cart-p">{{ priceFormat(Cart::total()) }}</td>
-                                        </tr>
-                                        @else
-                                            <div>
-                                                <p>
-                                                    There are no items currently in your cart. 
-                                                </p> 
-                                                <a class="btn btn-secondary" href="{{ route('shop.index') }}">
-                                                    Go Back to Shop
-                                                </a>
-                                            </div>
-                                        @endif
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 text-right">
-                                    <a href="{{ route('checkout.index') }}" class="primary-btn chechout-btn">Proceed to checkout</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
+    <div class="coupon-section">
+        <form class="store-coupon" action="{{ route('coupon.store') }}" method="POST">
+            @csrf
+            <input class="input-control" name="coupon" type="text" placeholder="Enter Code">
+            <button class="coupon-btn" type="submit">
+                Submit
+            </button>
+        </form>
+        <form class="clear-cart" action="{{ route('cart.clearCart') }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="site-btn" type="submit">
+                Clear Cart
+            </button>
+        </form>
+        <form class="save-for-later" action="{{ route('cart.switchToSaveForLater', $item->rowId) }}">
+            @csrf
+            <button class="site-btn" type="submit">
+                Save for Later
+            </button>
+        </form>
+    </div>
+    @if(session()->has('coupon')) 
+      <div class="coupon">
+          <p>Code</p>
+          <p>{{ session()->get('coupon')['name'] }}</p>
+
+        <form action="{{ route('coupon.destroy') }}" method="POST">
+            @csrf
+            @method('DELETE') 
+            <button class="cart-btn" type="submit">
+                x
+            </button>
+        </form>
+      </div>            
+    @endif    
+    <div class="total-summary">
+
+        <div class="sub-total">
+            <span>Subtotal</span>
+            <p class="sub-total">{{ priceFormat(Cart::subtotal()) }}</p>
+        </div>
+
+        <div class="tax">
+            <span>VAT</span>
+            <p class="tax">{{ priceFormat(Cart::tax()) }}</p>
+        </div>
+
+        <div class="total">
+            <span class="total-cart">Total Cart</span>
+            <p class="total-cart-p">{{ priceFormat(Cart::total()) }}</p>
+        </div>
+
+    </div>
+    <a class="site-btn" href="{{ route('checkout.index') }}">
+        Proceed to checkout
+    </a>
+    @else
+        <div class="empty-cart">
+            <p>
+                There are no items currently in your cart. 
+            </p> 
+            <a class="site-btn" href="{{ route('shop.index') }}">
+                Go Back to Shop
+            </a>
+        </div>
+    @endif
+</div>
 @endsection

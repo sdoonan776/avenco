@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss');
 
 require('laravel-mix-imagemin');
 
@@ -22,3 +23,7 @@ mix.js('resources/assets/js/app.js', 'public/js')
             ],
         }
     )
+   .options({
+      processCssUrls: false,
+      postCss: [ tailwindcss('./tailwind.config.js') ],
+   });

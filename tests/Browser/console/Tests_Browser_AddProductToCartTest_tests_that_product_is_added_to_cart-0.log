@@ -1,0 +1,14 @@
+[
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/js\/app.js 27268:10 Uncaught TypeError: Cannot read property 'addEventListener' of null",
+        "source": "javascript",
+        "timestamp": 1586188451166
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/localhost\/js\/app.js 27268:10 Uncaught TypeError: Cannot read property 'addEventListener' of null",
+        "source": "javascript",
+        "timestamp": 1586188454272
+    }
+]

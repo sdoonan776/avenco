@@ -3,71 +3,57 @@
 @section('title', 'Login')
 
 @section('form')
-  <div class="limiter">
-    <div class="container-login100">
-      <div class="wrap-login100 p-t-50 p-b-90">
-        <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('login') }}">
-          @csrf
+    <div class="wrapper">
+      <div class="auth-form">
+        <form id="login" method="POST" action="{{ route('login') }}">
+        @csrf
 
-          <span class="login100-form-title p-b-51">
+          <h3> 
             Login to Continue
-          </span>
+          </h3>
 
-          @if (session()->has('message'))
-            <div class="alert alert-success" role="alert-success">
-                {{ session()->get('message') }}
-            </div>
-          @endif
-
-          @if(count($errors) > 0)
-            <div class="alert alert-danger" role="alert">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-          @endif
-
-          <div class="wrap-input100 validate-input m-b-16">
-            <input class="input100" type="text" name="email" placeholder="Email" value="{{ old('email') ?? '' }}">
-            <span class="focus-input100"></span>
-          </div>
-          
-          <div class="wrap-input100 validate-input m-b-16">
-            <input class="input100" type="password" name="password" placeholder="Password" required>
-            <span class="focus-input100"></span>
-          </div>
-          
-          <div class="flex-sb-m w-full p-t-3 p-b-24">
-            <div class="contact100-form-checkbox">
-              <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-              Remember me                    
-            </div>
-
-            <div>
-              <a href="{{ route('password.request') }}" class="txt1">
-                Forgot Password?
-              </a>
-            </div>
+          <div id="messages">
+            @include('partials.messages')
+            @include('partials.errors')
           </div>
 
-          <div class="container-login100-form-btn m-t-17">
-            <button class="login100-form-btn" type="submit">
+          <div class="mb-4">
+            <input class="auth-form-input" name="email" type="email" placeholder="Email" value="{{ old('email') ?? '' }}">
+          </div>
+
+          <div class="mb-6">
+            <input class="auth-form-input" name="password" type="password" placeholder="Password">
+          </div>
+
+          <div class="flex items-center justify-between">
+            
+            <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="{{ route('password.request') }}">
+              Forgot Password?
+            </a>
+
+            <div class="form-group flex items-center">
+              <input class="mr-1" id="remember-me" type="checkbox" name="remember-me">
+              <label>
+                Remember Me
+              </label>
+            </div>
+
+          </div>
+
+          <div class="my-6">
+            <button class="site-btn w-full" type="submit">
               Login
             </button>
-          </div>
-
-          <div class="container-login100-form-btn m-t-17">
-            <p class="">
-              Don't have an account? 
-              <a href="{{ route('register') }}">
-                SIGN UP
-              </a>
-            </p>
-          </div>
+          </div>  
 
         </form>
+        <div>
+        <p>
+          Don't have account?
+          <a href="{{ route('register') }}">
+            SIGN UP
+          </a>
+        </p>
       </div>
     </div>
   </div>

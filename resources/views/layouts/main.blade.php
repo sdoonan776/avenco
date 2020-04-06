@@ -16,11 +16,7 @@
 		</header>
 
 		<main>
-		  @if(session('message'))
-		  	<div class="notification is-info">{{ session('message') }}</div>
-		  @endif	
 		  	@yield('main')
-		  	<div id="app"></div>
 		</main>
 
 		<footer>

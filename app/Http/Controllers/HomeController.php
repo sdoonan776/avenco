@@ -18,6 +18,7 @@ class HomeController extends Controller
 	public function __construct(ProductRepositoryInterface $productRepository)
 	{
 		$this->productRepository = $productRepository;
+        // $this->middleware(['auth','verified']);
 	}
 
     /**

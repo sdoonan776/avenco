@@ -1,16 +1,15 @@
 .footer-section {
 	background: #262626;
-	padding-bottom: 0;
 }
 
 .footer-widget {
-	margin-bottom: 40px;
+	margin: 2em 0;
 	.single-footer-widget {
-		margin-bottom: 30px;
+		padding: 1em 2em;
 		h4 {
 			color: #fff;
 			font-size: 26px;
-			margin-bottom: 44px;
+			margin-bottom: 1em 0;
 		}
 		ul {
 			li {
@@ -23,103 +22,115 @@
 			}
 		}
 	}
+
+	&:first-child {
+		padding: 1em 0 0 0;
+	}
 }
 
 .social-links-warp {
 	background: #222121;
 	padding: 46px 0;
-}
+	width: 100%;
+	text-align: center;
 
-.social-links {
-	a {
-		margin-right: 88px;
-		display: inline-block;
-		&:last-child {
-			margin-right: 0;
-		}
-		svg {
-			font-size: 30px;
-			color: #d7d7d7;
-			float: left;
-			margin-right: 19px;
-			overflow: hidden;
-			-webkit-transition: all 0.3s;
-			transition: all 0.3s;
-		}
-		span {
+	.social-links {
+		a {
+			margin-right: 1em;
 			display: inline-block;
-			font-size: 12px;
-			font-weight: 400;
-			text-transform: uppercase;
-			color: #9f9fa0;
-			padding-top: 10px;
-			-webkit-transition: all 0.3s;
-			transition: all 0.3s;
-		}
-		&.instagram {
+			&:last-child {
+				margin-right: 0;
+			}
+			svg {
+				color: #d7d7d7;
+				transition: all 0.3s;
+			}
+			&.instagram {
+				&:hover {
+					svg {
+						color: #2F5D84;
+					}
+				}
+			}
+			&.google-plus {
+				&:hover {
+					svg {
+						color: #E04B37;
+					}
+				}
+			}
+			&.twitter {
+				&:hover {
+					svg {
+						color: #5abed6;
+					}
+				}
+			}
+			&.pinterest {
+				&:hover {
+					svg {
+						color: #CD212D;
+					}
+				}
+			}
+			&.facebook {
+				&:hover {
+					svg {
+						color: #39599F;
+					}
+				}
+			}
+			&.twitter {
+				&:hover {
+					svg {
+						color: #5abed6;
+					}
+				}
+			}
+			&.youtube {
+				&:hover {
+					svg {
+						color: #D12227;
+					}
+				}
+			}
+			&.tumblr {
+				&:hover {
+					svg {
+						color: #37475E;
+					}
+				}
+			}
 			&:hover {
-				svg {
-					color: #2F5D84;
+				span {
+					color: #fff;
 				}
 			}
 		}
-		&.google-plus {
-			&:hover {
-				svg {
-					color: #E04B37;
-				}
-			}
-		}
-		&.twitter {
-			&:hover {
-				svg {
-					color: #5abed6;
-				}
-			}
-		}
-		&.pinterest {
-			&:hover {
-				svg {
-					color: #CD212D;
-				}
-			}
-		}
-		&.facebook {
-			&:hover {
-				svg {
-					color: #39599F;
-				}
-			}
-		}
-		&.twitter {
-			&:hover {
-				svg {
-					color: #5abed6;
-				}
-			}
-		}
-		&.youtube {
-			&:hover {
-				svg {
-					color: #D12227;
-				}
-			}
-		}
-		&.tumblr {
-			&:hover {
-				svg {
-					color: #37475E;
-				}
-			}
-		}
-		&:hover {
-			span {
-				color: #fff;
-			}
+	}
+	.copyright {
+		padding: 1em 0 0 0;
+
+		small {
+			color: #fff;
 		}
 	}
 }
 
-@media only screen and (min-width: 1024em) {
-	
+@media only screen and (min-width: 768px) {
+	.social-links-wrap {
+
+		.social-links {
+			display: inline-block;
+		}
+	}
+}
+
+@media only screen and (min-width: 1024px) {
+	.footer-widget {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		justify-content: space-between;
+		padding: 1em 0 0 0;
+	}
 }

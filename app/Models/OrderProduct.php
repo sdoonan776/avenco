@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +19,15 @@ class OrderProduct extends Model
 		'created_at' => 'datetime',
 		'updated_at' => 'datetime'
 	];
+
+	/**
+	 * Gets order information
+	 * @return BelongsTo
+	 */
+	public function order(): BelongsTo 
+	{
+		return $this->belongsTo(Order::class, 'order_id');
+	}
 
 	/**
 	 * Get ordered products

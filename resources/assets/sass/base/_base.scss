@@ -9,7 +9,7 @@
 html,
 body {
 	height: 100%;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'FuturaBT-Book' sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 	background: none;
@@ -24,7 +24,7 @@ h6 {
 	margin: 0;
 	color: #111111;
 	font-weight: 500;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'FuturaBT-Book', sans-serif;
 }
 
 h1 {
@@ -71,6 +71,10 @@ button {
 	}
 }
 
+#alert {
+	transition: 0.3s ease;
+}
+
 .set-bg {
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -105,7 +109,7 @@ button {
 	display: inline-block;
 	font-size: 14px;
 	font-weight: 600;
-	padding: 16px 40px;
+	padding: 16px 18px;
 	border: 2px solid  #1e1e1e;
 	border-radius: 50px;
 	cursor: pointer;
@@ -118,3 +122,40 @@ button {
 	font-weight: normal;
 	font-style: normal;
 }
+
+.wrapper {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.site-btn {
+	color: #949494;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 600;
+	padding: 10px 40px;
+	border: 2px solid #949494;
+	border-radius: 50px;
+	cursor: pointer;
+	text-transform: uppercase;
+
+	&:hover {
+		background-color: #949494;
+		color: #fff;
+	}
+}
+
+.breadcrumbs {
+	font-size: .8em;
+    margin: 1em 0;
+
+    a {
+        font-weight: 800;
+    }
+
+    span {
+        color: #1e1e1e;
+    }
+
+}
+

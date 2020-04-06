@@ -1,20 +1,22 @@
 @import '../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss';
-@import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import './plugins/tailwind';
 
 @import './base/base';
+
 @import './content/cart';
 @import './content/checkout';
 @import './content/product-page';
 @import './content/profile';
 @import './content/shop';
 @import './content/home';
+@import './content/auth-form';
+@import './content/orders';
+@import './content/show-order';
+@import './content/order-confirmation';
 
 @import './components/header';
 @import './components/footer';
-
-@import './base/style';
-
-@import './form/main';
-@import './form/util';
-@import './form/register';
-
+@import './components/carousel';
+@import './components/mobile-menu';
+@import './components/search';
+@import './components/number-input';

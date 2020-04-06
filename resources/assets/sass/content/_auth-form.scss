@@ -1,0 +1,44 @@
+.auth-form {
+	@apply w-full;
+	@apply bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4;
+	background: #fff;
+	border: 1px solid rgba(0,0,0,0.1);
+	margin: 4em auto;
+	padding: 1em;
+	line-height: 1.5em;
+	font-family: "FuturaBT-Book";
+	max-width: 323px;
+
+	h3 {
+		font-size: 1.2em;
+		text-transform: uppercase;
+		margin: 1em 0;
+		line-height: 1.5em;
+		text-align: center;
+		font-weight: 300;
+		color: #7B7B7B;
+	}
+
+	input {
+		border: 1px solid rgba(0,0,0,0.1);
+		transition: .2s ease;
+		&:focus {
+			outline: none;
+			box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+		};
+	}
+
+	label {
+		font-size: .8em;
+		color: #7B7B7B;
+	}
+}
+
+.auth-form-input {
+	@apply auth-form-input shadow appearance-none border; 
+	@apply rounded w-full py-5 px-3 text-gray-700 leading-tight;
+}
+
+@media only screen and (min-width: 1024px) {
+
+}

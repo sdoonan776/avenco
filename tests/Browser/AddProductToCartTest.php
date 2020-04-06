@@ -9,8 +9,6 @@ use Tests\DuskTestCase;
 class AddProductToCartTest extends DuskTestCase
 {
     /**
-     * A Dusk test example.
-     *
      * @return void
      */
     public function tests_that_product_is_added_to_cart()
@@ -18,9 +16,9 @@ class AddProductToCartTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->loginAs('user@test.com')
                     ->visit('/shop')
-                    ->visit('/shop/omnis-accusamus')
-                    ->assertSee('Omnis Accusamus')
-                    ->press('Add to Cart')
+                    ->visit('/shop/dress-1')
+                    ->assertSee('Dress 1')
+                    ->press('addToCart')
                     ->assertPathIs('/cart');
         });
     }

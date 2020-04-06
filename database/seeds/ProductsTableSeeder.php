@@ -17,7 +17,7 @@ class ProductsTableSeeder extends Seeder
         $faker = Faker::create();
 
         for ($i = 1; $i <= 10; $i++) {
-            $name = $faker->words(2, true);
+            $name = 'dress '.$i;
             $slug = Str::slug($name);
 
             Product::insert([
@@ -32,7 +32,7 @@ class ProductsTableSeeder extends Seeder
         }
 
         for ($i = 1; $i <= 10; $i++) {
-            $name = $faker->words(2, true);
+            $name = 'bag '.$i;
             $slug = Str::slug($name);
 
             Product::insert([
@@ -47,7 +47,7 @@ class ProductsTableSeeder extends Seeder
         }
 
         for ($i = 1; $i <= 10; $i++) {
-            $name = $faker->words(2, true);
+            $name = 'shoe '.$i;
             $slug = Str::slug($name);
 
             Product::insert([
@@ -62,7 +62,7 @@ class ProductsTableSeeder extends Seeder
         }
 
         for ($i = 1; $i <= 10; $i++) {
-            $name = $faker->words(2, true);
+            $name = 'hat '.$i;
             $slug = Str::slug($name);
 
             Product::insert([
@@ -77,7 +77,7 @@ class ProductsTableSeeder extends Seeder
         }
 
         for ($i = 1; $i <= 9; $i++) {
-            $name = $faker->words(2, true);
+            $name = 'accessory '.$i;
             $slug = Str::slug($name);
 
             Product::insert([

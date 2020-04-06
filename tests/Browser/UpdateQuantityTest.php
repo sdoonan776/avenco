@@ -15,11 +15,14 @@ class UpdateQuantity extends DuskTestCase
      */
     public function tests_that_cart_quantity_updated_successfully()
     {
-        $this->markTestIncomplete();
+        $this->markTestSkipped();
         $this->browse(function (Browser $browser) {
             $browser->loginAs('user@test.com')
-                    ->visit('/shop/omnis-accusamus')
-                    ->visit('/cart');
+                    ->visit('/shop/dress-1')
+                    ->press('Add to Cart')
+                    ->append('.quantity', 2)
+                    ->pause(1000)
+                    ->assertSee('Quantity was updated successfully');
         });
     }
 

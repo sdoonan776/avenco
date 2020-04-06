@@ -3,59 +3,51 @@
 @section('title', ucwords($product->name))
 
 @section('main')
+<div class="wrapper">
 
-<section class="page-add">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10">
-                 @component('partials.breadcrumbs')
-                    <a href="/">Home</a>
-                    <a href="/shop">Shop</a>
-                    <span>{{ ucwords($product->name) }}</span>
-                @endcomponent
-            </div>
-        </div>
+    <div class="breadcrumbs">
+        <a href="/">Home /</a>
+        <a href="/shop">Shop /</a>
+        <span>{{ ucwords($product->name) }}</span>
     </div>
-</section>
-<section class="product-page spad-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="product-img">
-                        <a href="{{ asset($product->product_image) }}">
-                            <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
-                        </a>
-                    </div>
+
+    <div id="messages">
+        @include('partials.errors')
+        @include('partials.messages')
+    </div>
+
+    <section class="product-page">
+        <div class="product-img">
+            <a href="{{ asset($product->product_image) }}">
+                <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}">
+            </a>
+        </div>                
+        <div class="product-content">
+            <h2>{{ ucwords($product->name) }}</h2>
+            <h5>{{ priceFormat($product->price) }}</h5>
+            <p>{{ $product->description }}</p>
+            <ul class="tags">
+                <li><span>Category : </span>{{ $product->categories->name }}</li>
+            </ul>
+            @if ($product->quantity > 0)
+                <input class="quantity" type="number" id="quantity" name="quantity" data-productQuantity="">
+                <div class="cart-btn">
+                    <form action="{{ route('cart.store', $product) }}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit" class="site-btn">
+                            Add to Cart
+                        </button>
+                    </form>
                 </div>
-                <div class="col-lg-6">
-                    <div class="product-content">
-                        <h2>{{ ucwords($product->name) }}</h2>
-                        <div class="pc-meta">
-                            <h5>{{ priceFormat($product->price) }}</h5>
-                        </div>
-                        <p>{{ $product->description }}</p>
-                        <ul class="tags">
-                            <li><span>Category : </span>{{ $product->categories->name }}</li>
-                        </ul>
-                        @if ($product->quantity > 0)
-                            <input class="" type="number" id="" name="">
-                            <div class="pc-btn">
-                                <form action="{{ route('cart.store', $product) }}" method="POST">
-                                    {{ csrf_field() }}
-                                    <button class="btn btn-secondary" type="submit">Add to Cart</button>
-                                </form>
-                            </div>
-                        @else 
-                            <div>
-                                <span>This Product is currently out of stock</span>  
-                                <a class="btn btn-secondary" href="{{ route('shop.index') }}">
-                                    Go Back to Shop
-                                </a>
-                            </div>
-                        @endif    
-                    </div>
+            @else 
+                <div>
+                    <span>This Product is currently out of stock</span>  
+                    <a class="site-btn" href="{{ route('shop.index') }}">
+                        Go Back to Shop
+                    </a>
                 </div>
-            </div>
+            @endif    
         </div>
     </section>
+</div>
 @endsection

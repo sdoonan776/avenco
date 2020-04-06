@@ -93,10 +93,10 @@ class CartController extends Controller
     }
 
     /**
-     * Remove the specified item from storage.
+     * Remove the specified item from cart instance
      *
-     * @param  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  int $id
+     * @return RedirectResponse
      */
     public function destroy($id): RedirectResponse
     {
@@ -104,9 +104,39 @@ class CartController extends Controller
         return back()->with('success_message', 'Item has been removed');
     }
 
+    /**
+     * Clear cart instance of all items
+     * @return RedirectResponse
+     */
     public function clearCart(): RedirectResponse
     {
         Cart::destroy();
         return back()->with('success_message', 'Cart has been successfully cleared');
+    }
+
+    /**
+     * Switch item for shopping cart to Save for Later.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function switchToSaveForLater($id): Response
+    {
+        $item = Cart::get($id);
+
+        Cart::remove($id);
+
+        $duplicates = Cart::instance('saveForLater')->search(function ($cartItem, $rowId) use ($id) {
+            return $rowId === $id;
+        });
+
+        if ($duplicates->isNotEmpty()) {
+            return redirect()->route('cart.index')->with('success_message', 'Item is already Saved For Later!');
+        }
+
+        Cart::instance('saveForLater')->add($item->id, $item->name, 1, $item->price)
+            ->associate(Product::class);
+
+        return redirect()->route('cart.index')->with('success_message', 'Item has been Saved For Later!');
     }
 }

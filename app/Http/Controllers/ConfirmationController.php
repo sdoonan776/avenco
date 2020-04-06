@@ -16,15 +16,18 @@ class ConfirmationController extends Controller
 	{
 		$this->model = $model;
 	}
+
 	/**
 	 * Displays the order confirmation page when order is placed
+	 * @param  $id
 	 * @return View
 	 */
 	public function __invoke(): View
 	{
-		$products = $this->model->all();
+		// $orderProduct = $this->model->();
+
 		return view('checkout.order-confirmation', [
-			'products' => $products
+			// 'orderProduct' => $orderProduct
 		]);
 	}
 }

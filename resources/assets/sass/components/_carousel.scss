@@ -1,0 +1,63 @@
+.carousel {
+	width: 100%;
+	position: relative;
+
+	.slide {
+		display: none;
+		&:first-child {
+			display: inline-block;
+		}
+	}
+
+	.prev-arrow {
+		position: absolute;
+		top: 50px;
+		left: 10px;
+		width: 2em;
+		color: #7B7B7B;
+	}
+
+	.next-arrow {
+		position: absolute;
+		top: 50px;
+		right: 10px;
+		width: 2em;
+		color: #7B7B7B;
+	}
+
+	.dots {
+		background: #fff;
+		width: .8em;
+		color: #fff;
+	}
+}
+
+@media only screen and (min-width: 425px) {
+	.glider {
+
+		.prev-arrow {
+			top: 80px;
+		}
+
+		.next-arrow {
+			top: 80px;
+		}
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.glider {
+		
+		.prev-arrow {
+			top: 120px;
+		}
+
+		.next-arrow {
+			top: 120px;
+		}
+	}
+}
+
+@media only screen and (min-width: 1024px) {
+	
+}

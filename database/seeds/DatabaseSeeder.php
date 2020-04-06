@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             'api_token' => Str::random(60),
             'remember_token' => Str::random(10),
             'email_verified_at' => now(),
+            'registered_at' => now()
         ]);
         factory(User::class, 100)->create();
         $this->call(CategoriesTableSeeder::class);

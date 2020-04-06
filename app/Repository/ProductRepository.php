@@ -55,7 +55,7 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
      * @param int $id
      * @return mixed
      */
-    public function findProductById(int $id)
+    public function findProductById($id)
     {
     	return $this->findOneOrFail($id);
     }

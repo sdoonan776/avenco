@@ -8,6 +8,8 @@ use Tests\DuskTestCase;
 
 class CheckoutTest extends DuskTestCase
 {
+    // use DatabaseMigrations;
+
     /**
      * A Dusk test example.
      *
@@ -15,9 +17,10 @@ class CheckoutTest extends DuskTestCase
      */
     public function tests_that_order_has_been_placed()
     {
+        $this->markTestSkipped();
         $data = [
             'name' => 'test',
-            'email' => 'user@test.com',
+            'email' => 'test@test.com',
             'address_1' => '123 Fake Street',
             'city' => 'London',
             'country' => 'United Kingdom',

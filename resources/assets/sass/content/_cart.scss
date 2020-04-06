@@ -1,40 +1,88 @@
-.cart-table {
-	p {
+.product {
+	display: flex;
+	margin: 1em 0;
+	border: 1px solid rgba(0,0,0,0.1);
+	padding: 1em 0 1em 1em;
+
+	img {
+		width: 8em;
+		height: 8em;
+		padding: .5em;
+		border: 1px solid rgba(0,0,0,0.1);
+	}
+
+	.product-info {
+		display: flex;
+		flex-direction: column;
+		vertical-align: middle;
+		margin: 0 auto;
+		width: 40%;
+		text-align: center;
+
+		h5,
+		p {
+			width: 3em;
+			text-align: center;
+		}
+
+		.quantity {
+			width: 3em;
+			text-align: center;
+			margin: 1em auto;
+			border: 1px solid rgba(0,0,0,0.1);
+		}
+
+		.cart-btn {
+		 	padding: .5em 1em;
+		 	color: #949494;
+		 	border: 2px solid #949494;
+		 	border-radius: 50px;
+		 	text-transform: uppercase;
+		}
+
+		.input-group {
+			width: 40%;
+		}
+	}
+}
+
+.coupon-section {
+
+	.coupon-btn {
+		padding: 1em 1em;
+		color: #949494;
+		border: 2px solid #949494;
+		text-transform: uppercase;
+	}
+
+	.coupon {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.store-coupon {
+		display: flex;
+		flex-direction: row;
+	}
+
+	form {
 		margin: 1em 0;
 	}
 }
 
-.product-col {
-	img {
-		border: 1px #CACACA solid;
-		padding: 1em;
-	}
+.input-control {	
+	@apply bg-white border border-gray-300;
+	@apply py-2 px-4 block w-full appearance-none leading-normal;
 }
 
-.coupon-input {
-	input {
-		margin-left: .5em;
-		padding: .5em;
-	}
-}
+.total-summary {
+	dsiplay: flex;
+}	
 
-@media only screen and (max-width: 30em) {
-	.cart-table {
-		table {
-			tbody {
-				tr {
-					display: block;
-				}
-			}
-		}
-	}
+@media only screen and (min-width: 768px) {
+	
+}	
 
-	.coupon-section {
-		p {
-			padding: 2em;
-		}
-		form {
-			padding: 2em;
-		}
-	}
+@media only screen and (min-width: 1024px) {
+	
 }	
