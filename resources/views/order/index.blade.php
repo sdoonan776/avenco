@@ -14,11 +14,17 @@
 		</div>
     
 	    <div class="orders">
-	    	<ul class="list-group">
+	    	<ul class="">
 	    	@foreach($orders as $order)	
-			  <li class="list-group-item">
-			  	{{ $order }}
+			  <li class="">
+			  	{{ $order->name }}
 			  </li>
+			  <li class="">
+			  	{{ $order->price }}
+			  </li>
+			  {{-- <li class="">
+			  	{{ $order->pivot->quantity }}
+			  </li> --}}
 			@endforeach  
 			</ul>
     	</div>

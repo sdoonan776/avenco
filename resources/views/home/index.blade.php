@@ -9,8 +9,8 @@
         @include('partials.messages')
     </div>
     
-    <div class="carousel">
-        @include('partials.carousel')    
+    <div class="banner">
+        <img src="{{ asset('resources/assets/img/slider-1.jpg') }}" alt="First slide">
     </div>    
     
     <div class="wrapper">

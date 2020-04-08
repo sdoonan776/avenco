@@ -1,35 +1,53 @@
 .product {
-	display: flex;
 	margin: 1em 0;
 	border: 1px solid rgba(0,0,0,0.1);
-	padding: 1em 0 1em 1em;
+	padding: 1em;
 
 	img {
-		width: 8em;
-		height: 8em;
 		padding: .5em;
 		border: 1px solid rgba(0,0,0,0.1);
 	}
 
 	.product-info {
-		display: flex;
-		flex-direction: column;
+		display: grid;
+		grid-template-columns: 1, 1fr;
+		grid-gap: 1em;
 		vertical-align: middle;
-		margin: 0 auto;
-		width: 40%;
 		text-align: center;
 
 		h5,
 		p {
-			width: 3em;
 			text-align: center;
+			margin: 1em 0;
 		}
 
 		.quantity {
-			width: 3em;
 			text-align: center;
 			margin: 1em auto;
 			border: 1px solid rgba(0,0,0,0.1);
+			padding: 0 1em;
+
+			input {
+				max-width: 10px;
+			}
+
+			span,
+			input {
+				margin: 0 0 0 0.4em;
+				border-right: 1px solid rgba(0,0,0,0.1);
+			}
+		}
+
+		.product-actions {
+			button {
+				font-family: 'FuturaBT-Book' sans-serif;
+				font-size: .8em;
+
+				&:hover {
+					background: none;
+					color: #515050;
+				}
+			}
 		}
 
 		.cart-btn {
@@ -56,8 +74,8 @@
 	}
 
 	.coupon {
-		display: flex;
-		flex-direction: row;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
 	}
 
 	.store-coupon {
@@ -76,11 +94,76 @@
 }
 
 .total-summary {
-	dsiplay: flex;
+	padding: 1em;
+	margin: 1em 0;
+	border: 1px solid rgba(0,0,0,0.1);
+
+	.sub-total,
+	.tax,
+	.total {
+		margin: 1em 0;
+		display: flex;
+		justify-content: space-between;
+		vertical-align: middle; 
+
+		p {
+			text-align: center;
+		}
+
+		span {
+			margin: 1em 0;
+		}
+	}
+}	
+
+@media only screen and (min-width: 425px) {
+
+	.product {
+
+		img {
+			width: 8em;
+			height: 8em;
+		}
+
+		.product-info {
+			grid-template-columns: repeat(4, 1fr);
+			grid-gap: 1em;
+			justify-content: space-between;
+			align-items: center;
+
+			h5 {
+				grid-column: 1 / 2;
+			}
+
+			p {
+				grid-column: 2 / 3;
+			}
+
+			.quantity {
+				grid-column: 3 / 4;
+			}
+
+			.product-actions {
+				grid-column: 4 / 5;
+			}
+		}
+	}
 }	
 
 @media only screen and (min-width: 768px) {
-	
+	.product {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		justify-content: space-between;
+
+		span {
+			grid-column: 1 / 2;
+		}
+
+		.product-info {
+			grid-column: 2 / 3;
+		}
+	}
 }	
 
 @media only screen and (min-width: 1024px) {

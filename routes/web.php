@@ -14,9 +14,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::patch('cart/{product}', 'CartController@update')->name('cart.update');
 	Route::delete('cart/{product}', 'CartController@destroy')->name('cart.destroy');
 	Route::delete('cart', 'CartController@clearCart')->name('cart.clearCart');
-	Route::post('/cart/switchToSaveForLater/{product}', 'CartController@switchToSaveForLater')->name('cart.switchToSaveForLater');
-	Route::delete('/saveForLater/{product}', 'SaveForLaterController@destroy')->name('saveForLater.destroy');
-	Route::post('/saveForLater/switchToCart/{product}', 'SaveForLaterController@switchToCart')->name('saveForLater.switchToCart');
+	Route::post('cart/switchToSaveForLater/{product}', 'CartController@switchToSaveForLater')->name('cart.switchToSaveForLater');
+	Route::delete('saveForLater/{product}', 'SaveForLaterController@destroy')->name('saveForLater.destroy');
+	Route::post('saveForLater/switchToCart/{product}', 'SaveForLaterController@switchToCart')->name('saveForLater.switchToCart');
 
 	// coupons
 	Route::post('coupon', 'CouponController@store')->name('coupon.store');
@@ -41,35 +41,33 @@ Route::group(['middleware' => 'auth'], function () {
 
 // Authentication Routes...
 
-Auth::routes(['verify' => true]);
-// Route::group([
-// 		'middleware' => 'guest',
-// 		'verify' => true
-// 	], function () {
-// 	// auth
-// 	Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-// 	Route::post('login', 'Auth\LoginController@login');
-// 	Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-// 	Route::post('register', 'Auth\RegisterController@register');
+Route::group([
+		'middleware' => 'guest'
+	], function () {
+	// auth
+	Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+	Route::post('login', 'Auth\LoginController@login');
+	Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+	Route::post('register', 'Auth\RegisterController@register');
 
-// 	// reset password
-// 	Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-//     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-//     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-//     Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
-// });
+	// reset password
+	Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
+});
 
-// // logout
-// Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+// logout
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-// Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth'], function() {
 	
-// 	// verify email
-// 	Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
-// 	Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify')->middleware(['signed', 'throttle:6,1']);
-// 	Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend')->middleware('throttle:6,1');
+	// verify email
+	Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+	Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify')->middleware(['signed', 'throttle:6,1']);
+	Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend')->middleware('throttle:6,1');
 
-// 	// confirm password
-// 	Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
-// 	Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
-// });
+	// confirm password
+	Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
+	Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
+});

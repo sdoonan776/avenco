@@ -7,31 +7,45 @@
 	<div class="order-message">
 		<i class="far fa-check-circle fa-5x"></i>	
 		<span>Your order has been successfully placed</span>
-		<span>Your Order number is 1002342</span>
+		<span>Your Order number is {{ $order->id }}</span>
 	</div>
 	<div class="order-details">
 		<h5>Order Summary</h5>
-            {{-- @foreach($orderProducts as $product)
+            @foreach($order->products as $orderProduct)
                 <div class="order-item">
                     <div class="item-group">
                         <span>Product</span>
-                        <p>{{ $product->order()->name }}</p>
+                        <p>{{ ucwords($orderProduct->name) }}</p>
                     </div>
                     <div class="item-group">
                         <span>Price</span>
-                        <p>{{ priceFormat($product->order()->price) }}</p>
+                        <p>{{ priceFormat($orderProduct->price) }}</p>
                     </div>
                     <div class="item-group">
                         <span>Quantity</span>
-                        <p>{{ $product->order()->quantity }}</p>
+                        <p>{{ $orderProduct->pivot->quantity }}</p>
                     </div>
                 </div>    
-            @endforeach --}}
+            @endforeach
 
-            <div class="order-total">
-                <span>Total</span>
-                <p></p>
+        <div class="order-total">
+
+            <div class="sub-total">
+                <span>Order Subtotal</span>
+                <p class="sub-total">{{ priceFormat($order->subtotal) }}</p>
             </div>
+
+            <div class="tax">
+                <span>Order VAT</span>
+                <p class="tax">{{ priceFormat($order->tax) }}</p>
+            </div>
+
+            <div class="total">
+                <span>Order Total</span>
+                <p class="total">{{ priceFormat($order->subtotal) }}</p>
+            </div>
+
+        </div>
 	</div>
 </div>
 @endsection

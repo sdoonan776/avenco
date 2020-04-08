@@ -122,6 +122,7 @@ class CartController extends Controller
      */
     public function switchToSaveForLater($id): Response
     {
+        dd('this method works so it does');
         $item = Cart::get($id);
 
         Cart::remove($id);

@@ -6,7 +6,6 @@
             </a>
         </div>
         <ul class="header-right">
-            <li><a href="#"><i class="fas fa-search fa-lg"></i></a></li>
             <li>
                 <a href="{{ route('user.index') }}">
                     <i class="far fa-user fa-lg"></i>

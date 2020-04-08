@@ -1,13 +1,14 @@
-const navContent = document.querySelector('.navbar-content');
-const navButton = document.querySelector('.navbar-toggler');
-let isMenuVisible = false;
+const navButton = document.querySelector('.navbar-button');
 
 if (navButton) {
 	navButton.addEventListener('click', () => {
-		// isMenuVisible = !isMenuVisible;
-		// navContent.style.max-height = isMenuVisible ? '100px' : '0px';
+	  let navContent = document.querySelector('.navbar-content');
+	  navContent.classList.toggle('navbar-transition');
+	  if (navContent.style.maxHeight) {
+	    navContent.style.maxHeight = 0 + 'px';
+	  } else {
+	    navContent.style.maxHeight = navContent.scrollHeight + 100 + 'px';
+	  }
 	});
 }
-
-
 

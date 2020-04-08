@@ -1,6 +1,8 @@
 const mix = require('laravel-mix');
 const tailwindcss = require('tailwindcss');
 
+const webpack = require('webpack');
+
 require('laravel-mix-imagemin');
 
 mix.disableNotifications();
@@ -25,5 +27,15 @@ mix.js('resources/assets/js/app.js', 'public/js')
     )
    .options({
       processCssUrls: false,
-      postCss: [ tailwindcss('./tailwind.config.js') ],
-   });
+      postCss: [ tailwindcss('./tailwind.config.js') ]
+   })
+   .webpackConfig({
+      plugins: [
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery',
+          'window.jQuery': 'jquery'
+        }),
+      ],
+   })
+   .version();

@@ -40,13 +40,13 @@
                     </form>
                 </div>
             @else 
-                <div>
+                <div class="out-of-stock">
                     <span>This Product is currently out of stock</span>  
-                    <a class="site-btn" href="{{ route('shop.index') }}">
-                        Go Back to Shop
-                    </a>
                 </div>
             @endif    
+            <a class="site-btn" href="{{ route('shop.index') }}">
+                Go Back to Shop
+            </a>
         </div>
     </section>
 </div>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckoutRequest;
-use App\Interfaces\OrderRepositoryInterface;
 use App\Jobs\DecreaseProductQuantity;
 use App\Mail\OrderPlaced;
 use App\Models\Country;
@@ -13,6 +12,7 @@ use App\Models\Order;
 use App\Models\OrderProduct;
 use App\Models\Product;
 use App\Services\CouponDiscountService;
+use App\Services\OrdersTableService;
 use App\Services\StripeService;
 use Cartalyst\Stripe\Exception\CardErrorException;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -28,13 +28,13 @@ class CheckoutController extends Controller
     protected $countries;
 
     public function __construct(
-        OrderRepositoryInterface $orderRepository,
+        OrdersTableService $ordersTableService,
         StripeService $stripeService,
         Coupon $coupon, 
         Country $countries
     )
     {
-        $this->orderRepository = $orderRepository;
+        $this->ordersTableService = $ordersTableService;
         $this->stripeService = $stripeService;
         $this->coupon = $coupon;
         $this->countries = $countries;
@@ -71,7 +71,7 @@ class CheckoutController extends Controller
     	try {
             $this->stripeService->processPayment($request);
 
-            $order = $this->orderRepository->addToOrdersTable($request, null);
+            $order = $this->ordersTableService->addToOrdersTable($request, null);
 
             Mail::send(new OrderPlaced($order));
 

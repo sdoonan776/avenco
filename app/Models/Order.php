@@ -7,7 +7,8 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Order extends Model
 {
@@ -50,11 +51,11 @@ class Order extends Model
 
  	/**
 	 * Get ordered product
-	 * @return HasMany
+	 * @return BelongsToMany
 	 */
- 	public function product(): HasMany
+ 	public function products(): BelongsToMany
  	{
- 	    return $this->hasMany(OrderProduct::class, 'order_id');
+ 	    return $this->belongsToMany(Product::class)->withPivot('quantity');
  	}
 
 }

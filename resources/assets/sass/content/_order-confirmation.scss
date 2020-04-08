@@ -9,11 +9,56 @@
 
 	svg {
 		color: #42C43B;
+		margin: 0 auto;
 		text-align: center;
 	}	
 
 	span {
 		color: #999999;
 	}
-}
 
+}	
+
+.order-details {
+	
+	h5 {
+		font-weight: 600;
+	}
+
+	.order-item {
+		padding: 1em;
+		margin: 1em 0;
+		border: 1px solid rgba(0,0,0,0.1);
+
+		.item-group {
+			margin: 1em 0;
+			display: flex;
+			justify-content: space-between;
+			vertical-align: middle; 
+		}
+	}
+
+
+	.order-total {
+		padding: 1em;
+		margin: 1em 0;
+		border: 1px solid rgba(0,0,0,0.1);
+
+		.sub-total,
+		.tax,
+		.total {
+			margin: 1em 0;
+			display: flex;
+			justify-content: space-between;
+			vertical-align: middle; 
+
+			p {
+				text-align: center;
+			}
+
+			span {
+				margin: 1em 0;
+			}
+		}
+	}	
+}

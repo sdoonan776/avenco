@@ -20112,39 +20112,55 @@ button:hover {
 }
 
 .product {
-  display: flex;
   margin: 1em 0;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 1em 0 1em 1em;
+  padding: 1em;
 }
 
 .product img {
-  width: 8em;
-  height: 8em;
   padding: 0.5em;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .product .product-info {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1, 1fr;
+  grid-gap: 1em;
   vertical-align: middle;
-  margin: 0 auto;
-  width: 40%;
   text-align: center;
 }
 
 .product .product-info h5,
 .product .product-info p {
-  width: 3em;
   text-align: center;
+  margin: 1em 0;
 }
 
 .product .product-info .quantity {
-  width: 3em;
   text-align: center;
   margin: 1em auto;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 1em;
+}
+
+.product .product-info .quantity input {
+  max-width: 10px;
+}
+
+.product .product-info .quantity span,
+.product .product-info .quantity input {
+  margin: 0 0 0 0.4em;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.product .product-info .product-actions button {
+  font-family: "FuturaBT-Book" sans-serif;
+  font-size: 0.8em;
+}
+
+.product .product-info .product-actions button:hover {
+  background: none;
+  color: #515050;
 }
 
 .product .product-info .cart-btn {
@@ -20167,8 +20183,8 @@ button:hover {
 }
 
 .coupon-section .coupon {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .coupon-section .store-coupon {
@@ -20197,7 +20213,76 @@ button:hover {
 }
 
 .total-summary {
-  dsiplay: flex;
+  padding: 1em;
+  margin: 1em 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.total-summary .sub-total,
+.total-summary .tax,
+.total-summary .total {
+  margin: 1em 0;
+  display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+}
+
+.total-summary .sub-total p,
+.total-summary .tax p,
+.total-summary .total p {
+  text-align: center;
+}
+
+.total-summary .sub-total span,
+.total-summary .tax span,
+.total-summary .total span {
+  margin: 1em 0;
+}
+
+@media only screen and (min-width: 425px) {
+  .product img {
+    width: 8em;
+    height: 8em;
+  }
+
+  .product .product-info {
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1em;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .product .product-info h5 {
+    grid-column: 1/2;
+  }
+
+  .product .product-info p {
+    grid-column: 2/3;
+  }
+
+  .product .product-info .quantity {
+    grid-column: 3/4;
+  }
+
+  .product .product-info .product-actions {
+    grid-column: 4/5;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .product {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-between;
+  }
+
+  .product span {
+    grid-column: 1/2;
+  }
+
+  .product .product-info {
+    grid-column: 2/3;
+  }
 }
 
 .checkout-page {
@@ -20332,13 +20417,12 @@ button:hover {
   padding: 1em;
   width: 100%;
   height: auto;
-  border: 1px #CACACA solid;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-img img {
   width: 100%;
   height: auto;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-content {
@@ -20348,7 +20432,10 @@ button:hover {
 
 .product-content h2,
 .product-content h5,
-.product-content p {
+.product-content p,
+.product-content ul,
+.product-content a,
+.product-content span {
   margin: 1em 0;
 }
 
@@ -20520,6 +20607,11 @@ button:hover {
 
 .section-title {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.banner {
+  width: 100%;
+  position: relative;
 }
 
 .features-section {
@@ -20737,11 +20829,56 @@ button:hover {
 
 .order-message svg {
   color: #42C43B;
+  margin: 0 auto;
   text-align: center;
 }
 
 .order-message span {
   color: #999999;
+}
+
+.order-details h5 {
+  font-weight: 600;
+}
+
+.order-details .order-item {
+  padding: 1em;
+  margin: 1em 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.order-details .order-item .item-group {
+  margin: 1em 0;
+  display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+}
+
+.order-details .order-total {
+  padding: 1em;
+  margin: 1em 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.order-details .order-total .sub-total,
+.order-details .order-total .tax,
+.order-details .order-total .total {
+  margin: 1em 0;
+  display: flex;
+  justify-content: space-between;
+  vertical-align: middle;
+}
+
+.order-details .order-total .sub-total p,
+.order-details .order-total .tax p,
+.order-details .order-total .total p {
+  text-align: center;
+}
+
+.order-details .order-total .sub-total span,
+.order-details .order-total .tax span,
+.order-details .order-total .total span {
+  margin: 1em 0;
 }
 
 .header-section {
@@ -21039,104 +21176,14 @@ button:hover {
   }
 }
 
-.carousel {
-  width: 100%;
-  position: relative;
-}
-
-.carousel .slide {
-  display: none;
-}
-
-.carousel .slide:first-child {
-  display: inline-block;
-}
-
-.carousel .prev-arrow {
-  position: absolute;
-  top: 50px;
-  left: 10px;
-  width: 2em;
-  color: #7B7B7B;
-}
-
-.carousel .next-arrow {
-  position: absolute;
-  top: 50px;
-  right: 10px;
-  width: 2em;
-  color: #7B7B7B;
-}
-
-.carousel .dots {
-  background: #fff;
-  width: 0.8em;
-  color: #fff;
-}
-
-@media only screen and (min-width: 425px) {
-  .glider .prev-arrow {
-    top: 80px;
-  }
-
-  .glider .next-arrow {
-    top: 80px;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .glider .prev-arrow {
-    top: 120px;
-  }
-
-  .glider .next-arrow {
-    top: 120px;
-  }
-}
-
 .slicknav-menu .navbar-content {
   max-height: 0px;
   transition: 0.5s ease-in-out;
 }
 
-.search-model {
-  display: none;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  background: #000;
-  z-index: 99999;
-}
-
-.search-model-form {
-  padding: 0 15px;
-}
-
-.search-model-form input {
-  width: 500px;
-  font-size: 40px;
-  border: none;
-  border-bottom: 2px solid #333;
-  background: none;
-  color: #999;
-}
-
-.search-close-switch {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background: #333;
-  color: #fff;
-  text-align: center;
-  border-radius: 50%;
-  padding-top: 6px;
-  font-size: 26px;
-  top: 30px;
-  cursor: pointer;
-  transform: rotate(45deg);
-  font-weight: 300;
+.slicknav-menu .navbar-transition {
+  max-height: 100px;
+  transition: max-height 0.2s ease-in-out;
 }
 
 input[type=number] {

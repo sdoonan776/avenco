@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Interfaces\CategoryRepositoryInterface;
-use App\Interfaces\OrderRepositoryInterface;
 use App\Interfaces\ProductRepositoryInterface;
 use App\Repository\CategoryRepository;
 use App\Repository\OrderRepository;
@@ -15,7 +14,6 @@ class RepositoryServiceProvider extends ServiceProvider
     protected $repositories = [
         CategoryRepositoryInterface::class => CategoryRepository::class,
         ProductRepositoryInterface::class => ProductRepository::class,
-        OrderRepositoryInterface::class => OrderRepository::class,
     ];
 
 

@@ -3,11 +3,10 @@
     padding: 1em;
     width: 100%;
     height: auto;
-    border: 1px #CACACA solid;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
     img {
     	width: 100%;
     	height: auto;
+        box-shadow: 5px 5px 10px rgba(0,0,0,0.1);
     }
 }
 
@@ -17,7 +16,10 @@
 
     h2,
     h5,
-    p {
+    p,
+    ul,
+    a,
+    span {
         margin: 1em 0;
     }
 

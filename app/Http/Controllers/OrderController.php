@@ -8,20 +8,14 @@ use Illuminate\View\View;
 
 class OrderController extends Controller
 {
-	protected $user;
-
-	public function __construct(User $user)
-	{
-		$this->user = $user;
-	}
-
+	
     /**
      * Displays all orders for the particular user
      * @return View
      */
     public function index(): View
     {
-    	$orders = auth()->user();
+    	$orders = auth()->user()->orders()->with('products')->get();
 
         return view('order.index', [
             'orders' => $orders
@@ -35,7 +29,7 @@ class OrderController extends Controller
      */
     public function show(int $id): View
     {
-        $order = $this->user->orders()->findOneOrFail($id)->first();
+        $order = auth()->user()->orders()->findOrFail($id)->first();
     	return view('order.show', [
             'order' => $order
         ]);

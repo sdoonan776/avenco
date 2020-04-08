@@ -23,14 +23,24 @@
                 <div class="product-info">
                     <h5>{{ ucwords($item->model->name) }}</h5>
                     <p>{{ priceFormat($item->model->price) }}</p>
-                    <input class="quantity" data-id="{{ $item->rowId }}"
-                    data-productQuantity="{{ $item->model->quantity }}" type="number" value="{{ $item->qty }}">
-                    <div class="product-remove">
+                    <div class="quantity">
+                        <input type="submit" class="quantity-decrement" value="-">
+                        <input data-id="{{ $item->rowId }}"
+                        data-productQuantity="{{ $item->model->quantity }}" type="number" value="{{ $item->qty }}">
+                        <input type="submit" class="quantity-increment" value="+">
+                    </div>
+                    <div class="product-actions">
                         <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
                             @csrf
                             @method('DELETE') 
-                            <button class="cart-btn" type="submit">
-                                x
+                            <button type="submit">
+                                Remove
+                            </button>
+                        </form>
+                        <form class="save-for-later" action="{{ route('cart.switchToSaveForLater', $item->rowId) }}" method="POST">
+                            @csrf
+                            <button type="submit">
+                                Save for Later
                             </button>
                         </form>
                     </div>
@@ -53,12 +63,6 @@
                 Clear Cart
             </button>
         </form>
-        <form class="save-for-later" action="{{ route('cart.switchToSaveForLater', $item->rowId) }}">
-            @csrf
-            <button class="site-btn" type="submit">
-                Save for Later
-            </button>
-        </form>
     </div>
     @if(session()->has('coupon')) 
       <div class="coupon">
@@ -68,8 +72,8 @@
         <form action="{{ route('coupon.destroy') }}" method="POST">
             @csrf
             @method('DELETE') 
-            <button class="cart-btn" type="submit">
-                x
+            <button type="submit">
+                Remove
             </button>
         </form>
       </div>            
@@ -88,7 +92,7 @@
 
         <div class="total">
             <span class="total-cart">Total Cart</span>
-            <p class="total-cart-p">{{ priceFormat(Cart::total()) }}</p>
+            <p>{{ priceFormat(Cart::total()) }}</p>
         </div>
 
     </div>
