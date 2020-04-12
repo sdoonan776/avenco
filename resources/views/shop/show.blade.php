@@ -30,10 +30,12 @@
                 <li><span>Category : </span>{{ $product->categories->name }}</li>
             </ul>
             @if ($product->quantity > 0)
-                <input class="quantity" type="number" id="quantity" name="quantity" data-productQuantity="">
+                <div class="quantity-container">
+                    <input class="quantity" name="quantity" type="text" value="">
+                </div>
                 <div class="cart-btn">
                     <form action="{{ route('cart.store', $product) }}" method="POST">
-                        {{ csrf_field() }}
+                        @csrf
                         <button type="submit" class="site-btn">
                             Add to Cart
                         </button>

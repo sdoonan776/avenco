@@ -4,7 +4,7 @@
 
 @section('main')
 	<div class="wrapper">
-    	<div id="profile">
+    	<div id="profile-menu">
 			@include('partials.profile-menu')
 		</div>
 

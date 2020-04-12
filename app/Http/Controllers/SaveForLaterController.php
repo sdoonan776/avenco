@@ -14,7 +14,7 @@ class SaveForLaterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy($id)
     {
         Cart::instance('saveForLater')->remove($id);
         return back()->with('success_message', 'Item has been removed!');
@@ -26,7 +26,7 @@ class SaveForLaterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function switchToCart(int $id)
+    public function switchToCart($id)
     {
         $item = Cart::instance('saveForLater')->get($id);
 

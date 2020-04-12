@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Interfaces\ProductRepositoryInterface;
 use App\Models\Coupon;
 use App\Models\Product;
-use App\Services\CouponDiscountService;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -18,17 +17,14 @@ use Illuminate\View\View;
 class CartController extends Controller
 {
     protected $productRepository;
-    protected $couponDiscountService;
     protected $coupon;
 
     public function __construct(
-        ProductRepositoryInterface $productRepository,
-        CouponDiscountService $couponDiscountService,
+        ProductRepositoryInterface $productRepository,        
         Coupon $coupon
     )
     {
         $this->productRepository = $productRepository;
-        $this->couponDiscountService = $couponDiscountService;
         $this->coupon = $coupon;
     }   
 
@@ -78,15 +74,15 @@ class CartController extends Controller
      * @param  \App\Cart  $cart
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(UpdateCartQuantityRequest $request, $id): JsonResponse
+    public function update(UpdateCartQuantityRequest $request, int $id): JsonResponse
     {
     
-        if ($request->qty > $request->productQuantity) {
+        if ($request->quantity > $request->productQuantity) {
             session()->flash('errors', collect(['We currently do not have enough items in stock.']));
             return response()->json(['success' => false], 400);
         }
 
-        Cart::update($id, $request->qauntity);
+        Cart::update($id, $request->quantity);
 
         session()->flash('success_message', 'Quantity was updated successfully!');
         return response()->json(['success' => true]);
@@ -118,11 +114,10 @@ class CartController extends Controller
      * Switch item for shopping cart to Save for Later.
      *
      * @param  int  $id
-     * @return Response
+     * @return RedirectResponse
      */
-    public function switchToSaveForLater($id): Response
+    public function switchToSaveForLater($id):  RedirectResponse
     {
-        dd('this method works so it does');
         $item = Cart::get($id);
 
         Cart::remove($id);

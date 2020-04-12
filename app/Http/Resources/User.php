@@ -21,6 +21,7 @@ class User extends JsonResource
             'username' => $this->username,
             'password' => $this->password,
             'registered_at' => $this->registered_at,
+            'order_count' => $this->orders->count()
         ];
     }
 }

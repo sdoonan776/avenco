@@ -38794,18 +38794,17 @@ __webpack_require__(/*! ./components/close */ "./resources/assets/js/components/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-closeBtn = document.querySelector('.close');
-alert = document.querySelectorAll('.alert');
+var closeBtn = document.querySelectorAll('.close');
+Array.from(closeBtn).forEach(function (element) {
+  closeBtn.addEventListener('click', function () {
+    console.log('this works');
+    var alert = document.querySelectorAll('.alert');
 
-if (closeBtn) {
-  if (alert) {
-    closeBtn.addEventListener('click', function () {
-      for (var i = 0; i < alert.length; i++) {
-        alert[i].style.display = 'none';
-      }
-    });
-  }
-}
+    for (var i = 0; i < alert.length; i++) {
+      alert[i].style.display = 'none';
+    }
+  });
+});
 
 /***/ }),
 
@@ -38816,20 +38815,21 @@ if (closeBtn) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var navButton = document.querySelector('.navbar-button');
+var menuButton = document.querySelector('.menu-button'); // menuButton.addEventListener('click', () => {
+// 	let navContent = document.querySelector('.navbar-content');
+// 	navContent.classList('visible').toggle;
+// });
 
-if (navButton) {
-  navButton.addEventListener('click', function () {
-    var navContent = document.querySelector('.navbar-content');
-    navContent.classList.toggle('navbar-transition');
+menuButton.addEventListener('click', function () {
+  var navbarContent = document.querySelector('.navbar-content');
+  navbarContent.classList.toggle('visible');
 
-    if (navContent.style.maxHeight) {
-      navContent.style.maxHeight = 0 + 'px';
-    } else {
-      navContent.style.maxHeight = navContent.scrollHeight + 100 + 'px';
-    }
-  });
-}
+  if (navbarContent.style.maxHeight) {
+    navbarContent.style.maxHeight = null;
+  } else {
+    navbarContent.style.maxHeight = navbarContent.scrollHeight + 100 + 'px';
+  }
+});
 
 /***/ }),
 
@@ -38841,22 +38841,24 @@ if (navButton) {
 /***/ (function(module, exports) {
 
 (function () {
-  var quantityControl = document.querySelector('.quantity'); // Array.from(classname).forEach(function(element) {
-
-  quantityControl.addEventListener('change', function () {
-    var id = quantityControl.getAttribute('data-id');
-    var productQuantity = quantityControl.getAttribute('data-productQuantity');
-    axios.patch("/cart/".concat(id), {
-      quantity: this.value,
-      productQuantity: productQuantity
-    }).then(function (response) {
-      // console.log(response);
-      window.location.href = "cart";
-    })["catch"](function (error) {
-      // console.log(error);
-      window.location.href = "cart";
+  var classname = document.querySelectorAll('.quantity');
+  Array.from(classname).forEach(function (element) {
+    classname.addEventListener('change', function () {
+      var id = classname.getAttribute('data-id');
+      console.log(id);
+      var productQuantity = classname.getAttribute('data-productQuantity');
+      axios.patch("/cart/".concat(id), {
+        quantity: this.value,
+        productQuantity: productQuantity
+      }).then(function (response) {
+        // console.log(response);
+        window.location.href = "cart";
+      })["catch"](function (error) {
+        // console.log(error);
+        window.location.href = "cart";
+      });
     });
-  }); // })
+  });
 })();
 
 /***/ }),

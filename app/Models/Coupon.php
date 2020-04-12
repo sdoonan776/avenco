@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Coupon;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Database\Eloquent\Model;
 
 class Coupon extends Model
 {
@@ -49,7 +50,7 @@ class Coupon extends Model
      */
     public function getNewSubtotal()
     {
-        return (Cart::subtotal() -  $this->getDiscount());
+        return (Cart::subtotal() - $this->getDiscount());
     }
 
     /**
@@ -76,7 +77,21 @@ class Coupon extends Model
      */
     public function findByCode($code)
     {
-        return $this->model::where('code', $code)->first();
+        return Coupon::where('code', $code)->first();
+    }
+
+    /**
+     * Applys discount coupon to cart total
+     * @param  $total 
+     * @return mixed
+     */
+    public function applyDiscount($total)
+    {
+        if ($this->type == 'percent') {
+          return round(($this->percent_off / 100) * $total);
+        } else {
+            return 0;
+        }
     }
 
 }

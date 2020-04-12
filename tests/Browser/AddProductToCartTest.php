@@ -2,20 +2,22 @@
 
 namespace Tests\Browser;
 
-class AddProductToCartTest extends PHPUnit_Extensions_Selenium2TestCase
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
+
+class AddProductToCartTest extends DuskTestCase
 {
-    public function setUp()
-    {
-    	$this->setHost('172.24.0.2');
-    	$this->port('4444');
-    	$this->setBrowserUrl('http://localhost');
-    	$this->setBrowser('chrome');
-    }
-
     
-
-    public function tearDown()
-	{
-	    $this->stop();
-	}
+    public function tests_that_product_is_added_to_shopping_cart()
+    {
+         $this->browse(function (Browser $browser) {
+            $browser->loginAs('user@test.com')
+            		->visit('/shop')
+            		->visit('/shop/dress-1')
+            		->press('Add to Cart')
+            		->assertPathIs('/cart')
+            		->assertSee('Item was added to your cart!');
+        });
+    }
 }

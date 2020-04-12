@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Jobs\UpdateCoupon;
 use App\Models\Coupon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
@@ -21,12 +22,12 @@ class CouponController extends Controller
      * Obtain the coupon code and update the cart items
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $coupon = $this->model::where('code', $request->coupon)->first();
-        
+
         if (!$coupon) {
             return back()->withErrors('Invalid coupon code. Please try again.');
         }
@@ -39,9 +40,9 @@ class CouponController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy()
+    public function destroy(): RedirectResponse
     {
         session()->forget('coupon');
 

@@ -1,11 +1,39 @@
-.slicknav-menu {
-	.navbar-content {
-		max-height: 0px;
-		transition: .5s ease-in-out; 
+.mobile-navbar {
+	
+	.menu-button {
+		margin: .5em 1.5em;
+
+		&:hover {
+			background: none;
+		}
 	}
 
-	.navbar-transition {
-	  max-height: 100px;
-	  transition: max-height 0.2s ease-in-out;
+	.navbar-content {
+		display: none;
+		max-height: 100px;	
+		transition: .5s ease-in-out; 
+		font-size: .8em;
+
+
+		li {
+			padding: .5em 1em;
+			border-bottom: 1px solid rgba(0,0,0,0.1);
+			cursor: pointer;
+		}
+
+		&:first-child {
+			border-top: 1px solid rgba(0,0,0,0.1);
+		}
+	}
+}
+
+.visible {
+  display: block;
+  transition: max-height 0.2s ease-in-out;
+}
+
+@media only screen and (min-width: 1024px) {
+	.mobile-navbar {
+		display: none;
 	}
 }

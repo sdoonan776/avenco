@@ -1,120 +1,185 @@
-.product {
-	margin: 1em 0;
-	border: 1px solid rgba(0,0,0,0.1);
-	padding: 1em;
+.wrapper {
 
-	img {
-		padding: .5em;
+	.product {
+		margin: 1em 0;
 		border: 1px solid rgba(0,0,0,0.1);
+		padding: 1em;
+
+		img {
+			padding: .5em;
+			border: 1px solid rgba(0,0,0,0.1);
+		}
+
+		.product-info {
+			display: grid;
+			grid-template-columns: 1, 1fr;
+			grid-gap: 1em;
+			vertical-align: middle;
+			text-align: center;
+
+			h5,
+			p {
+				text-align: center;
+				margin: 1em 0;
+			}
+
+			.quantity-container {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				justify-content: center;
+				align-content: center;
+				margin: 1em auto;
+				border: 1px solid rgba(0,0,0,0.1);
+
+				.decrement {
+					grid-column: 1 / 2;
+					margin: 0;
+					border-right: 1px solid rgba(0,0,0,0.1);
+					cursor: pointer;
+				}
+
+				.quantity {
+					width: 10px;
+					text-align: center;
+					margin: 0 auto;
+					grid-column: 2 / 3;
+					align-self: center;
+				}
+
+				.increment {
+					grid-column: 3 / 4;
+					margin: 0;
+					border-left: 1px solid rgba(0,0,0,0.1);
+					cursor: pointer;
+				} 
+
+				p,
+				input {
+					padding: 0 .8em;
+				}
+			}
+
+			.product-actions {
+				button {
+					font-family: 'FuturaBT-Book' sans-serif;
+					font-size: .8em;
+
+					&:hover {
+						background: none;
+						color: #515050;
+					}
+				}
+			}
+
+			.cart-btn {
+			 	padding: .5em 1em;
+			 	color: #949494;
+			 	border: 2px solid #949494;
+			 	border-radius: 50px;
+			 	text-transform: uppercase;
+			}
+
+			.input-group {
+				width: 40%;
+			}
+		}
 	}
 
-	.product-info {
-		display: grid;
-		grid-template-columns: 1, 1fr;
-		grid-gap: 1em;
-		vertical-align: middle;
-		text-align: center;
-
-		h5,
-		p {
-			text-align: center;
+	.cart-options {
+		form {
 			margin: 1em 0;
 		}
+	}
 
-		.quantity {
-			text-align: center;
-			margin: 1em auto;
-			border: 1px solid rgba(0,0,0,0.1);
-			padding: 0 1em;
+	.coupon-section {
 
-			input {
-				max-width: 10px;
+		.coupon-btn {
+			padding: 1em 1em;
+			color: #949494;
+			border: 2px solid #949494;
+			text-transform: uppercase;
+		}
+
+		.coupon {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.store-coupon {
+			display: flex;
+			flex-direction: row;
+		}
+
+		form {
+			margin: 1em 0;
+
+			button {
+				&:hover {
+						background: none;
+						color: #515050;
+				}
+			}
+		}
+	}
+
+	.input-control {	
+		@apply bg-white border border-gray-300;
+		@apply py-2 px-4 block w-full appearance-none leading-normal;
+	}
+
+	.total-summary {
+		padding: 2em;
+		margin: 1em 0;
+		border: 1px solid rgba(0,0,0,0.1);
+
+		h5 {
+			font-weight: 600;
+		}
+
+		.sub-total,
+		.tax,
+		.total {
+			margin: 1em 0;
+			display: flex;
+			justify-content: space-between;
+			vertical-align: middle; 
+
+			p {
+				text-align: center;
 			}
 
-			span,
-			input {
-				margin: 0 0 0 0.4em;
-				border-right: 1px solid rgba(0,0,0,0.1);
+			span {
+				margin: 1em 0;
+			}
+		}
+	}
+
+	.saved-for-later {
+
+		.saved-for-later-details {
+			img {
+				width: 8em;
+				height: 8em;
 			}
 		}
 
-		.product-actions {
+		.saved-for-later-actions {
 			button {
-				font-family: 'FuturaBT-Book' sans-serif;
-				font-size: .8em;
-
 				&:hover {
 					background: none;
 					color: #515050;
 				}
 			}
 		}
-
-		.cart-btn {
-		 	padding: .5em 1em;
-		 	color: #949494;
-		 	border: 2px solid #949494;
-		 	border-radius: 50px;
-		 	text-transform: uppercase;
-		}
-
-		.input-group {
-			width: 40%;
-		}
-	}
-}
-
-.coupon-section {
-
-	.coupon-btn {
-		padding: 1em 1em;
-		color: #949494;
-		border: 2px solid #949494;
-		text-transform: uppercase;
 	}
 
-	.coupon {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-	}
-
-	.store-coupon {
-		display: flex;
-		flex-direction: row;
-	}
-
-	form {
+	.no-items-saved {
 		margin: 1em 0;
-	}
+		font-size: .8em;
+	}	
+
 }
 
-.input-control {	
-	@apply bg-white border border-gray-300;
-	@apply py-2 px-4 block w-full appearance-none leading-normal;
-}
-
-.total-summary {
-	padding: 1em;
-	margin: 1em 0;
-	border: 1px solid rgba(0,0,0,0.1);
-
-	.sub-total,
-	.tax,
-	.total {
-		margin: 1em 0;
-		display: flex;
-		justify-content: space-between;
-		vertical-align: middle; 
-
-		p {
-			text-align: center;
-		}
-
-		span {
-			margin: 1em 0;
-		}
-	}
-}	
 
 @media only screen and (min-width: 425px) {
 
@@ -128,7 +193,6 @@
 		.product-info {
 			grid-template-columns: repeat(4, 1fr);
 			grid-gap: 1em;
-			justify-content: space-between;
 			align-items: center;
 
 			h5 {
@@ -139,7 +203,7 @@
 				grid-column: 2 / 3;
 			}
 
-			.quantity {
+			.quantity-container {
 				grid-column: 3 / 4;
 			}
 
@@ -153,8 +217,11 @@
 @media only screen and (min-width: 768px) {
 	.product {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		justify-content: space-between;
+		grid-template-columns: 1 1fr 2 2fr;
+
+		img {
+			align-self: center;
+		}
 
 		span {
 			grid-column: 1 / 2;

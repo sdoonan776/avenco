@@ -45,43 +45,39 @@
             </ul>
         </nav>
     </div>
-    <div class="slicknav-menu">
-        <nav class="navbar">
-            <button class="navbar-button" type="button" aria-expanded="false">
-                <i class="fas fa-bars fa-1x"></i>
-            </button>
-          <div class="navbar-content">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('home.index') }}">
-                    Home
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ route('shop.index') }}">
-                    Shop
-                </a>
-              </li>
-              @guest
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">
-                            Register
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">
-                            Login
-                        </a>
-                    </li>
-                @endguest
-                @auth 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.querySelector('.logout-form').submit();">Logout</a>
-                        <form class="logout-form" action="{{ route('logout') }}" method="POST">{{ csrf_field() }}</form>
-                    </li>
-                @endauth   
-            </ul>
-          </div>
-        </nav>
-    </div>
+    <nav class="mobile-navbar">
+        <button class="menu-button" type="button" aria-expanded="false">
+          <i class="fas fa-bars fa-1x"></i>
+        </button>
+        <ul class="navbar-content">
+          <li>
+            <a class="nav-link" href="{{ route('home.index') }}">
+                Home
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="{{ route('shop.index') }}">
+                Shop
+            </a>
+          </li>
+          @guest
+                <li>
+                    <a class="nav-link" href="{{ route('register') }}">
+                        Register
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="{{ route('login') }}">
+                        Login
+                    </a>
+                </li>
+            @endguest
+            @auth 
+                <li>
+                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.querySelector('.logout-form').submit();">Logout</a>
+                    <form class="logout-form" action="{{ route('logout') }}" method="POST">{{ csrf_field() }}</form>
+                </li>
+            @endauth   
+        </ul>
+    </nav>
 </header>

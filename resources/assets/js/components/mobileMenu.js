@@ -1,14 +1,16 @@
-const navButton = document.querySelector('.navbar-button');
+const menuButton = document.querySelector('.menu-button');
 
-if (navButton) {
-	navButton.addEventListener('click', () => {
-	  let navContent = document.querySelector('.navbar-content');
-	  navContent.classList.toggle('navbar-transition');
-	  if (navContent.style.maxHeight) {
-	    navContent.style.maxHeight = 0 + 'px';
-	  } else {
-	    navContent.style.maxHeight = navContent.scrollHeight + 100 + 'px';
-	  }
-	});
-}
+// menuButton.addEventListener('click', () => {
+// 	let navContent = document.querySelector('.navbar-content');
+// 	navContent.classList('visible').toggle;
+// });
 
+menuButton.addEventListener('click', () => {
+  let navbarContent = document.querySelector('.navbar-content');
+  navbarContent.classList.toggle('visible');
+  if (navbarContent.style.maxHeight) {
+    navbarContent.style.maxHeight = null;
+  } else {
+    navbarContent.style.maxHeight = navbarContent.scrollHeight + 100 + 'px';
+  }
+});

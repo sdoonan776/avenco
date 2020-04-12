@@ -18,15 +18,15 @@
           </div>  
 
           <div class="mb-4">
-            <input class="auth-form-input" type="text" name="full_name" placeholder="Full Name" value="{{ old('') ?? '' }}" required>
+            <input class="auth-form-input" type="text" name="full_name" placeholder="Full Name" value="{{ old('full_name') ?? '' }}" required>
           </div>
 
           <div class="mb-4">
-            <input class="auth-form-input" type="email" name="email" placeholder="Email" value="{{ old('') ?? '' }}" required>
+            <input class="auth-form-input" type="email" name="email" placeholder="Email" value="{{ old('email') ?? '' }}" required>
           </div>
 
           <div class="mb-4">
-            <input class="auth-form-input" type="text" name="username" placeholder="Username" value="{{ old('') ?? '' }}" required>
+            <input class="auth-form-input" type="text" name="username" placeholder="Username" value="{{ old('username') ?? '' }}" required>
           </div>
           
           <div class="mb-4">

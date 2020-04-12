@@ -72,29 +72,23 @@
 	}
 } 
 
-.navbar {
-	padding: .5rem 0;
-	margin: 0 1.5rem;
-}
-
 .main-menu {
 	display: none;
 }
 
-.navbar-nav {
-	display: none;
+
+@media only screen and (min-width: 768px) {
+	.inner-header {
+		padding: 2em 4em;
+	}
 }
 
 @media only screen and (min-width: 1024px) {
-	.slicknav-menu {
-		display: none;
-	}
-
 	.inner-header {
-		padding: 2em 4em;
 	
-			.main-menu {
-				display: inline-block;
+		.main-menu {
+			display: inline-block;
+
 			ul {
 				li {
 					display: inline-block;

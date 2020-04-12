@@ -19,23 +19,29 @@
                 <div class="single-features-ads first">
                     <img src="{{ asset('resources/assets/img/icons/f-delivery.png') }}" alt="features-icon">
                     <h4>Free Shipping</h4>
-                    <p>Fusce urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal
-                        esuada aliquet libero viverra cursus. </p>
+                    <p>
+                        Fusce urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal
+                        esuada aliquet libero viverra cursus. 
+                    </p>
                 </div>
             
-                <div class="single-features-ads">
+                <div class="single-features-ads second">
                     <img src="{{ asset('resources/assets/img/icons/coin.png') }}" alt="features-icon">
                     <h4>100% Money Back </h4>
-                    <p>Urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal esuada
-                        aliquet libero viverra cursus. </p>
+                    <p>
+                        Urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal esuada
+                        aliquet libero viverra cursus. 
+                    </p>
                 </div>
             
         
                 <div class="single-features-ads">
                     <img src="{{ asset('resources/assets/img/icons/chat.png') }}" alt="features-icon">
                     <h4>Online Support 24/7</h4>
-                    <p>Urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal esuada
-                        aliquet libero viverra cursus. </p>
+                    <p>
+                        Urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal esuada
+                        aliquet libero viverra cursus. 
+                    </p>
                 </div>
             </div>
             <div class="features-box">

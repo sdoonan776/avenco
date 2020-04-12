@@ -19,15 +19,18 @@
         @if(Cart::count() > 0)
         @foreach(Cart::content() as $item)
             <div class="product">
-                <img src="{{ asset($item->model->product_image) }}" alt="{{ ucwords($item->model->name) }}">
+                <a href="{{ route('shop.show', $item->model->slug) }}">
+                    <img src="{{ asset($item->model->product_image) }}" alt="{{ ucwords($item->model->name) }}">
+                </a>
                 <div class="product-info">
                     <h5>{{ ucwords($item->model->name) }}</h5>
                     <p>{{ priceFormat($item->model->price) }}</p>
-                    <div class="quantity">
-                        <input type="submit" class="quantity-decrement" value="-">
-                        <input data-id="{{ $item->rowId }}"
-                        data-productQuantity="{{ $item->model->quantity }}" type="number" value="{{ $item->qty }}">
-                        <input type="submit" class="quantity-increment" value="+">
+                    <div class="quantity-container">
+                        {{-- <input class="quantity" data-id="{{ $item->rowId }}"
+                        data-productQuantity="{{ $item->model->quantity }}" name="quantity" type="number" value="{{ $item->qty }}"> --}}
+                        <p class="decrement"> - </p>
+                        <input class="quantity" type="number" name="quantity" value="{{ $item->qty }}">
+                        <p class="increment"> + </p>
                     </div>
                     <div class="product-actions">
                         <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
@@ -37,7 +40,7 @@
                                 Remove
                             </button>
                         </form>
-                        <form class="save-for-later" action="{{ route('cart.switchToSaveForLater', $item->rowId) }}" method="POST">
+                        <form action="{{ route('cart.switchToSaveForLater', $item->rowId) }}" method="POST">
                             @csrf
                             <button type="submit">
                                 Save for Later
@@ -48,14 +51,8 @@
             </div>
         @endforeach
     </div>
-    <div class="coupon-section">
-        <form class="store-coupon" action="{{ route('coupon.store') }}" method="POST">
-            @csrf
-            <input class="input-control" name="coupon" type="text" placeholder="Enter Code">
-            <button class="coupon-btn" type="submit">
-                Submit
-            </button>
-        </form>
+
+    <div class="cart-options">
         <form class="clear-cart" action="{{ route('cart.clearCart') }}" method="POST">
             @csrf
             @method('DELETE')
@@ -64,11 +61,25 @@
             </button>
         </form>
     </div>
-    @if(session()->has('coupon')) 
-      <div class="coupon">
-          <p>Code</p>
-          <p>{{ session()->get('coupon')['name'] }}</p>
 
+    <div class="coupon-section">
+        <form class="store-coupon" action="{{ route('coupon.store') }}" method="POST">
+            @csrf
+            <input class="input-control" name="coupon" type="text" placeholder="Enter Code">
+            <button class="coupon-btn" type="submit">
+                Submit
+            </button>
+        </form>
+    </div>
+    @if(session()->has('coupon')) 
+    <div class="coupon-section">
+
+      <div class="coupon-code">
+          <span>Code</span>
+          <p>{{ session()->get('coupon')['name'] }}</p>
+      </div>
+
+      <div class="coupon-destroy">
         <form action="{{ route('coupon.destroy') }}" method="POST">
             @csrf
             @method('DELETE') 
@@ -76,13 +87,19 @@
                 Remove
             </button>
         </form>
-      </div>            
+      </div> 
+    </div>  
     @endif    
     <div class="total-summary">
+        <h5>Cart Summary</h5>
 
         <div class="sub-total">
             <span>Subtotal</span>
-            <p class="sub-total">{{ priceFormat(Cart::subtotal()) }}</p>
+            @if(!session()->has('coupon'))
+                <p class="sub-total">{{ priceFormat(Cart::subtotal()) }}</p>
+            @else
+                <p class="sub-total">{{ priceFormat($newSubTotal) }}</p>
+            @endif
         </div>
 
         <div class="tax">
@@ -92,7 +109,11 @@
 
         <div class="total">
             <span class="total-cart">Total Cart</span>
-            <p>{{ priceFormat(Cart::total()) }}</p>
+            @if(!session()->has('coupon'))
+                <p class="total">{{ priceFormat(Cart::total()) }}</p>
+            @else 
+                <p class="total">{{ priceFormat($newTotal) }}</p>
+            @endif    
         </div>
 
     </div>
@@ -100,7 +121,7 @@
         Proceed to checkout
     </a>
     @else
-        <div class="empty-cart">
+        <div class="empty-cart py-5">
             <p>
                 There are no items currently in your cart. 
             </p> 
@@ -109,5 +130,48 @@
             </a>
         </div>
     @endif
+    @if(Cart::instance('saveForLater')->count() > 0)
+
+        <h3>{{ Cart::instance('saveForLater')->count() }} item(s) saved for later</h3>
+
+        <div class="saved-for-later">
+            @foreach (Cart::instance('saveForLater')->content() as $item)
+                    <div class="saved-for-later-details">
+                        <a href="{{ route('shop.show', $item->model->slug) }}">
+                            <img src="{{ asset($item->model->product_image) }}" alt="{{ $item->model->name }}">
+                        </a>
+                        <a href="{{ route('shop.show', $item->model->slug) }}">
+                            {{ ucwords($item->model->name) }}
+                        </a>
+                        <p>{{ priceFormat($item->model->price) }}</p>
+                    </div>
+                    <div class="">
+                        <div class="saved-for-later-actions">
+                            <form action="{{ route('saveForLater.destroy', $item->rowId) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit">
+                                    Remove
+                                </button>
+                            </form>
+
+                            <form action="{{ route('saveForLater.switchToCart', $item->rowId) }}" method="POST">
+                                @csrf
+
+                                <button type="submit">
+                                    Move to Cart
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
+        </div>
+    @else 
+        <div class="no-items-saved">
+
+            <h3>You have no items saved for later</h3>
+        </div>
+    @endif 
 </div>
 @endsection

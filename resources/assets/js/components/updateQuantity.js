@@ -1,11 +1,12 @@
 (function(){
 
-let quantityControl = document.querySelector('.quantity');
+    const classname = document.querySelectorAll('.quantity');
 
-    // Array.from(classname).forEach(function(element) {
-        quantityControl.addEventListener('change', function() {
-            let id = quantityControl.getAttribute('data-id');
-            let productQuantity = quantityControl.getAttribute('data-productQuantity');
+    Array.from(classname).forEach(function(element) {
+        classname.addEventListener('change', function() {
+            let id = classname.getAttribute('data-id');
+            console.log(id);
+            let productQuantity = classname.getAttribute('data-productQuantity');
 
             axios.patch(`/cart/${id}`, {
                 quantity: this.value,
@@ -20,5 +21,5 @@ let quantityControl = document.querySelector('.quantity');
                 window.location.href = "cart";
             });
         })
-    // })
+    })
 })();
