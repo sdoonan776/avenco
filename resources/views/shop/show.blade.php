@@ -30,9 +30,6 @@
                 <li><span>Category : </span>{{ $product->categories->name }}</li>
             </ul>
             @if ($product->quantity > 0)
-                <div class="quantity-container">
-                    <input class="quantity" name="quantity" type="text" value="">
-                </div>
                 <div class="cart-btn">
                     <form action="{{ route('cart.store', $product) }}" method="POST">
                         @csrf

@@ -1,5 +1,6 @@
 .edit-profile {
 	font-family: 'FuturaBT-Book';
+	margin: 1em 0;
 
 		.h3 {
 			margin: 1em 0;
@@ -8,6 +9,7 @@
 		.edit-form-group {
 			display: flex;
 			flex-direction: column;
+			margin: .5em 0;
 
 		.edit-form-control {
 			@apply auth-form-input shadow appearance-none border; 
@@ -24,14 +26,16 @@
 @media only screen and (min-width: 768px) {
 	.profile-section {
 		display: grid;
-		grid-template-columns: [menu] 1fr [main] 1fr;
+		align-content: center;
+		justify-content: space-around;
+		grid-template-columns:  repeat(2, 1fr);
 
 		.profile-menu {
-			grid-column: menu / main;
+			grid-column: 1 / 2;
 		}
 
 		.edit-profile {
-			grid-column: main / 3;
+			grid-column: 2 / 3;
 		}
 	}
 }

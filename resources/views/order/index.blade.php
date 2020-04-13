@@ -12,21 +12,23 @@
 			@include('partials.messages')
 			@include('partials.errors')
 		</div>
-    
-	    <div class="orders">
-	    	<ul class="">
+
+    	<div class="orders">
 	    	@foreach($orders as $order)	
-			  <li class="">
-			  	{{ $order->name }}
+    		<ul class="order">
+			  <li class="order-item">
+			  	{{-- {{ $order->products()->name }} --}}
 			  </li>
-			  <li class="">
-			  	{{ $order->price }}
+			  <li class="order-item">
+{{-- 			  	{{ $order->price }} --}}
+			  </li>
+			  <li>
 			  </li>
 			  {{-- <li class="">
 			  	{{ $order->pivot->quantity }}
 			  </li> --}}
-			@endforeach  
 			</ul>
-    	</div>
+			@endforeach  
+		</div>
 	</div>
 @endsection

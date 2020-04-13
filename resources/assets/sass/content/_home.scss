@@ -87,7 +87,7 @@
 	grid-gap: 1em;
 	justify-content: center;
 	max-width: 1017px;
-	margin: 0 auto;
+	margin: 1em auto;
 }
 
 @media only screen and (min-width: 425px) {
@@ -133,6 +133,7 @@
 
 				img {
 					grid-row: 1 / 2;
+					padding-top: .5em;
 				}
 
 				h4 {

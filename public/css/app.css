@@ -20597,6 +20597,7 @@ button:hover {
 
 .edit-profile {
   font-family: "FuturaBT-Book";
+  margin: 1em 0;
 }
 
 .edit-profile .h3 {
@@ -20606,6 +20607,7 @@ button:hover {
 .edit-profile .edit-form-group {
   display: flex;
   flex-direction: column;
+  margin: 0.5em 0;
 }
 
 .edit-profile .edit-form-group .edit-form-control {
@@ -20632,15 +20634,17 @@ button:hover {
 @media only screen and (min-width: 768px) {
   .profile-section {
     display: grid;
-    grid-template-columns: [menu] 1fr [main] 1fr;
+    align-content: center;
+    justify-content: space-around;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .profile-section .profile-menu {
-    grid-column: menu/main;
+    grid-column: 1/2;
   }
 
   .profile-section .edit-profile {
-    grid-column: main/3;
+    grid-column: 2/3;
   }
 }
 
@@ -20849,7 +20853,7 @@ button:hover {
   grid-gap: 1em;
   justify-content: center;
   max-width: 1017px;
-  margin: 0 auto;
+  margin: 1em auto;
 }
 
 @media only screen and (min-width: 425px) {
@@ -20893,6 +20897,7 @@ button:hover {
 
   .features-section .features-ads .single-features-ads img {
     grid-row: 1/2;
+    padding-top: 0.5em;
   }
 
   .features-section .features-ads .single-features-ads h4 {

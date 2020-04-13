@@ -42,7 +42,7 @@
 
 				  <div class="edit-form-group">
 				  	<label for="confirm_password">Confirm Password</label>
-				    <input class="form-control" type="password" id="confirm_password" name="confirm_password">
+				    <input class="edit-form-control" type="password" id="confirm_password" name="confirm_password">
 				  </div>
 
 				  <div class="edit-form-group">

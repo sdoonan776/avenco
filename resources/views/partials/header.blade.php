@@ -7,7 +7,7 @@
         </div>
         <ul class="header-right">
             <li>
-                <a href="{{ route('user.index') }}">
+                <a href="{{ route('user.edit') }}">
                     <i class="far fa-user fa-lg"></i>
                 </a>
             </li>        

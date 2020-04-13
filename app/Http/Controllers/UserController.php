@@ -13,16 +13,6 @@ class UserController extends Controller
 {
 
     /**
-     * Returns the profile index page
-     * @return View
-     */
-    public function index(): View
-    {
-        $user = auth()->user();
-        return view('user.index', compact('user'));
-    }
-
-    /**
      * Returns the edit page
      * @return View
      */

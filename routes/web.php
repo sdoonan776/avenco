@@ -23,7 +23,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::delete('coupon', 'CouponController@destroy')->name('coupon.destroy');
 
 	// profile
-	Route::get('profile', 'UserController@index')->name('user.index');
 	Route::get('profile/edit', 'UserController@edit')->name('user.edit');
 	Route::patch('profile/update', 'UserController@update')->name('user.update');
 

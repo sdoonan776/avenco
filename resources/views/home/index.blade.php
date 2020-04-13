@@ -44,33 +44,6 @@
                     </p>
                 </div>
             </div>
-            <div class="features-box">
-                <div class="single-box-item first-box">
-                    <img src="{{ asset('resources/assets/img/f-box-1.jpg') }}" alt="features-image">
-                    <div class="box-text">
-                        <span class="trend-year">2020 Party</span>
-                        <h2>Jewelry</h2>
-                        <span class="trend-alert">Trend Allert</span>
-                        <a href="{{ route('shop.index') }}" class="primary-btn">See More</a>
-                    </div>
-                </div>
-                <div class="single-box-item second-box">
-                    <img src="{{ asset('resources/assets/img/f-box-2.jpg') }}" alt="features-image">
-                    <div class="box-text">
-                        <span class="trend-year">2020 Trend</span>
-                        <h2>Footwear</h2>
-                        <span class="trend-alert">Bold & Black</span>
-                    </div>
-                </div>
-                <div class="single-box-item third-box">
-                    <img src="{{ asset('resources/assets/img/f-box-3.jpg') }}" alt="features-image">
-                    <div class="box-text">
-                        <span class="trend-year">2020 Party</span>
-                        <h2>Collection</h2>
-                        <div class="trend-alert">Trend Allert</div>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <section class="latest-products">
