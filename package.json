@@ -28,6 +28,7 @@
         "jquery": "^3.4.1",
         "laravel-mix-imagemin": "^1.0.3",
         "owl.carousel": "^2.3.4",
+        "responsive-nav": "^1.0.39",
         "tailwindcss": "^1.2.0"
     }
 }

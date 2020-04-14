@@ -1,10 +1,6 @@
 # Avenco
 
-An eccommerce site to better understand design priciples in php and laravel. Design patterns include factory, composition, repository and dependency injection
-
-## Design Patterns
-
-
+An ecommerce personal project to better understand design priciples in php and laravel.
 
 ## Installation
 
@@ -17,12 +13,29 @@ yarn install
 
 ## Usage
 
-```python
-import foobar
+Copy .env file from example
 
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
+```bash
+cp .env.example .env
+```
+
+Generate the application key
+```bash
+php artisan key:generate
+```
+
+Fill out .env with own database details as well as details for stripe
+
+Create migrations and seed
+
+```bash
+php artisan migrate --seed
+```
+
+Serve the appplication with laravel serve
+
+```bash
+php artisan serve
 ```
 
 ## License

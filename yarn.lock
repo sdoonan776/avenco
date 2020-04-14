@@ -6890,6 +6890,11 @@ responselike@1.0.2:
   dependencies:
     lowercase-keys "^1.0.0"
 
+responsive-nav@^1.0.39:
+  version "1.0.39"
+  resolved "https://registry.yarnpkg.com/responsive-nav/-/responsive-nav-1.0.39.tgz#ce64753847d0093ea746161c5bb686927a713c10"
+  integrity sha1-zmR1OEfQCT6nRhYcW7aGknpxPBA=
+
 ret@~0.1.10:
   version "0.1.15"
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"

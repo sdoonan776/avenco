@@ -5,8 +5,5 @@
               <li>{{ $error }}</li>
           @endforeach
       </ul>
-      <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-      	<i class="close cursor-pointer fas fa-times"></i>
-  	  </span>
   </div>
 @endif

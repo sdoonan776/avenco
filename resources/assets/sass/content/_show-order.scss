@@ -1,0 +1,18 @@
+.order-products {
+	padding: 1em 0;
+}
+
+.order-detail {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-content: space-between;
+	grid-gap: 1em;
+
+	span {
+		grid-column: 1 / 2;
+	}
+
+	p {
+		grid-column: 2 / 3;
+	}
+}

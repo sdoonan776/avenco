@@ -25,13 +25,13 @@
                 <div class="product-info">
                     <h5>{{ ucwords($item->model->name) }}</h5>
                     <p>{{ priceFormat($item->model->price) }}</p>
-                    <div class="quantity-container">
-                        {{-- <input class="quantity" data-id="{{ $item->rowId }}"
-                        data-productQuantity="{{ $item->model->quantity }}" name="quantity" type="number" value="{{ $item->qty }}"> --}}
-                        <p class="decrement"> - </p>
-                        <input class="quantity" type="number" name="quantity" value="{{ $item->qty }}">
-                        <p class="increment"> + </p>
-                    </div>
+
+                    <select class="quantity" data-id="{{ $item->rowId }}" data-productQuantity="{{ $item->model->quantity }}">
+                        @for ($i = 1; $i <= 30; $i++)
+                            <option {{ $item->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
+                        @endfor
+                    </select>
+                    
                     <div class="product-actions">
                         <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
                             @csrf
@@ -73,21 +73,26 @@
     </div>
     @if(session()->has('coupon')) 
     <div class="coupon-section">
+       
+       <h5>
+           Coupon
+       </h5>
+          
+        <div class="coupon-code">
+            <span>Code</span>
+            <p>{{ session()->get('coupon')['name'] }}</p>
+        </div>
 
-      <div class="coupon-code">
-          <span>Code</span>
-          <p>{{ session()->get('coupon')['name'] }}</p>
-      </div>
+        <div class="coupon-destroy">
+            <form action="{{ route('coupon.destroy') }}" method="POST">
+                @csrf
+                @method('DELETE') 
+                <button class="coupon-btn" type="submit">
+                    Remove
+                </button>
+            </form>
+        </div> 
 
-      <div class="coupon-destroy">
-        <form action="{{ route('coupon.destroy') }}" method="POST">
-            @csrf
-            @method('DELETE') 
-            <button type="submit">
-                Remove
-            </button>
-        </form>
-      </div> 
     </div>  
     @endif    
     <div class="total-summary">
@@ -174,4 +179,30 @@
         </div>
     @endif 
 </div>
+@endsection
+@section('extra-js')
+<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+<script>
+(function(){
+    const classname = document.querySelectorAll('.quantity')
+    Array.from(classname).forEach(function(element) {
+        element.addEventListener('change', function() {
+            const id = element.getAttribute('data-id')
+            const productQuantity = element.getAttribute('data-productQuantity')
+            axios.patch(`/cart/${id}`, {
+                quantity: this.value,
+                productQuantity: productQuantity
+            })
+            .then(function (response) {
+                // console.log(response);
+                window.location.href = 'cart'
+            })
+            .catch(function (error) {
+                // console.log(error);
+                window.location.href = 'cart'
+            });
+        })
+    })
+})();
+</script>
 @endsection

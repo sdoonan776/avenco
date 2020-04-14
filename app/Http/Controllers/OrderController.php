@@ -30,8 +30,12 @@ class OrderController extends Controller
     public function show(int $id): View
     {
         $order = auth()->user()->orders()->findOrFail($id)->first();
+
+        $products = $order->products;
+
     	return view('order.show', [
-            'order' => $order
+            'order' => $order,
+            'products' => $products
         ]);
     }
 }

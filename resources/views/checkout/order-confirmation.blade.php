@@ -47,5 +47,9 @@
 
         </div>
 	</div>
+
+    <a href="{{ route('home.index') }}" class="site-btn">
+        Go Back to Homepage
+    </a>
 </div>
 @endsection

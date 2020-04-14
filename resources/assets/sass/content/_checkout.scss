@@ -89,7 +89,6 @@
 					text-align: center;
 				}
 			}
-
 		}
 
 		.cart-total {
@@ -106,7 +105,7 @@
 			display: grid;
 			grid-template-columns: repeat(2, 1fr);
 			grid-template-rows: repeat(3, 1fr);
-			grid-gap: 1em;
+			grid-gap: 2em;
 
 			.order-summary {
 				grid-column: 1 / 2;

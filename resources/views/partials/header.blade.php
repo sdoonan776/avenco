@@ -49,35 +49,38 @@
         <button class="menu-button" type="button" aria-expanded="false">
           <i class="fas fa-bars fa-1x"></i>
         </button>
-        <ul class="navbar-content">
-          <li>
-            <a class="nav-link" href="{{ route('home.index') }}">
+
+      <ul role="navigation" id="mobile-nav" class="nav-collapse">
+        <li>
+            <a href="{{ route('home.index') }}">
                 Home
             </a>
-          </li>
-          <li>
-            <a class="nav-link" href="{{ route('shop.index') }}">
+        </li>
+        <li>
+            <a href="{{ route('shop.index') }}">
                 Shop
             </a>
-          </li>
-          @guest
-                <li>
-                    <a class="nav-link" href="{{ route('register') }}">
-                        Register
-                    </a>
-                </li>
-                <li>
-                    <a class="nav-link" href="{{ route('login') }}">
-                        Login
-                    </a>
-                </li>
-            @endguest
-            @auth 
-                <li>
-                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.querySelector('.logout-form').submit();">Logout</a>
-                    <form class="logout-form" action="{{ route('logout') }}" method="POST">{{ csrf_field() }}</form>
-                </li>
-            @endauth   
-        </ul>
+        </li>
+        @guest
+            <li>
+                <a href="{{ route('register') }}">
+                    Register
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('login') }}">
+                    Login
+                </a>
+            </li>
+        @endguest
+        @auth
+            <li>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.querySelector('.logout-form').submit();">
+                    Logout
+                </a>
+                 <form class="logout-form" action="{{ route('logout') }}" method="POST">{{ csrf_field() }}</form>
+            </li>
+        @endauth
+      </ul>
     </nav>
 </header>
