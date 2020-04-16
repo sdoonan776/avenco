@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Interfaces\ProductRepositoryInterface;
 use App\Models\Coupon;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -16,16 +15,11 @@ use Illuminate\View\View;
 
 class CartController extends Controller
 {
-    protected $productRepository;
-    protected $coupon;
+    protected $model;
 
-    public function __construct(
-        ProductRepositoryInterface $productRepository,        
-        Coupon $coupon
-    )
+    public function __construct(Coupon $model)
     {
-        $this->productRepository = $productRepository;
-        $this->coupon = $coupon;
+        $this->model = $model;
     }   
 
     /**
@@ -36,12 +30,12 @@ class CartController extends Controller
     public function index(): View
     {
         return view('cart.index', [
-            'discount' => $this->coupon->getDiscount(),
-            'tax' => $this->coupon->getTax(),
-            'code' => $this->coupon->getCode(),
-            'newSubTotal' => $this->coupon->getNewSubTotal(),
-            'newTax' => $this->coupon->getNewTax(),
-            'newTotal' => $this->coupon->getNewTotal(),
+            'discount' => $this->model->getDiscount(),
+            'tax' => $this->model->getTax(),
+            'code' => $this->model->getCode(),
+            'newSubTotal' => $this->model->getNewSubTotal(),
+            'newTax' => $this->model->getNewTax(),
+            'newTotal' => $this->model->getNewTotal(),
         ]);                                        
     }
     

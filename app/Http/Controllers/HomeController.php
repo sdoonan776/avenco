@@ -13,12 +13,11 @@ use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    protected $productRepository;
+    protected $repository;
 
-	public function __construct(ProductRepositoryInterface $productRepository)
+	public function __construct(ProductRepositoryInterface $repository)
 	{
-		$this->productRepository = $productRepository;
-        // $this->middleware(['auth','verified']);
+		$this->repository = $repository;
 	}
 
     /**
@@ -27,7 +26,10 @@ class HomeController extends Controller
      */
     public function __invoke(): View
     {
-      $products = $this->productRepository->productPagination(4);    
-      return view('home.index', compact('products'));
+        $products = $this->repository->productPagination(4);    
+        
+        return view('home.index', [
+            'products' => $products
+        ]);
     }
 }

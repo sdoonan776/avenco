@@ -11,7 +11,6 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
-
     /**
      * Returns the edit page
      * @return View

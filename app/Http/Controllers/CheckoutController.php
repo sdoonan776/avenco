@@ -8,9 +8,6 @@ use App\Jobs\DecreaseProductQuantity;
 use App\Mail\OrderPlaced;
 use App\Models\Country;
 use App\Models\Coupon;
-use App\Models\Order;
-use App\Models\OrderProduct;
-use App\Models\Product;
 use App\Services\CouponDiscountService;
 use App\Services\OrdersTableService;
 use App\Services\StripeService;
@@ -22,7 +19,7 @@ use Illuminate\View\View;
 
 class CheckoutController extends Controller
 {
-    protected $orderRepository;
+    protected $ordersTableService;
     protected $stripeService;
     protected $coupon;
     protected $countries;
