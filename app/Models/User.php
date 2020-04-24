@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use App\Models\Order;
+use App\Models\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,11 +49,39 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
+     * Checks if user has role
+     *
+     * @param string $role
+     * @return bool
+     */
+    public function hasRole(string $role): bool
+    {
+        return $this->roles->where('name', $role)->isNotEmpty();
+    }
+
+    /**
+     * Checks if user role is admin
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->hasRole(Role::ROLE_ADMIN);
+    }
+    
+    /**
      * Gets orders related to user
      * @return HasMany
      */
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class, 'user_id');
+    }
+    /**
+     * Belongs to many relationship with a role
+     * @return BelongsToMany 
+     */
+    public function roles(): belongsToMany
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 }

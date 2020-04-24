@@ -67,9 +67,7 @@
 
         <div class="copyright">
           <small>
-              Avenco &copy;
-              <script>document.write(new Date().getFullYear());</script> 
-              All rights reserved
+              Avenco &copy; {{ date('Y') }} | All rights reserved
           </small>    
         </div>
      </div>

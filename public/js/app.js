@@ -24019,6 +24019,55 @@ __webpack_require__(/*! ./components/mobileMenu */ "./resources/assets/js/compon
 
 __webpack_require__(/*! ./components/updateQuantity */ "./resources/assets/js/components/updateQuantity.js");
 
+__webpack_require__(/*! ./components/admin */ "./resources/assets/js/components/admin.js");
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/admin.js":
+/*!*************************************************!*\
+  !*** ./resources/assets/js/components/admin.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*Toggle dropdown list*/
+function toggleDD(myDropMenu) {
+  document.getElementById(myDropMenu).classList.toggle("invisible");
+}
+/*Filter dropdown options*/
+
+
+function filterDD(myDropMenu, myDropMenuSearch) {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById(myDropMenuSearch);
+  filter = input.value.toUpperCase();
+  div = document.getElementById(myDropMenu);
+  a = div.getElementsByTagName("a");
+
+  for (i = 0; i < a.length; i++) {
+    if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+} // Close the dropdown menu if the user clicks outside of it
+
+
+window.onclick = function (event) {
+  if (!event.target.matches('.drop-button') && !event.target.matches('.drop-search')) {
+    var dropdowns = document.getElementsByClassName("dropdownlist");
+
+    for (var i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+
+      if (!openDropdown.classList.contains('invisible')) {
+        openDropdown.classList.add('invisible');
+      }
+    }
+  }
+};
+
 /***/ }),
 
 /***/ "./resources/assets/js/components/mobileMenu.js":
@@ -24049,27 +24098,25 @@ menuButton.addEventListener('click', function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-// (function(){
-//     const classname = document.querySelectorAll('.quantity')
-//     Array.from(classname).forEach(function(element) {
-//         element.addEventListener('change', function() {
-//             const id = element.getAttribute('data-id')
-//             const productQuantity = element.getAttribute('data-productQuantity')
-//             axios.patch(`/cart/${id}`, {
-//                 quantity: this.value,
-//                 productQuantity: productQuantity
-//             })
-//             .then(function (response) {
-//                 // console.log(response);
-//                 window.location.href = 'cart'
-//             })
-//             .catch(function (error) {
-//                 // console.log(error);
-//                 window.location.href = 'cart'
-//             });
-//         })
-//     })
-// })();
+(function () {
+  var classname = document.querySelectorAll('.quantity');
+  Array.from(classname).forEach(function (element) {
+    element.addEventListener('change', function () {
+      var id = element.getAttribute('data-id');
+      var productQuantity = element.getAttribute('data-productQuantity');
+      axios.patch("/cart/".concat(id), {
+        quantity: this.value,
+        productQuantity: productQuantity
+      }).then(function (response) {
+        // console.log(response);
+        window.location.href = 'cart';
+      })["catch"](function (error) {
+        // console.log(error);
+        window.location.href = 'cart';
+      });
+    });
+  });
+})();
 
 /***/ }),
 
