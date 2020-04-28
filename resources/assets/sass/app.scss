@@ -3,17 +3,20 @@
 
 @import './base/base';
 
-@import './content/cart';
-@import './content/checkout';
-@import './content/product-page';
-@import './content/profile';
-@import './content/profile-edit';
-@import './content/shop';
-@import './content/home';
-@import './content/auth-form';
-@import './content/orders';
-@import './content/show-order';
-@import './content/order-confirmation';
+@import './site/cart';
+@import './site/checkout';
+@import './site/product-page';
+@import './site/profile';
+@import './site/profile-edit';
+@import './site/shop';
+@import './site/home';
+@import './site/auth-form';
+@import './site/orders';
+@import './site/show-order';
+@import './site/order-confirmation';
+
+@import './admin/dashboard';
+@import './admin/admin-form';
 
 @import './components/header';
 @import './components/footer';

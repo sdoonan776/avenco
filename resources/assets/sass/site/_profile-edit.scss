@@ -1,0 +1,41 @@
+.edit-profile {
+	font-family: 'FuturaBT-Book';
+	margin: 1em 0;
+
+		.h3 {
+			margin: 1em 0;
+		}
+
+		.edit-form-group {
+			display: flex;
+			flex-direction: column;
+			margin: .5em 0;
+
+		.edit-form-control {
+			@apply auth-form-input shadow appearance-none border; 
+			@apply rounded w-full p-2 text-gray-700 leading-tight;
+			margin: .5em 0;
+			&:focus {
+				outline: none;
+				box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.profile-section {
+		display: grid;
+		align-content: center;
+		justify-content: space-around;
+		grid-template-columns:  repeat(2, 1fr);
+
+		.profile-menu {
+			grid-column: 1 / 2;
+		}
+
+		.edit-profile {
+			grid-column: 2 / 3;
+		}
+	}
+}

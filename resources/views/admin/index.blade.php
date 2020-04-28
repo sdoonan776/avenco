@@ -4,32 +4,30 @@
 
 @section('admin')
 	<div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
-		
-		{{-- <table class="table-fixed">
-		  <thead>
-		    <tr>
-		      <th class="w-1/2 px-4 py-2">Title</th>
-		      <th class="w-1/4 px-4 py-2">Author</th>
-		      <th class="w-1/4 px-4 py-2">Views</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		    <tr>
-		      <td class="border px-4 py-2">Intro to CSS</td>
-		      <td class="border px-4 py-2">Adam</td>
-		      <td class="border px-4 py-2">858</td>
-		    </tr>
-		    <tr class="bg-gray-100">
-		      <td class="border px-4 py-2">A Long and Winding Tour of the History of UI Frameworks and Tools and the Impact on Design</td>
-		      <td class="border px-4 py-2">Adam</td>
-		      <td class="border px-4 py-2">112</td>
-		    </tr>
-		    <tr>
-		      <td class="border px-4 py-2">Intro to JavaScript</td>
-		      <td class="border px-4 py-2">Chris</td>
-		      <td class="border px-4 py-2">1,280</td>
-		    </tr>
-		  </tbody>
-		</table> --}}
+		<a href="{{ route('admin.users.index') }}">
+			<div class="p-4 m-3 w-full border">
+				<h3>Users</h3>
+			</div>
+		</a>
+		<a href="{{ route('admin.products.index') }}">
+			<div class="p-4 m-3 w-full border">
+				<h3>Products</h3>
+			</div>
+		</a>
+		<a href="{{ route('admin.orders.index') }}">
+			<div class="p-4 m-3 w-full border">
+				<h3>Orders</h3>
+			</div>
+		</a>
+		<a href="{{ route('admin.categories.index') }}">
+			<div class="p-4 m-3 w-full border">
+				<h3>Categories</h3>
+			</div>
+		</a>
+		<a href="{{ route('admin.coupons.index') }}">
+			<div class="p-4 m-3 w-full border">
+				<h3>Coupons</h3>
+			</div>
+		</a>
 	</div>
 @endsection

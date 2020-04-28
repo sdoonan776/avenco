@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
+use App\Http\Resources\Category as CategoryResource;
 use App\Models\Category;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -16,7 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::query()->select('*')->paginate(10);
+        $categories = Category::query()->select('*')->paginate(4);
         return view('admin.categories.index', [
             'categories' => $categories
         ]);
@@ -64,11 +67,15 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request): RedirectResponse
     {
-        
+        Category::create($request->only([
+            'name' => ''
+        ]));
+
+        // return back()->withSuccess()
     }
 
     /**

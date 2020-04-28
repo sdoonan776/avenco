@@ -17,7 +17,7 @@ class Role
     public function handle($request, Closure $next, string $role)
     {
         if (!$request->user()->hasRole($role)) {
-            return redirect()->route('home.index')->withErrors('Not Authorized');
+            return redirect()->route('home.index')->withErrors('This route is not authorized');
         }
 
         return $next($request);

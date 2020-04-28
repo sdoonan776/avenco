@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-// use App\Http\Resources\User;
+use App\Http\Requests\UserRequest;
+use App\Http\Resources\User as UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -17,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::query()->select('*')->paginate(10);
+        $users = User::query()->select('*')->paginate(4);
 
         return view('admin.users.index', [
             'users' => $users
@@ -67,21 +70,30 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(UserRequest $request): RedirectResponse
     {
-           
+        User::create($request->only([
+            'full_name',
+            'email',
+            'username',
+            'password' => Hash::make($request->password),
+            'api_token' => Str::random(60), 
+            'registered_at' => now()
+        ]));
+
+        return back()->withSuccess('User successfully created');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         
     }
@@ -89,11 +101,11 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        
+        $user->delete();
     }
 }

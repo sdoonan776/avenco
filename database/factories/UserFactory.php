@@ -13,7 +13,7 @@ $factory->define(User::class, function (Faker $faker) {
         'full_name' => $faker->name,
         'email' => $faker->safeEmail,
         'username' => $faker->userName,
-        'password' => $password ?: $password = bcrypt('password'),
+        'password' => $password ?: $password = bcrypt('password12345'),
         'api_token' => Str::random(60),
         'remember_token' => Str::random(10),
         'email_verified_at' => now(),

@@ -3,24 +3,17 @@
 @section('title', 'Categories')
 
 @section('admin')
-	<div>
-		<form action="{{ route('admin.users.store') }}" method="POST">
+	<div class="admin-form">
+		<form action="{{ route('admin.categories.store') }}" method="POST">
 			@csrf
-			<div class="form-group">
-				<label for="full_name">Full Name</label>
-				<input type="text" name="full_name" value="{{ old('full_name') ?? '' }}">
-			</div>
-			<div class="form-group">
-				<label for="email">Email</label>
-				<input type="email" name="email" value="{{ old('email') ?? '' }}">
-			</div>
-			<div class="form-group">
-				<label for="username">Username</label>
-				<input type="text" name="username" value="{{ old('username') ?? '' }}">
-			</div>
-			<div class="form-group">
-				<label for="password">Password</label>
-				<input type="password" name="password" value="{{ old('password') ?? '' }}">
+			<div class="admin-form-group">
+				<label for="name">Name</label>
+				<input type="text" name="name" value="{{ old('name') ?? '' }}">
+			</div>	
+			<div class="admin-form-group">
+				<button class="admin-btn" type="submit">
+					Create
+				</button>
 			</div>
 		</form>	
 	</div>	
