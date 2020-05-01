@@ -4,9 +4,12 @@
 
 @section('admin')
 	<div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
-		<a href="{{ route('admin.orders.create') }}" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-5 border border-blue-500 hover:border-transparent rounded w-24">
-			Create
-		</a>
+
+		<div id="messages">
+	        @include('partials.errors')
+	        @include('partials.messages')
+    	</div>
+		
 		<table class="table-fixed border my-5">
 		  <thead>
 		    <tr>
@@ -24,16 +27,18 @@
 			      <td class="border px-4 py-2">{{ priceFormat($order->total) }}</td>
 			      <td class="border px-4 py-2">
 			      	<a href="{{ route('admin.orders.show', $order->id) }}">
-			      		Details
+			      		<i class="fas fa-info"></i>
 			      	</a>
 			      	<a href="{{ route('admin.orders.edit', $order->id) }}">
-			      		Edit
+			      		<i class="far fa-edit"></i>
 			      	</a>
 			      	<div>
 			      		<form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST">
 			      			@csrf
 			      			@method('DELETE')
-			      			<button class="admin-btn" type="submit">Delete</button>
+							<button type="submit">	
+			      				<i class="fas fa-trash-alt"></i>
+			      			</button>
 			      		</form>
 			      	</div>
 			      </td>

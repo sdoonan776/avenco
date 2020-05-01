@@ -13,7 +13,7 @@ class CouponRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class CouponRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'code' => 'required',
+            'type' => 'required',
+            'percent_off' => 'required'
         ];
     }
 }

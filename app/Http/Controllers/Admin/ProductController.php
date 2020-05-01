@@ -42,7 +42,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
         
         return view('admin.products.show', [
             'product' => $product
@@ -57,7 +57,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
 
         return view('admin.products.edit', [
             'product' => $product
@@ -67,10 +67,10 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ProductRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(ProductRequest $request)
+    public function store(ProductRequest $request): RedirectResponse
     {
         Product::create($request->only([
             'name',
@@ -79,19 +79,26 @@ class ProductController extends Controller
             'price'
         ]));
 
-        return back()->withSuccess('');
+        return back()->withSuccess('Product created successfully');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ProductRequest  $request
      * @param  Product $product
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ProductRequest $request, Product $product): RedirectResponse
     {
-        //
+        $product->update($request->only([
+            'name',
+            'description',
+            'quantity',
+            'price'
+        ]));    
+        
+        back()->withSuccess('Product updated successfully');
     }
 
     /**
@@ -101,7 +108,8 @@ class ProductController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Product $product): RedirectResponse
-    {
-        //
+    {        
+        $product->delete();
+        back()->withSuccess('Product deleted successfully');
     }
 }

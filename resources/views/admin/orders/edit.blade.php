@@ -4,6 +4,7 @@
 
 @section('admin')
 	<div class="admin-form">
+		<h3>Edit Order</h3>
 		<form action="{{ route('admin.orders.update', $order->id) }}" method="POST">
 			@csrf
 			@method('PATCH')

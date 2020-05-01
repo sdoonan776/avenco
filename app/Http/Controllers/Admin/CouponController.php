@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CouponRequest;
 use App\Models\Coupon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
@@ -40,7 +42,7 @@ class CouponController extends Controller
      */
     public function show($id)
     {
-        $coupon = Coupon::find($id);
+        $coupon = Coupon::findOrFail($id);
         return view('admin.coupons.show', [
             'coupon' => $coupon
         ]);
@@ -54,7 +56,7 @@ class CouponController extends Controller
      */
     public function edit($id)
     {
-        $coupon = Coupon::find($id);
+        $coupon = Coupon::findOrFail($id);
         return view('admin.coupons.edit', [
             'coupon' => $coupon
         ]);
@@ -63,34 +65,46 @@ class CouponController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  CouponRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CouponRequest $request): RedirectResponse
     {
-        
+        Coupon::create($request->only([
+            'code',
+            'type',
+            'percent_off'
+        ]));
+
+        return back()->withSuccess('Coupon created successfully');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  CouponRequest $request
+     * @param  Coupon $coupon
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(CouponRequest $request, Coupon $coupon): RedirectResponse
     {
-        //
+        $coupon->update([
+            'code',
+            'type',
+            'percent_off'
+        ]);
+        return back()->withSuccess('Coupon updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Coupon $coupon
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Coupon $coupon): RedirectResponse
     {
-        //
+        $coupon->delete();
+        back()->withSuccess('Coupon deleted successfully');
     }
 }

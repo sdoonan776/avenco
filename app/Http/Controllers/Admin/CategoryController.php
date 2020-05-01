@@ -43,7 +43,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
         return view('admin.categories.show', [
             'category' => $category
         ]);
@@ -57,7 +57,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
         return view('admin.categories.edit', [
             'category' => $category
         ]);
@@ -72,32 +72,39 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request): RedirectResponse
     {
         Category::create($request->only([
-            'name' => ''
+            'name'
         ]));
 
-        // return back()->withSuccess()
+        return back()->withSuccess('Cateory successfully created');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Category $category
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, Category $category): RedirectResponse
     {
-        //
+        $category->update($request->only([
+            'name'
+        ]));
+
+        back()->withSuccess('Category updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        back()->withSuccess('Category successfully created');
     }
 }

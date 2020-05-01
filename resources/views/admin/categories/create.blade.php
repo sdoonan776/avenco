@@ -3,6 +3,7 @@
 @section('title', 'Categories')
 
 @section('admin')
+	<h3>Create Category</h3>
 	<div class="admin-form">
 		<form action="{{ route('admin.categories.store') }}" method="POST">
 			@csrf

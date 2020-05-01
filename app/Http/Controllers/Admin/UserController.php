@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\User as UserResource;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -45,7 +46,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
         return view('admin.users.show', [
             'user' => $user
@@ -60,7 +61,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         return view('admin.users.edit', [
             'user' => $user
         ]);
@@ -69,7 +70,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UserRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(UserRequest $request): RedirectResponse
@@ -78,34 +79,43 @@ class UserController extends Controller
             'full_name',
             'email',
             'username',
-            'password' => Hash::make($request->password),
+            'password',
             'api_token' => Str::random(60), 
             'registered_at' => now()
         ]));
 
-        return back()->withSuccess('User successfully created');
+        return back()->withSuccess('User created successfully');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param  User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request, User $user): RedirectResponse
     {
-        
+        $user->update($request->only([
+            'full_name',
+            'email',
+            'username',
+            'password',
+            'api_token' => Str::random(60), 
+            'registered_at' => now()
+        ]));
+        back()->withSuccess('User updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  User $user
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(User $user)
+    public function destroy(User $user): RedirectResponse
     {
         $user->delete();
+        back()->withSuccess('User deleted successfully');
     }
 }

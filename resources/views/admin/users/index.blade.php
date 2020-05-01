@@ -5,6 +5,12 @@
 @section('admin')
 	<div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
 
+		<div id="messages">
+	        @include('partials.errors')
+	        @include('partials.messages')
+    	</div>
+
+
 		<a href="{{ route('admin.users.create') }}" class="admin-btn">
 			Create
 		</a>
@@ -27,17 +33,17 @@
 			      <td class="border px-4 py-2">{{ date("d-m-Y", strtotime($user->registered_at)) }}</td>
 			      <td class="border px-4 py-2">
 			      	<a href="{{ route('admin.users.show', $user->id) }}">
-			      		Details
+			      		<i class="fas fa-info"></i>
 			      	</a>
 			      	<a href="{{ route('admin.users.edit', $user->id) }}">
-			      		Edit
+			      		<i class="far fa-edit"></i>
 			      	</a>
-			      	<div>
+			      	<div class="admin-delete">
 			      		<form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
 			      			@csrf
 			      			@method('DELETE')
-			      			<button class="admin-btn" type="submit">	
-			      				Delete
+			      			<button type="submit">	
+			      				<i class="fas fa-trash-alt"></i>
 			      			</button>
 			      		</form>
 			      	</div>
@@ -50,6 +56,5 @@
 		<div class="pagination-links">
 	      {{ $users->appends(request()->input())->links() }}
 	    </div>
-
 	</div>
 @endsection

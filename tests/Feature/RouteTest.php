@@ -2,16 +2,22 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use GuzzleHttp\Client;
 use Tests\TestCase;
 
 class RouteTest extends TestCase
 {
 	protected $http;
+	protected $user;
+	protected $admin;
 
 	public function setUp(): void
 	{
-		$this->http = new Client(['http://localhost']);
+		parent::setUp();
+
+		$this->http = new Client();
+		$this->user = factory(User::class)->create();
 	}
 	/**
 	 * @dataProvider getPublicUrls()
@@ -19,26 +25,36 @@ class RouteTest extends TestCase
 	 */
 	public function test_that_public_urls_are_accessable(string $data)
 	{
-	    $response = $this->http->get($data);
+	    $response = $this->http->request('GET', $data);
 	    $this->assertSame(200, $response->getStatusCode());
 	}
 
 	/**
-	 * [test_that_logged_in_user_urls_are_accessable description]
-	 * @dataProvider 
+	 * @dataProvider getProtectedUrls()
 	 * @return void
 	 */
-	public function test_that_logged_in_user_urls_are_accessable()
+	public function test_that_logged_in_user_urls_are_accessable(string $data)
 	{
-		$this->markTestIncomplete();
+		$response = $this->actingAs($this->user)->http->request('GET', $data);
+		$this->assertSame(200, $response->getStatusCode());
 	}
 
 	public function getPublicUrls()
 	{
-		yield ['/'];
-		yield ['/shop'];
-		yield ['/shop/dress-1'];
-		yield ['/login'];
-		yield ['/register'];
+		yield ['http://localhost/'];
+		yield ['http://localhost/shop'];
+		yield ['http://localhost/shop/dress-1'];
+		yield ['http://localhost/login'];
+		yield ['http://localhost/register'];
 	}
+
+	public function getProtectedUrls()
+	{	
+		yield ['http://localhost/cart'];
+		yield ['http://localhost/profile/edit'];
+		yield ['http://localhost/orders'];
+		yield ['http://localhost/orders/1'];
+		yield ['http://localhost/checkout'];
+	}
+
 }

@@ -4,6 +4,7 @@
 
 @section('admin')
 	<div class="admin-form">
+		<h3>Create Product</h3>
 		<form action="{{ route('admin.products.store') }}" method="POST">
 			@csrf
 			<div class="admin-form-group">
@@ -21,10 +22,6 @@
 			<div class="admin-form-group">
 				<label for="price">Price</label>
 				<input type="number" name="price" value="{{ old('price') ?? '' }}">
-			</div>	
-			<div class="admin-form-group">
-				<label for="product_image">Image</label>
-				<input type="" name="product_image" value="{{ old('product_image') ?? '' }}">
 			</div>	
 			<div class="admin-form-group">
 				<button class="admin-btn" type="submit">

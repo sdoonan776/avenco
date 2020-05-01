@@ -4,6 +4,7 @@
 
 @section('admin')
 	<div class="admin-form">
+		<h3>Create Coupon</h3>
 		<form action="{{ route('admin.coupons.store') }}" method="POST">
 			@csrf
 			<div class="admin-form-group">

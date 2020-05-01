@@ -4,6 +4,7 @@
 
 @section('admin')
 	<div class="admin-form">
+		<h3>Create User</h3>
 		<form action="{{ route('admin.users.store') }}" method="POST">
 			@csrf
 			<div class="admin-form-group">
