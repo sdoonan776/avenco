@@ -16,7 +16,7 @@ class OrderController extends Controller
      */
     public function index(): View
     {
-    	$orders = auth()->user()->orders()->with('products')->get();
+    	$orders = auth()->user()->orders->with('products')->get();
 
         return view('order.index', [
             'orders' => $orders
@@ -30,7 +30,7 @@ class OrderController extends Controller
      */
     public function show(int $id): View
     {
-        $order = auth()->user()->orders()->findOrFail($id)->first();
+        $order = auth()->user()->orders->findOrFail($id)->first();
 
         $products = $order->products;
 

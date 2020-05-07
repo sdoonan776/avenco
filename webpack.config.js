@@ -8,7 +8,9 @@ const webpack = require('webpack');
 module.exports = {
     entry: {
         app: ['./resources/assets/js/app.js', './resources/assets/sass/app.scss'],
-        stripe: ['resources/assets/js/components/stripe.js']
+        stripe: ['./resources/assets/js/components/stripe.js'],
+        fontawesome: ['./resources/assets/js/components/fontawesome.js'],
+        tailwind: ['./resources/assets/sass/plugins/_tailwind.scss']
     },
     output : {
         publicPath: './public',
@@ -34,33 +36,17 @@ module.exports = {
                 ],
             },
             {
-                test: /\.(png|jpg|gif)$/,
+                test: /\.(png|jpg|gif|svg)$/,
                 exclude: /node_modules/,
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '[name].[ext]',
-                            outputPath: '/public/img',
-                            publicPath: '/public'
+                            name: 'img/[name].[ext]'
                         }
                     }
                 ]
             },
-            {
-                test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: '/fonts',
-                            publicPath: '/fonts'
-                        }
-                    }
-                ]
-            }
         ]
     },
     plugins: [

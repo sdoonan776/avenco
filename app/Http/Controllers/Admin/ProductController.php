@@ -78,7 +78,7 @@ class ProductController extends Controller
             'price'
         ]));
 
-        return back()->withSuccess('Product created successfully');
+        return redirect()->route('admin.products.index')->withSuccess('Product created successfully');
     }
 
     /**
@@ -97,7 +97,7 @@ class ProductController extends Controller
             'price'
         ]));    
         
-        return back()->withSuccess('Product updated successfully');
+        return redirect()->route('admin.products.index')->withSuccess('Product updated successfully');
     }
 
     /**

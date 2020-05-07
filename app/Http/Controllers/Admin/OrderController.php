@@ -78,7 +78,7 @@ class OrderController extends Controller
             'shipped'
         ]));
         
-        return back()->withSuccess('Order updated successfully');
+        return redirect()->route('admin.orders.index')->withSuccess('Order updated successfully');
     }
 
     /**

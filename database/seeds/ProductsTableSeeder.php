@@ -27,7 +27,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => $faker->paragraphs(3, true),
                 'price' => $faker->numberBetween(1000, 10000),
                 'quantity' => $faker->numberBetween(0, 30),
-                'product_image' => 'resources/assets/img/products/dresses_'.$i.'.jpg',
+                'product_image' => 'img/dresses_'.$i.'.jpg',
             ]);
         }
 

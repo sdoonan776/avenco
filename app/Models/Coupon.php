@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Coupon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Database\Eloquent\Model;
 
@@ -76,7 +75,7 @@ class Coupon extends Model
      */
     public function findByCode($code)
     {
-        return Coupon::where('code', $code)->first();
+        return self::where('code', $code)->first();
     }
 
     /**

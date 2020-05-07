@@ -81,7 +81,7 @@ class UserController extends Controller
             'registered_at' => now()
         ]));
 
-        return back()->withSuccess('User created successfully');
+        return redirect()->route('admin.users.index')->withSuccess('User created successfully');
     }
 
     /**
@@ -101,7 +101,7 @@ class UserController extends Controller
             'api_token' => Str::random(60), 
             'registered_at' => now()
         ]));
-        return back()->withSuccess('User updated successfully');
+        return redirect()->route('admin.users.index')->withSuccess('User updated successfully');
     }
 
     /**

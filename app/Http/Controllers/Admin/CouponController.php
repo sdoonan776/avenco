@@ -76,7 +76,7 @@ class CouponController extends Controller
             'percent_off'
         ]));
 
-        return back()->withSuccess('Coupon created successfully');
+        return redirect()->route('admin.coupons.index')->withSuccess('Coupon created successfully');
     }
 
     /**
@@ -93,7 +93,7 @@ class CouponController extends Controller
             'type',
             'percent_off'
         ]);
-        return back()->withSuccess('Coupon updated successfully');
+        return redirect()->route('admin.coupons.index')->withSuccess('Coupon updated successfully');
     }
 
     /**

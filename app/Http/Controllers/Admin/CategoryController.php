@@ -75,7 +75,7 @@ class CategoryController extends Controller
             'name'
         ]));
 
-        return back()->withSuccess('Cateory successfully created');
+        return redirect()->route('admin.categories.index')->withSuccess('Cateory successfully created');
     }
 
     /**

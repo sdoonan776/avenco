@@ -9,7 +9,7 @@
 html,
 body {
 	height: 100%;
-	font-family: 'FuturaBT-Book' sans-serif;
+	font-family: 'Nunito', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 	background: none;
@@ -24,7 +24,7 @@ h6 {
 	margin: 0;
 	color: #111111;
 	font-weight: 500;
-	font-family: 'FuturaBT-Book', sans-serif;
+	font-family: 'Nunito', sans-serif;
 }
 
 h1 {
@@ -116,12 +116,12 @@ button {
 	text-transform: uppercase;
 }
 
-@font-face {
-	font-family: 'FuturaBT-Book';
-	src: url('../fonts/FuturaBT-Book.eot?#iefix') format('embedded-opentype'), url('../fonts/FuturaBT-Book.woff') format('woff'), url('../fonts/FuturaBT-Book.ttf') format('truetype'), url('../fonts/FuturaBT-Book.svg#FuturaBT-Book') format('svg');
-	font-weight: normal;
-	font-style: normal;
-}
+// @font-face {
+// 	font-family: 'FuturaBT-Book';
+// 	src: url('../fonts/FuturaBT-Book.eot?#iefix') format('embedded-opentype'), url('../fonts/FuturaBT-Book.woff') format('woff'), url('../fonts/FuturaBT-Book.ttf') format('truetype'), url('../fonts/FuturaBT-Book.svg#FuturaBT-Book') format('svg');
+// 	font-weight: normal;
+// 	font-style: normal;
+// }
 
 .wrapper {
 	width: 80%;

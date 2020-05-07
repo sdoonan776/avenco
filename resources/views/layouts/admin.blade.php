@@ -8,6 +8,7 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>Admin | @yield('title')</title>
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/tailwind.css') }}">
 		<link rel="favicon" href="{{ asset('favicon.ico') }}">
 	</head>
 	<body class="bg-gray-900 font-sans leading-normal tracking-normal mt-6 flex flex-col md:flex-row">
@@ -24,6 +25,7 @@
 		  	@yield('admin')
 		</main>
 
-		<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/fontawesome.js') }}"></script>
 	</body>
 </html>

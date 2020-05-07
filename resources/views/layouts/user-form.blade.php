@@ -8,6 +8,7 @@
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>{{ config('app.name') }} | @yield('title')</title>
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/tailwind.css') }}">
 		<link rel="favicon" href="{{ asset('favicon.ico') }}">
 	</head>
 	<body>
@@ -16,6 +17,7 @@
 			@yield('form')
 		</main>
 		
-		<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/fontawesome.js') }}"></script>
 	</body>
 </html>
