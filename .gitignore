@@ -1,9 +1,13 @@
 /node_modules
 /public/hot
 /public/storage
+/public/js
+/public/css
+/public/img
+/public/fonts
 /storage/*.key
 /vendor
-/violet
+
 .env
 .env.testing
 .env.backup

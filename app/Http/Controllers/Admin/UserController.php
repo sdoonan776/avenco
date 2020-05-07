@@ -4,11 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
-use App\Http\Resources\User as UserResource;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -104,7 +101,7 @@ class UserController extends Controller
             'api_token' => Str::random(60), 
             'registered_at' => now()
         ]));
-        back()->withSuccess('User updated successfully');
+        return back()->withSuccess('User updated successfully');
     }
 
     /**
@@ -116,6 +113,6 @@ class UserController extends Controller
     public function destroy(User $user): RedirectResponse
     {
         $user->delete();
-        back()->withSuccess('User deleted successfully');
+        return back()->withSuccess('User deleted successfully');
     }
 }

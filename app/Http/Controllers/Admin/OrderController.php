@@ -77,7 +77,8 @@ class OrderController extends Controller
             'total',
             'shipped'
         ]));
-        back()->withSuccess('Order updated successfully');
+        
+        return back()->withSuccess('Order updated successfully');
     }
 
     /**
@@ -89,6 +90,6 @@ class OrderController extends Controller
     public function destroy(Order $order): RedirectResponse
     {
         $order->delete();
-        back()->withSuccess('Order deleted successfully');
+        return back()->withSuccess('Order deleted successfully');
     }
 }

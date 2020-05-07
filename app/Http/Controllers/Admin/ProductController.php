@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -98,7 +97,7 @@ class ProductController extends Controller
             'price'
         ]));    
         
-        back()->withSuccess('Product updated successfully');
+        return back()->withSuccess('Product updated successfully');
     }
 
     /**
@@ -110,6 +109,6 @@ class ProductController extends Controller
     public function destroy(Product $product): RedirectResponse
     {        
         $product->delete();
-        back()->withSuccess('Product deleted successfully');
+        return back()->withSuccess('Product deleted successfully');
     }
 }

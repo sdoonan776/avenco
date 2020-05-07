@@ -1,6 +1,6 @@
-// import 'jquery';
+import 'jquery';
 
-// import 'responsive-nav';
+import 'responsive-nav';
 
 require('../../../node_modules/@fortawesome/fontawesome-free/js/all');
 window._ = require('lodash');
