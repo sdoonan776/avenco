@@ -10,14 +10,14 @@
     </div>
     
     <div class="banner">
-        <img src="{{ asset('resources/assets/img/slider-1.jpg') }}" alt="First slide">
+        <img src="{{ asset('img/slider-1.jpg') }}" alt="First slide">
     </div>    
     
     <div class="wrapper">
         <section class="features-section">
             <div class="features-ads">                    
                 <div class="single-features-ads first">
-                    <img src="{{ asset('resources/assets/img/icons/f-delivery.png') }}" alt="features-icon">
+                    <img src="{{ asset('img/f-delivery.jpg') }}" alt="features-icon">
                     <h4>Free Shipping</h4>
                     <p>
                         Fusce urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal
@@ -26,7 +26,7 @@
                 </div>
             
                 <div class="single-features-ads second">
-                    <img src="{{ asset('resources/assets/img/icons/coin.png') }}" alt="features-icon">
+                    <img src="{{ asset('img/coin.jpg') }}" alt="features-icon">
                     <h4>100% Money Back </h4>
                     <p>
                         Urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal esuada
@@ -36,7 +36,7 @@
             
         
                 <div class="single-features-ads">
-                    <img src="{{ asset('resources/assets/img/icons/chat.png') }}" alt="features-icon">
+                    <img src="{{ asset('img/chat.jpg') }}" alt="features-icon">
                     <h4>Online Support 24/7</h4>
                     <p>
                         Urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal esuada
