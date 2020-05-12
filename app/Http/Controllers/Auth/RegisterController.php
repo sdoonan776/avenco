@@ -26,6 +26,16 @@ class RegisterController extends Controller
     protected $redirectTo = 'login';
 
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array $data

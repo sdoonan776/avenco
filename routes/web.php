@@ -1,5 +1,9 @@
 <?php
 
+// auth routes
+Auth::routes(['verify' => true]);
+
+
 // home
 Route::get('/', 'Site\HomeController')->name('home.index');
 
@@ -36,37 +40,4 @@ Route::group(['middleware' => 'auth'], function () {
 
 	// Order Confirmation
 	Route::get('checkout/order/confirmation', 'Site\ConfirmationController')->name('checkout.order-confirmation');
-});
-
-// Authentication Routes...
-
-Route::group([
-		'middleware' => 'guest'
-	], function () {
-	// auth
-	Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-	Route::post('login', 'Auth\LoginController@login');
-	Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-	Route::post('register', 'Auth\RegisterController@register');
-
-	// reset password
-	Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-    Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
-});
-
-// logout
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-
-Route::group(['middleware' => 'auth'], function() {
-	
-	// verify email
-	Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
-	Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify')->middleware(['signed', 'throttle:6,1']);
-	Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend')->middleware('throttle:6,1');
-
-	// confirm password
-	Route::get('password/confirm', 'Auth\ConfirmPasswordController@showConfirmForm')->name('password.confirm');
-	Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
 });
