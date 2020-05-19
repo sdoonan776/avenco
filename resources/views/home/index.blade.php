@@ -4,10 +4,10 @@
 
 @section('main')
 
-    <div id="messages">
+    {{-- <div id="messages">
         @include('partials.errors')
         @include('partials.messages')
-    </div>
+    </div> --}}
     
     <div class="banner">
         <img src="{{ asset('img/slider-1.jpg') }}" alt="First slide">
@@ -17,7 +17,7 @@
         <section class="features-section">
             <div class="features-ads">                    
                 <div class="single-features-ads first">
-                    <img src="{{ asset('img/f-delivery.jpg') }}" alt="features-icon">
+                    <img src="{{ asset('img/f-delivery.png') }}" alt="features-icon">
                     <h4>Free Shipping</h4>
                     <p>
                         Fusce urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal
@@ -26,7 +26,7 @@
                 </div>
             
                 <div class="single-features-ads second">
-                    <img src="{{ asset('img/coin.jpg') }}" alt="features-icon">
+                    <img src="{{ asset('img/coin.png') }}" alt="features-icon">
                     <h4>100% Money Back </h4>
                     <p>
                         Urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal esuada
@@ -36,7 +36,7 @@
             
         
                 <div class="single-features-ads">
-                    <img src="{{ asset('img/chat.jpg') }}" alt="features-icon">
+                    <img src="{{ asset('img/chat.png') }}" alt="features-icon">
                     <h4>Online Support 24/7</h4>
                     <p>
                         Urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal esuada

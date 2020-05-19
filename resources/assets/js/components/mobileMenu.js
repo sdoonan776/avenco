@@ -1,6 +1,7 @@
 const menuButton = document.querySelector('.menu-button');
 
 menuButton.addEventListener('click', () => {
+
 	let navbarContent = document.querySelector('.nav-collapse');
 
 	navbarContent.classList.toggle("dropdown-style");
