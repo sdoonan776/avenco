@@ -9,17 +9,6 @@ use Illuminate\Http\Request;
 
 class SaveForLaterController extends Controller
 {
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        Cart::instance('saveForLater')->remove($id);
-        return back()->with('success_message', 'Item has been removed!');
-    }
 
     /**
      * Switch item from Saved for Later  to Cart.
@@ -46,4 +35,17 @@ class SaveForLaterController extends Controller
 
         return redirect()->route('cart.index')->with('success_message', 'Item has been moved to Cart!');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Cart::instance('saveForLater')->remove($id);
+        return back()->with('success_message', 'Item has been removed!');
+    }
+
 }

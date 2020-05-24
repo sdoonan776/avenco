@@ -8,14 +8,11 @@ use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class CartController extends Controller
 {
-    protected $model;
+    protected Coupon $model;
 
     public function __construct(Coupon $model)
     {

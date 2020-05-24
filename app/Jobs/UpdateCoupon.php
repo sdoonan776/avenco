@@ -14,7 +14,7 @@ class UpdateCoupon implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $coupon;
+    protected Coupon $coupon;
 
     /**
      * Create a new job instance.

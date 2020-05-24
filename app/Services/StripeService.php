@@ -11,7 +11,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class StripeService
 {
-	protected $coupon;
+	protected Coupon $coupon;
     
 	public function __construct(
     Coupon $coupon,

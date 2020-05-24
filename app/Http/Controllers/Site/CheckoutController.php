@@ -8,21 +8,19 @@ use App\Jobs\DecreaseProductQuantity;
 use App\Mail\OrderPlaced;
 use App\Models\Country;
 use App\Models\Coupon;
-use App\Services\CouponDiscountService;
 use App\Services\OrdersTableService;
 use App\Services\StripeService;
 use Cartalyst\Stripe\Exception\CardErrorException;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class CheckoutController extends Controller
 {
-    protected $ordersTableService;
-    protected $stripeService;
-    protected $coupon;
-    protected $countries;
+    protected OrdersTableService $ordersTableService;
+    protected StripeService $stripeService;
+    protected Coupon $coupon;
+    protected Country $countries;
 
     public function __construct(
         OrdersTableService $ordersTableService,
@@ -38,9 +36,10 @@ class CheckoutController extends Controller
     }
 
 	/**
-	 * returns checkout view
+	 * Returns checkout view
+     * @return View
 	 */
-    public function index()
+    public function index(): View
 	{
 		if (Cart::instance('default')->count() == 0) {
             return redirect()->route('shop.index');

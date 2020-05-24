@@ -28,6 +28,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => $faker->numberBetween(1000, 10000),
                 'quantity' => $faker->numberBetween(0, 30),
                 'product_image' => 'img/dresses_'.$i.'.jpg',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime()
             ]);
         }
 
@@ -42,7 +44,9 @@ class ProductsTableSeeder extends Seeder
                 'description' => $faker->paragraphs(3, true),
                 'price' => $faker->numberBetween(1000, 10000),
                 'quantity' => $faker->numberBetween(0, 30),
-                'product_image' => 'resources/assets/img/products/bags_'.$i.'.jpg',
+                'product_image' => 'img/bags_'.$i.'.jpg',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime()
             ]);
         }
 
@@ -57,7 +61,9 @@ class ProductsTableSeeder extends Seeder
                 'description' => $faker->paragraphs(3, true),
                 'price' => $faker->numberBetween(1000, 10000),
                 'quantity' => $faker->numberBetween(0, 30),
-                'product_image' => 'resources/assets/img/products/shoes_'.$i.'.jpg',
+                'product_image' => 'img/shoes_'.$i.'.jpg',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime()
             ]);
         }
 
@@ -72,7 +78,9 @@ class ProductsTableSeeder extends Seeder
                 'description' => $faker->paragraphs(3, true),
                 'price' => $faker->numberBetween(1000, 10000),
                 'quantity' => $faker->numberBetween(0, 30),
-                'product_image' => 'resources/assets/img/products/hats_'.$i.'.jpg',
+                'product_image' => 'img/hats_'.$i.'.jpg',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime()
             ]);
         }
 
@@ -87,7 +95,9 @@ class ProductsTableSeeder extends Seeder
                 'description' => $faker->paragraphs(3, true),
                 'price' => $faker->numberBetween(1000, 10000),
                 'quantity' => $faker->numberBetween(0, 30),
-                'product_image' => 'resources/assets/img/products/accessories_'.$i.'.jpg',
+                'product_image' => 'img/accessories_'.$i.'.jpg',
+                'created_at' => $faker->dateTime(),
+                'updated_at' => $faker->dateTime()
             ]);
         }
 

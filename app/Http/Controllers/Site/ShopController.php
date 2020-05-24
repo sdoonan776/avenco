@@ -35,9 +35,13 @@ class ShopController extends Controller
     {
         $pagination = 8;
 
-        $categories = $this->categoryRepository->listCategories();
-        $categoryName = $this->categoryRepository->getCategoryName();
-        $products = $this->productRepository->productPagination($pagination);
+        try {
+            $categories = $this->categoryRepository->listCategories();
+            $categoryName = $this->categoryRepository->getCategoryName();
+            $products = $this->productRepository->productPagination($pagination);
+        } catch (\Exception $e) {
+            throw new $e->getMessage();
+        }
       
         return view('shop.index', [
             'categories' => $categories,
@@ -53,7 +57,11 @@ class ShopController extends Controller
      */
     public function show($slug): View
     {
-        $product = $this->productRepository->findProductBySlug($slug);
+        try {
+            $product = $this->productRepository->findProductBySlug($slug);
+        } catch (\Exception $e) {
+            throw new $e->getMessage();
+        }
 
         return view('shop.show', [
             'product' => $product,

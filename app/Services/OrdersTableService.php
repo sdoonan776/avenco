@@ -9,7 +9,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class OrdersTableService
 {
-    protected $coupon;
+    protected Coupon $coupon;
 
     public function __construct(Coupon $coupon)
     {

@@ -9,7 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 
 class CartUpdatedListener
 {
-    protected $coupon;
+    protected Coupon $coupon;
 
     /**
      * Create the event listener.

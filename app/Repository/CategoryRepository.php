@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
 {
-    protected $model;
+    protected Category $model;
 
     public function __construct(Category $model)
     {

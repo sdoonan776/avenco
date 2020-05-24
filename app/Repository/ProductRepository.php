@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class ProductRepository extends BaseRepository implements ProductRepositoryInterface
 {
 
-	protected $model;
+	protected Product $model;
 
 	/**
 	 * Constructor for ProductRepository

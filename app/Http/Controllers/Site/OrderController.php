@@ -16,7 +16,11 @@ class OrderController extends Controller
      */
     public function index(): View
     {
-    	$orders = auth()->user()->orders->with('products')->get();
+        try {
+            $orders = auth()->user()->orders->with('products')->get();    
+        } catch (\Exception $e) {
+            throw new $e->getMessage();
+        }
 
         return view('order.index', [
             'orders' => $orders
@@ -25,10 +29,10 @@ class OrderController extends Controller
 
     /**
      * Displays a single resources
-     * @param  int $id
+     * @param Request $id
      * @return View
      */
-    public function show(int $id): View
+    public function show(Request $id): View
     {
         $order = auth()->user()->orders->findOrFail($id)->first();
 

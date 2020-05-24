@@ -106,11 +106,11 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label class="py-2" for="card-element">Credit / Debit card</label>
-                        <div class="payment-icons">
+                        {{-- <div class="payment-icons">
                             <img class="py-2" src="{{ asset('resources/assets/img/mastercard.svg') }}" alt="mastercard">
                             <img class="py-2" src="{{ asset('resources/assets/img/visa.svg') }}" alt="visa">
                             <img class="py-2" src="{{ asset('resources/assets/img/american-express.svg') }}" alt="american express">
-                        </div>
+                        </div> --}}
 
                         <div class="p-2 border" id="card-element">
                              {{-- stripe element will be inserted here --}}
@@ -137,5 +137,5 @@
     const stripe = Stripe('{{ config('services.stripe.key') }}');
     const elements = stripe.elements();
 </script>
-<script src="{{ mix('js/stripe.js') }}" defer></script>
+<script src="{{ asset('js/stripe.js') }}" defer></script>
 

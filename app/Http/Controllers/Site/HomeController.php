@@ -4,16 +4,11 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Interfaces\ProductRepositoryInterface;
-use App\Models\Category;
-use App\Models\Product;
-use Http\Client\Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    protected $repository;
+    protected ProductRepositoryInterface $repository;
 
 	public function __construct(ProductRepositoryInterface $repository)
 	{
@@ -25,8 +20,12 @@ class HomeController extends Controller
      * @return View
      */
     public function __invoke(): View
-    {
-        $products = $this->repository->productPagination(4);    
+    {   
+        try {
+            $products = $this->repository->productPagination(4);    
+        } catch (\Exception $e) {
+            throw new $e->getMessage();
+        }
         
         return view('home.index', [
             'products' => $products

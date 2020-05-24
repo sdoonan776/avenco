@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class CouponController extends Controller
 {
 
-    protected $model;
+    protected Coupon $model;
 
     public function __construct(Coupon $model)
     {
