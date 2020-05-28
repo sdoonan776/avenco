@@ -11,25 +11,26 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class StripeService
 {
-	protected Coupon $coupon;
+  protected Coupon $coupon;
+  protected CartContentService $service;
     
 	public function __construct(
     Coupon $coupon,
-    CartContentService $cartContentService
+    CartContentService $service
   )
 	{
 		$this->coupon = $coupon;
-    $this->cartContentService = $cartContentService;
+    $this->service = $service;
 	}
 
 	/**
 	 * Uses the Stripe facade to process the card payment
    * @param CheckoutRequest $request
-	 * @return array
+	 * @return Stripe
 	 */
-	public function processPayment(CheckoutRequest $request): array
+	public function processPayment(CheckoutRequest $request): Stripe
 	{
-    $contents = $this->cartContentService->getCartContents();
+    $contents = $this->service->getCartContents();
 
 		return Stripe::charges()->create([
         'amount' => $this->coupon->getNewTotal() / 100,

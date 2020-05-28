@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Site;
 
+use Exception;
+use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use App\Interfaces\ProductRepositoryInterface;
-use Illuminate\View\View;
 
 class HomeController extends Controller
 {
@@ -20,10 +21,11 @@ class HomeController extends Controller
      * @return View
      */
     public function __invoke(): View
-    {   
+    {
+        dd(auth());
         try {
             $products = $this->repository->productPagination(4);    
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new $e->getMessage();
         }
         

@@ -10,3 +10,5 @@ require('./components/mobileMenu');
 require('./components/updateQuantity');
 require('./components/admin');
 require('./components/images');
+require('./components/notification');
+require('./components/slideshow');

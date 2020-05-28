@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use Illuminate\Http\Request;
 use App\Interfaces\BaseInterface;
 use Illuminate\Database\Eloquent\Model;
 

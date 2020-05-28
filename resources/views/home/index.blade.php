@@ -4,10 +4,9 @@
 
 @section('main')
 
-    {{-- <div id="messages">
-        @include('partials.errors')
-        @include('partials.messages')
-    </div> --}}
+    <div id="messages">
+        @include('partials.notification')
+    </div>
     
     <div class="banner">
         <img src="{{ asset('img/slider-1.jpg') }}" alt="First slide">
