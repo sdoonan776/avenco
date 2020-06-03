@@ -7,7 +7,7 @@ use App\Models\Coupon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
-class CartUpdatedListener
+class CartUpdatedListener  
 {
     protected Coupon $coupon;
 
@@ -24,10 +24,9 @@ class CartUpdatedListener
     /**
      * Handle the event.
      *
-     * @param  object  $event
      * @return void
      */
-    public function handle($event)
+    public function handle()
     {
         $couponName = session()->get('coupon');
 

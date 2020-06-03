@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -16,11 +15,8 @@ class OrderController extends Controller
      */
     public function index(): View
     {
-        try {
-            $orders = auth()->user()->orders->with('products')->get();    
-        } catch (\Exception $e) {
-            throw new $e->getMessage();
-        }
+
+        $orders = auth()->user()->orders->with('products')->get();    
 
         return view('order.index', [
             'orders' => $orders

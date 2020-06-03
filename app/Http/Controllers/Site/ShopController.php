@@ -2,28 +2,20 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Models\Product;
+use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use App\Interfaces\CategoryRepositoryInterface;
-use App\Interfaces\ProductRepositoryInterface;
-use App\Models\Category;
-use App\Models\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
 
 
 class ShopController extends Controller
 {
 
-    protected CategoryRepositoryInterface $categoryRepository;
-    protected ProductRepositoryInterface $productRepository;
+    protected $repo;
 
-    public function __construct(
-        CategoryRepositoryInterface $categoryRepository,
-        ProductRepositoryInterface $productRepository
-    ) {
-        $this->categoryRepository = $categoryRepository;
-        $this->productRepository = $productRepository;
+    public function __construct(CategoryRepositoryInterface $repo) 
+    {
+        $this->repo = $repo;
     }
     
     /**
@@ -33,20 +25,10 @@ class ShopController extends Controller
      */
     public function index(): View
     {
-        $pagination = 8;
-
-        try {
-            $categories = $this->categoryRepository->listCategories();
-            $categoryName = $this->categoryRepository->getCategoryName();
-            $products = $this->productRepository->productPagination($pagination);
-        } catch (\Exception $e) {
-            throw new $e->getMessage();
-        }
-      
         return view('shop.index', [
-            'categories' => $categories,
-            'categoryName' => $categoryName,
-            'products' => $products,
+            'categories' => $this->repo->listCategories(),
+            'categoryName' => $this->repo->getCategoryName(),
+            'products' => $this->repo->getProductsByCategory()
         ]);
     }
 
@@ -57,12 +39,8 @@ class ShopController extends Controller
      */
     public function show($slug): View
     {
-        try {
-            $product = $this->productRepository->findProductBySlug($slug);
-        } catch (\Exception $e) {
-            throw new $e->getMessage();
-        }
-
+        $product = Product::where('slug', $slug)->first();
+        
         return view('shop.show', [
             'product' => $product,
         ]);

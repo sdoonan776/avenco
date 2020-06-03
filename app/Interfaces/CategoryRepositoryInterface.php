@@ -10,19 +10,8 @@ interface CategoryRepositoryInterface
      * @param array $columns
      * @return mixed
      */
-    public function listCategories(string $order = 'id', string $sort = 'desc', array $columns = ['*']);
-
-    /**
-     * @param int $id
-     * @return mixed
-     */
-    public function findCategoryById(int $id);
+    public function listCategories();
     
-    /**
-     * @return mixed
-     */
-    public function treeList();
-
     /**
      * @param $slug
      * @return mixed
@@ -30,8 +19,8 @@ interface CategoryRepositoryInterface
     public function findBySlug($slug);
 
     /**
-     * Gets the name of the request category
+     * Returns a list of products with the paginator by category
      * @return mixed
      */
-    public function getCategoryName();
+    public function getProductsByCategory();
 }

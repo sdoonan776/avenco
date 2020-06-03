@@ -26,10 +26,8 @@ class CouponController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // dd($request);
         $coupon = $this->model::where('code', $request->coupon)->first();
 
-        // dd($coupon);
         if (!$coupon) {
             return back()->withErrors('Invalid coupon code. Please try again.');
         }

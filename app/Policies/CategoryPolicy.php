@@ -25,7 +25,7 @@ class CategoryPolicy
     */ 
     public function store(User $user)
     {
-           
+        
     }
 
     /**

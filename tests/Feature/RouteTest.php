@@ -40,7 +40,7 @@ class RouteTest extends TestCase
 	public function getPublicUrls()
 	{
 		yield ['http://localhost/'];
-		yield ['http://localhost/shop'];
+		// yield ['http://localhost/shop'];
 		yield ['http://localhost/shop/dress-1'];
 		yield ['http://localhost/login'];
 		yield ['http://localhost/register'];

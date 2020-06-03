@@ -9,7 +9,7 @@
     </div>
     
     <div class="banner">
-        <img src="{{ asset('img/slider-1.jpg') }}" alt="First slide">
+        <img src="{{ asset('img/slider-1.jpg') }}" alt="banner-img">
     </div>    
     
     <div class="wrapper">

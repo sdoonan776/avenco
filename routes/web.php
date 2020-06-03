@@ -3,7 +3,6 @@
 // auth routes
 Auth::routes(['verify' => true]);
 
-
 // home
 Route::get('/', 'Site\HomeController')->name('home.index');
 

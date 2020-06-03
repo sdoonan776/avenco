@@ -4,50 +4,29 @@ namespace App\Repository;
 
 use App\Models\Category;
 use App\Interfaces\CategoryRepositoryInterface;
-use App\Repository\BaseRepository;
-use Illuminate\Support\Facades\DB;
 
-class CategoryRepository extends BaseRepository implements CategoryRepositoryInterface
+class CategoryRepository implements CategoryRepositoryInterface
 {
-    protected $model;
-
-    public function __construct(Category $model)
-    {
-        parent::__construct($model);
-        $this->model = $model;
-    }
-
+  
     /**
 	 * gets all category names in shop index
      * @return
 	 */
-    public function listCategories(string $order = 'id', string $sort = 'desc', array $columns = ['*'])
+    public function listCategories()
     {
-        return $this->all($order, $sort, $columns);
+        return Category::with('products');
     }
+
     /**
-     * finds a category by id
-     * @param  int $id 
+     * Find a single category by slug
+     *
+     * @param $slug
+     * @return Category
      */
-    public function findCategoryById(int $id)
-    {
-        return $this->findOneOrFail($id);
-    }
-
-    public function treeList()
-    {
-        return $this->model::orderByRaw('-name ASC')
-            ->get()
-            ->nest()
-            ->setIndent('|–– ')
-            ->listsFlattened('name');   
-    }
-
     public function findBySlug($slug)
     {
-        return $this->model::with('products')
+        return Category::with('products')
             ->where('slug', $slug)
-            ->where('menu', 1)
             ->first();
     }
 
@@ -58,10 +37,27 @@ class CategoryRepository extends BaseRepository implements CategoryRepositoryInt
     public function getCategoryName()
     {
         if (request()->category) {
-            return optional($this->listCategories()->where('slug', request()->category)->first())->name;
+            return optional(Category::where('slug', request()->category)->first())->name;
         } else {
             return 'All Products';
         }
+    }
+
+    /**
+     * Returns a list of products with the paginator by category
+     * @return mixed
+     */
+    public function getProductsByCategory()
+    {
+        if (request()->category) {
+            $products = Category::with('products')->whereHas('products', fn($query) =>
+                $query->where('slug', request()->category)
+            );
+        } else {
+            return Category::with('products');
+        }
+
+        return $products;
     }
 }
 

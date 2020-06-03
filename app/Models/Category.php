@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Category extends Model
 {
@@ -29,8 +30,13 @@ class Category extends Model
         'id' => 'integer',
     ];
 
+    /**
+     * Returns the products associated with a particular category
+     *
+     * @return HasMany
+     */
     public function products(): HasMany
     {
-        $this->hasMany(Product::class, 'product_id');
+        return $this->hasMany(Product::class, 'category_id');
     }
 }

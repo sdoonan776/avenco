@@ -27,15 +27,15 @@ class CartController extends Controller
     public function index(): View
     {
         return view('cart.index', [
-            'discount' => $this->model->getDiscount(),
-            'tax' => $this->model->getTax(),
-            'code' => $this->model->getCode(),
-            'newSubTotal' => $this->model->getNewSubTotal(),
-            'newTax' => $this->model->getNewTax(),
-            'newTotal' => $this->model->getNewTotal(),
+            'discount' => $this->model->stats()->getDiscount(),
+            'tax' => $this->model->stats()->getTax(),
+            'code' => $this->model->stats()->getCode(),
+            'newSubTotal' => $this->model->stats()->getNewSubTotal(),
+            'newTax' => $this->model->stats()->getNewTax(),
+            'newTotal' => $this->model->stats()->getNewTotal(),
         ]);                                        
     }
-    
+
     /**
      * Add a new item to the cart.
      *
