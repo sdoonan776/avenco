@@ -22,12 +22,8 @@ class HomeController extends Controller
      */
     public function __invoke(): View
     {
-        dd(auth());
-        try {
-            $products = $this->repository->productPagination(4);    
-        } catch (Exception $e) {
-            throw new $e->getMessage();
-        }
+        $products = $this->repository->productPagination(4);    
+        
         
         return view('home.index', [
             'products' => $products

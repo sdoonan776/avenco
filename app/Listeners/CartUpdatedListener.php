@@ -33,7 +33,6 @@ class CartUpdatedListener
 
         if ($couponName) {
             $coupon = $this->coupon::where('code', $couponName)->first();
-
             dispatch_now(new UpdateCoupon($coupon));
         }
     }

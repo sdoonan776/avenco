@@ -10,12 +10,10 @@ class RouteTest extends TestCase
 {
 	protected $http;
 	protected $user;
-	protected $admin;
 
 	public function setUp(): void
 	{
 		parent::setUp();
-
 		$this->http = new Client();
 		$this->user = factory(User::class)->create();
 	}

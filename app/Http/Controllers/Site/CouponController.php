@@ -26,9 +26,10 @@ class CouponController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        dd($request);
+        // dd($request);
         $coupon = $this->model::where('code', $request->coupon)->first();
 
+        // dd($coupon);
         if (!$coupon) {
             return back()->withErrors('Invalid coupon code. Please try again.');
         }
@@ -39,7 +40,7 @@ class CouponController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Destory the coupon session
      *
      * @return \Illuminate\Http\RedirectResponse
      */
