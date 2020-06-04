@@ -14,7 +14,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 	 */
     public function listCategories()
     {
-        return Category::with('products');
+        return Category::all();
     }
 
     /**
@@ -41,23 +41,6 @@ class CategoryRepository implements CategoryRepositoryInterface
         } else {
             return 'All Products';
         }
-    }
-
-    /**
-     * Returns a list of products with the paginator by category
-     * @return mixed
-     */
-    public function getProductsByCategory()
-    {
-        if (request()->category) {
-            $products = Category::with('products')->whereHas('products', fn($query) =>
-                $query->where('slug', request()->category)
-            );
-        } else {
-            return Category::with('products');
-        }
-
-        return $products;
     }
 }
 

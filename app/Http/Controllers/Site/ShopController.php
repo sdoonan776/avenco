@@ -6,16 +6,21 @@ use App\Models\Product;
 use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use App\Interfaces\CategoryRepositoryInterface;
-
+use App\Interfaces\ProductRepositoryInterface;
 
 class ShopController extends Controller
 {
 
     protected $repo;
+    protected $productRepo;
 
-    public function __construct(CategoryRepositoryInterface $repo) 
+    public function __construct(
+        CategoryRepositoryInterface $repo,
+        ProductRepositoryInterface $productRepo
+    ) 
     {
         $this->repo = $repo;
+        $this->productRepo = $productRepo;
     }
     
     /**
@@ -28,7 +33,7 @@ class ShopController extends Controller
         return view('shop.index', [
             'categories' => $this->repo->listCategories(),
             'categoryName' => $this->repo->getCategoryName(),
-            'products' => $this->repo->getProductsByCategory()
+            'products' => $this->productRepo->getProductsByCategory()
         ]);
     }
 

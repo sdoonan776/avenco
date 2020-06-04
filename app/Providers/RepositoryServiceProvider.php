@@ -4,16 +4,19 @@ namespace App\Providers;
 
 use App\Services\StripeService;
 use App\Repository\OrderRepository;
+use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Interfaces\PaymentServiceInterface;
 use App\Interfaces\OrderRepositoryInterface;
+use App\Interfaces\ProductRepositoryInterface;
 use App\Interfaces\CategoryRepositoryInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
     protected $repositories = [
         CategoryRepositoryInterface::class => CategoryRepository::class,
+        ProductRepositoryInterface::class => ProductRepository::class,
         OrderRepositoryInterface::class => OrderRepository::class,
         PaymentServiceInterface::class => StripeService::class
     ];

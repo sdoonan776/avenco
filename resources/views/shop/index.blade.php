@@ -44,8 +44,8 @@
             @endforeach 
         </div>
     </section>
-    {{-- <div class="pagination-links">
+    <div class="pagination-links">
       {{ $products->appends(request()->input())->links() }}
-    </div> --}}
+    </div>
 </div>
 @endsection

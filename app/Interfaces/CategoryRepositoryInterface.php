@@ -18,9 +18,4 @@ interface CategoryRepositoryInterface
      */
     public function findBySlug($slug);
 
-    /**
-     * Returns a list of products with the paginator by category
-     * @return mixed
-     */
-    public function getProductsByCategory();
 }

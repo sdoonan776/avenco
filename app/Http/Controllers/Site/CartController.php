@@ -12,9 +12,11 @@ use Illuminate\View\View;
 
 class CartController extends Controller
 {
-    protected Coupon $model;
+    protected $model;
 
-    public function __construct(Coupon $model)
+    public function __construct(
+        Coupon $model
+    )
     {
         $this->model = $model;
     }   
@@ -107,7 +109,7 @@ class CartController extends Controller
      * @param  int  $id
      * @return RedirectResponse
      */
-    public function switchToSaveForLater($id):  RedirectResponse
+    public function switchToSaveForLater($id): RedirectResponse
     {
         $item = Cart::get($id);
 
