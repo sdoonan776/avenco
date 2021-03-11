@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --mode=development --hide-modules --config=webpack.config.js",
+        "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --mode=development --hide-modules --config=webpack.config.js",
         "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --mode=development --hide-modules --watch --config=webpack.config.js",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --mode=production --hide-modules --config=webpack.config.js"
     },

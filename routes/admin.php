@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', 'Admin\AdminController@index')->name('index');
 
 Route::resource('/users', 'Admin\UserController');

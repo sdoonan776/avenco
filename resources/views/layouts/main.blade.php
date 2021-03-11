@@ -12,17 +12,14 @@
 		<link rel="favicon" href="{{ asset('favicon.ico') }}">
 	</head>
 	<body>
-		<header>
-		  @include('partials.header')
-		</header>
-
+		
+		@include('partials.header')
+		
 		<main>
 		  	@yield('main')
 		</main>
 
-		<footer>
-	      @include('partials.footer')
-		</footer>
+		@include('partials.footer')
 		
 		<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/fontawesome.js') }}"></script>

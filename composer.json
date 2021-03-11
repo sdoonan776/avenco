@@ -4,22 +4,24 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
-        "cartalyst/stripe-laravel": "^11.0",
+        "cartalyst/stripe-laravel": "^13.0",
         "fideloper/proxy": "^4.0",
-        "hardevine/shoppingcart": "^2.7",
-        "laravel/framework": "^6.2",
-        "laravel/helpers": "^1.1",
-        "laravel/tinker": "^2.0"
+        "fruitcake/laravel-cors": "^2.0",
+        "hardevine/shoppingcart": "^2.9",
+        "laravel/framework": "^8.0",
+        "laravel/helpers": "^1.4.1",
+        "laravel/tinker": "^2.0",
+        "laravel/ui": "^3.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.3",
-        "facade/ignition": "^1.4",
+        "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "^1.4",
-        "guzzlehttp/guzzle": "^6.5",
+        "guzzlehttp/guzzle": "^7.0.1",
         "laravel/dusk": "^6.2",
         "mockery/mockery": "^1.0",
-        "nunomaduro/collision": "^3.0",
-        "phpunit/phpunit": "^8.0",
+        "nunomaduro/collision": "^5.0",
+        "phpunit/phpunit": "^9.0",
         "staudenmeir/dusk-updater": "^1.2"
     },
     "config": {
@@ -37,12 +39,10 @@
             "app/Helpers/helpers.php"
         ],
         "psr-4": {
-            "App\\": "app/"
-        },
-        "classmap": [
-            "database/seeds",
-            "database/factories"
-        ]
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/" 
+        }
     },
     "autoload-dev": {
         "psr-4": {

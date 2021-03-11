@@ -1,42 +1,37 @@
 <?php
 
-// auth routes
-Auth::routes(['verify' => true]);
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
-// home
-Route::get('/', 'Site\HomeController')->name('home.index');
+Auth::routes(['verify']);
 
-// shop
-Route::get('shop', 'Site\ShopController@index')->name('shop.index');
-Route::get('shop/{product}', 'Site\ShopController@show')->name('shop.show');
+Route::get('/', 'HomeController')->name('home.index');
 
-Route::group(['middleware' => 'auth'], function () {
-	// cart
-	Route::get('cart', 'Site\CartController@index')->name('cart.index');
-	Route::post('cart/{product}', 'Site\CartController@store')->name('cart.store');
-	Route::patch('cart/{product}', 'Site\CartController@update')->name('cart.update');
-	Route::delete('cart/{product}', 'Site\CartController@destroy')->name('cart.destroy');
-	Route::delete('cart', 'Site\CartController@clearCart')->name('cart.clearCart');
-	Route::post('cart/switchToSaveForLater/{product}', 'Site\CartController@switchToSaveForLater')->name('cart.switchToSaveForLater');
-	Route::delete('saveForLater/{product}', 'Site\SaveForLaterController@destroy')->name('saveForLater.destroy');
-	Route::post('saveForLater/switchToCart/{product}', 'Site\SaveForLaterController@switchToCart')->name('saveForLater.switchToCart');
+Route::get('/shop', 'ShopController@index')->name('shop.index');
+Route::get('/shop/{product}', 'ShopController@show')->name('shop.show');
 
-	// coupons
-	Route::post('coupon', 'Site\CouponController@store')->name('coupon.store');
-	Route::delete('coupon', 'Site\CouponController@destroy')->name('coupon.destroy');
-
-	// profile
-	Route::get('profile/edit', 'Site\UserController@edit')->name('user.edit');
-	Route::patch('profile/update', 'Site\UserController@update')->name('user.update');
-
-	// orders 
-	Route::get('orders', 'Site\OrderController@index')->name('order.index');
-	Route::get('orders/{order}', 'Site\OrderController@show')->name('order.show');
+Route::group(['middleware' => 'auth:web'], function () {
 	
-	// checkout
-	Route::get('checkout', 'Site\CheckoutController@index')->name('checkout.index');
-	Route::post('checkout/order', 'Site\CheckoutController@store')->name('checkout.store');
+	Route::get('/cart', 'CartController@index')->name('cart.index');
+	Route::post('/cart/{product}', 'CartController@store')->name('cart.store');
+	Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
+	Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy');
+	Route::delete('/cart', 'CartController@clearCart')->name('cart.clearCart');
+	Route::post('/cart/switchToSaveForLater/{product}', 'CartController@switchToSaveForLater')->name('cart.switchToSaveForLater');
+	Route::delete('/saveForLater/{product}', 'SaveForLaterController@destroy')->name('saveForLater.destroy');
+	Route::post('/saveForLater/switchToCart/{product}', 'SaveForLaterController@switchToCart')->name('saveForLater.switchToCart');
 
-	// Order Confirmation
-	Route::get('checkout/order/confirmation', 'Site\ConfirmationController')->name('checkout.order-confirmation');
+	Route::post('/coupon', 'CouponController@store')->name('coupon.store');
+	Route::delete('/coupon', 'CouponController@destroy')->name('coupon.destroy');
+
+	Route::get('/profile/edit', 'UserController@edit')->name('user.edit');
+	Route::patch('/profile/update', 'UserController@update')->name('user.update');
+ 
+	Route::get('/orders', 'OrderController@index')->name('order.index');
+	Route::get('/orders/{order}', 'OrderController@show')->name('order.show');
+	
+	Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
+	Route::post('/checkout/order', 'CheckoutController@store')->name('checkout.store');
+
+	Route::get('/checkout/order/confirmation', 'ConfirmationController')->name('checkout.order-confirmation');
 });

@@ -1,4 +1,3 @@
 <?php
 
-Route::post('/authenticate', 'Api\V1\Auth\AuthenticateController@authenticate')->name('authenticate');
-
+Route::post('/authenticate', 'Api\AuthenticateController@authenticate')->name('authenticate');

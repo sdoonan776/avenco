@@ -16,7 +16,7 @@
         <section class="features-section">
             <div class="features-ads">                    
                 <div class="single-features-ads first">
-                    <img src="{{ asset('img/f-delivery.png') }}" alt="features-icon">
+                    <img src="{{ asset('img/f-delivery.png') }}" alt="features-icon" style="width: 8em;">
                     <h4>Free Shipping</h4>
                     <p>
                         Fusce urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vesti bulum mal

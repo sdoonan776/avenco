@@ -1,4 +1,4 @@
-@extends('layouts.user-form')
+@extends('layouts.auth')
 
 @section('title', 'Register')
 
@@ -8,9 +8,7 @@
         <form id="register" method="POST" action="{{ route('register') }}">
           @csrf
           
-          <h3>
-            Register
-          </h3>
+          <h3>Register</h3>
 
           <div id="messages">
             @include('partials.messages')
