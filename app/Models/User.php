@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Order;
 use App\Models\Role;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,7 +14,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, HasFactory;
 
     public $table = 'users';
 
@@ -66,7 +67,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasRole(Role::ROLE_ADMIN);
     }
-    
+
     /**
      * Gets orders related to user
      * @return HasMany
@@ -77,7 +78,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     /**
      * Belongs to many relationship with a role
-     * @return BelongsToMany 
+     * @return BelongsToMany
      */
     public function roles(): belongsToMany
     {

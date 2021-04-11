@@ -3,11 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
-use App\Models\Product;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -46,13 +45,13 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $admin->roles()->sync([$role_admin->id]);
-        
-        factory(User::class, 100)->create();
+
+        User::factory()->count(100)->create();
         $this->call(CategoriesTableSeeder::class);
         $this->call(ProductsTableSeeder::class);
         $this->call(CouponsTableSeeder::class);
         $this->call(CountriesTableSeeder::class);
         $this->call(OrdersTableSeeder::class);
-    }        
+    }
 }
 
