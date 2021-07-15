@@ -37,7 +37,7 @@ class Coupon extends Model
      */
     public function applyDiscount($total)
     {
-        if ($this->type == 'percent') {
+        if ($this->type === 'percent') {
           return round(($this->percent_off / 100) * $total);
         } else {
             return 0;

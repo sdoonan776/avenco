@@ -12,29 +12,20 @@ use Illuminate\View\View;
 
 class CartController extends Controller
 {
-    protected $model;
-
-    public function __construct(
-        Coupon $model
-    )
-    {
-        $this->model = $model;
-    }   
-
     /**
      * Returns cart index page
      *
      * @return View
      */
-    public function index(): View
+    public function index(Coupon $coupon): View
     {
         return view('cart.index', [
-            'discount' => $this->model->stats()->getDiscount(),
-            'tax' => $this->model->stats()->getTax(),
-            'code' => $this->model->stats()->getCode(),
-            'newSubTotal' => $this->model->stats()->getNewSubTotal(),
-            'newTax' => $this->model->stats()->getNewTax(),
-            'newTotal' => $this->model->stats()->getNewTotal(),
+            'discount' => $coupon->stats()->getDiscount(),
+            'tax' => $coupon->stats()->getTax(),
+            'code' => $coupon->stats()->getCode(),
+            'newSubTotal' => $coupon->stats()->getNewSubTotal(),
+            'newTax' => $coupon->stats()->getNewTax(),
+            'newTotal' => $coupon->stats()->getNewTotal(),
         ]);                                        
     }
 
