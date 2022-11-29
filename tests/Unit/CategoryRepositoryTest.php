@@ -11,7 +11,10 @@ class CategoryRepositoryTest extends TestCase
     public function it_should_bind_a_list_of_categories_from_the_repository()
     {
         $repoMock = Mockery::mock('CategoryRespositoryInterface');
-        $repoMock->shouldReceive('listCategories')->once()->andReturn(['items']);
+        $repoMock
+            ->shouldReceive('listCategories')
+            ->once()
+            ->andReturn(['items']);
 
         $app = $this->createApplication($repoMock);
 

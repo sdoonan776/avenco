@@ -8,7 +8,12 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
-    
+    protected $product;
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+    }
+
     /**
      * returns the main home view
      * @return View
@@ -16,7 +21,7 @@ class HomeController extends Controller
     public function __invoke(): View
     {
         return view('home.index', [
-            'products' => Product::paginate(4)
+            'products' => $this->product->paginate(4)
         ]);
     }
 }
