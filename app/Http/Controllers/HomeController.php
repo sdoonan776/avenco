@@ -8,10 +8,11 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
-    protected $product;
-    public function __construct(Product $product)
+    protected $products;
+
+    public function __construct(Product $products)
     {
-        $this->product = $product;
+        $this->products = $products;
     }
 
     /**
@@ -21,7 +22,7 @@ class HomeController extends Controller
     public function __invoke(): View
     {
         return view('home.index', [
-            'products' => $this->product->paginate(4)
+            'products' => $this->products->paginate(4)
         ]);
     }
 }

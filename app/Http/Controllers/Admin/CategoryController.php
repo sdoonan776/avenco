@@ -5,71 +5,66 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 
 class CategoryController extends Controller
 {
 
-	 /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    function public __construct()
     {
-        $categories = Category::query()->select('*')->paginate(4);
+
+    }
+
+    /**
+     * @return View 
+     */
+    public function index(): View
+    {
         return view('admin.categories.index', [
-            'categories' => $categories
+            'categories' => $this->categories->paginate(4)
         ]);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
-        return view('admin.categories.create');   
+        return view('admin.categories.create');
+    }
+
+    
+    /**
+     * @param Category $category
+     * @return View
+     */
+    public function show(Category $category): View
+    {
+        return view('admin.categories.show', compact('category'));
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Category $category
+     * @return View
      */
-    public function show($id)
+    public function edit(Category $category): View
     {
-        $category = Category::findOrFail($id);
-        return view('admin.categories.show', [
-            'category' => $category
-        ]);
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $category = Category::findOrFail($id);
-        return view('admin.categories.edit', [
-            'category' => $category
-        ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param CategoryRequest $request 
+     * @return RedirectResponse 
+     * @throws BindingResolutionException 
+     * @throws RouteNotFoundException 
      */
     public function store(CategoryRequest $request): RedirectResponse
     {
-        Category::create($request->only([
+        $this->category->create($request->only([
             'name'
         ]));
 
@@ -85,11 +80,8 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, Category $category): RedirectResponse
     {
-        $category->update($request->only([
-            'name'
-        ]));
-
-        back()->withSuccess('Category updated successfully');
+        $category->update($request->all());
+        return back()->withSuccess('Category updated successfully');
     }
 
     /**
